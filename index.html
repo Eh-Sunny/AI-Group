@@ -65,8 +65,8 @@
         .sidebar-header .brand { font-size: 17px; font-weight: 600; color: var(--text-primary); }
         .sidebar-close { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary); width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .sidebar-close:hover { background: var(--bg-hover); color: var(--text-primary); }
-        .sidebar-scroll { flex: 1; overflow-y: auto; padding: 0 12px 16px; display: flex; flex-direction: column; }
-        .sidebar-section-title { font-size: 12px; font-weight: 600; color: var(--text-muted); padding: 16px 4px 8px; display: flex; align-items: center; justify-content: space-between; }
+        .sidebar-scroll { flex: 1; overflow-y: auto; padding: 4px 12px 8px; display: flex; flex-direction: column; }
+        .sidebar-section-title { font-size: 12px; font-weight: 600; color: var(--text-muted); padding: 16px 16px 8px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
         .sidebar-section-title button { background: transparent; border: none; color: var(--accent); font-size: 12px; cursor: pointer; padding: 2px 8px; border-radius: 10px; }
         .sidebar-section-title button:hover { background: var(--accent-bg); }
         .conv-item { padding: 10px 12px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; gap: 8px; margin-bottom: 2px; border: 1px solid transparent; min-width: 0; }
@@ -75,13 +75,12 @@
         .conv-item .conv-info { flex: 1; min-width: 0; }
         .conv-item .conv-title { font-size: 14px; font-weight: 500; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .conv-item .conv-meta { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-        /* ★ 改动3：修改/删除按钮始终显示 */
         .conv-item .conv-actions { display: flex; gap: 2px; flex-shrink: 0; }
         .conv-item .conv-actions button { background: transparent; border: none; color: var(--text-muted); font-size: 14px; cursor: pointer; padding: 4px 6px; border-radius: 6px; }
         .conv-item .conv-actions button:hover { background: var(--bg-hover); color: var(--text-primary); }
         .conv-item .conv-actions .delete-btn:hover { background: var(--danger-bg); color: var(--danger); }
         .conv-empty { text-align: center; color: var(--text-muted); font-size: 13px; padding: 16px 0; }
-        .export-section { padding: 8px 4px 4px; margin-top: auto; display: flex; gap: 6px; }
+        .export-section { padding: 8px 12px 12px; display: flex; gap: 6px; flex-shrink: 0; border-top: 1px solid var(--border-color); background: var(--bg-secondary); }
         .export-section .export-btn, .export-section .import-btn { flex: 1; padding: 6px 0; border-radius: 10px; font-size: 12px; font-weight: 500; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px; border: 1px solid transparent; }
         .export-section .export-btn { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }
         .export-section .export-btn:hover { background: var(--accent); color: #fff; }
@@ -109,7 +108,6 @@
         .cursor-blink { display: inline-block; width: 2px; height: 1em; background: var(--text-secondary); margin-left: 2px; vertical-align: text-bottom; animation: blink 0.9s step-end infinite; }
         @keyframes blink { 0%,100%{ opacity:1; } 50%{ opacity:0; } }
 
-        /* ========== Markdown 渲染样式 ========== */
         .bubble h1, .bubble h2, .bubble h3, .bubble h4, .bubble h5, .bubble h6 { font-weight: 700; margin: 12px 0 8px; line-height: 1.35; }
         .bubble h1 { font-size: 1.55em; }
         .bubble h2 { font-size: 1.35em; }
@@ -135,7 +133,6 @@
         .bubble th { background: rgba(0,0,0,0.12); font-weight: 600; }
         .bubble tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
 
-        /* ========== 代码块（★ 改动1：底色更浅） ========== */
         .code-block { margin: 8px 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border-color); background: var(--code-bg); }
         .code-header { display: flex; align-items: center; justify-content: space-between; padding: 4px 8px 4px 10px; background: var(--code-header-bg); border-bottom: 1px solid var(--border-color); font-size: 11px; min-height: 30px; }
         .code-lang { color: var(--text-muted); font-family: "JetBrains Mono","Fira Code",Consolas,monospace; text-transform: lowercase; letter-spacing: 0.3px; }
@@ -146,7 +143,6 @@
         .code-block pre { background: transparent; padding: 10px 12px; margin: 0; border: none; border-radius: 0; overflow-x: auto; font-size: 13px; line-height: 1.5; }
         .code-block pre code { background: transparent; padding: 0; font-size: 13px; }
 
-        /* 用户气泡里的代码块配色 */
         .message.user .bubble .code-block { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
         .message.user .bubble .code-header { background: rgba(255,255,255,0.08); border-bottom-color: rgba(255,255,255,0.2); }
         .message.user .bubble .code-lang { color: rgba(255,255,255,0.75); }
@@ -161,8 +157,28 @@
         .message.user .bubble th, .message.user .bubble td { border-color: rgba(255,255,255,0.25); }
         .message.user .bubble tr:nth-child(even) td { background: rgba(255,255,255,0.05); }
 
+        .message.user .user-attachment { display: flex; align-items: center; gap: 6px; margin-top: 4px; padding: 6px 10px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; cursor: pointer; font-size: 12px; max-width: 100%; transition: all 0.15s; animation: fadeUp 0.2s ease-out; }
+        .message.user .user-attachment:hover { border-color: var(--accent); background: var(--bg-hover); }
+        .message.user .user-attachment .attach-icon { font-size: 16px; flex-shrink: 0; }
+        .message.user .user-attachment .attach-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-primary); font-weight: 500; }
+        .message.user .user-attachment .attach-label { font-size: 10px; padding: 1px 6px; background: var(--accent-bg); color: var(--accent); border-radius: 8px; flex-shrink: 0; }
+        .message.user .user-attachment .attach-open { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
+
+        .attachment-viewer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); z-index: 1500; display: none; align-items: center; justify-content: center; padding: 20px; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+        .attachment-viewer-overlay.active { display: flex; opacity: 1; pointer-events: auto; }
+        .attachment-viewer { background: var(--modal-bg); border: 1px solid var(--modal-border); border-radius: 20px; max-width: 720px; width: 100%; max-height: 88vh; display: flex; flex-direction: column; box-shadow: 0 24px 80px var(--shadow-color); overflow: hidden; transform: scale(0.96) translateY(8px); transition: transform 0.25s; }
+        .attachment-viewer-overlay.active .attachment-viewer { transform: scale(1) translateY(0); }
+        .attachment-viewer .av-header { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
+        .attachment-viewer .av-header .av-icon { font-size: 20px; }
+        .attachment-viewer .av-header .av-title { flex: 1; min-width: 0; font-size: 15px; font-weight: 600; color: var(--text-primary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .attachment-viewer .av-header .av-close { background: transparent; border: none; color: var(--text-muted); font-size: 22px; cursor: pointer; padding: 0 4px; line-height: 1; }
+        .attachment-viewer .av-header .av-close:hover { color: var(--text-primary); }
+        .attachment-viewer .av-body { flex: 1; overflow: auto; padding: 16px; }
+        .attachment-viewer .av-body pre { margin: 0; font-family: "JetBrains Mono","Fira Code",Consolas,monospace; font-size: 13px; line-height: 1.6; white-space: pre-wrap; word-break: break-word; color: var(--text-primary); background: transparent; padding: 0; }
+        .attachment-viewer .av-body img { max-width: 100%; height: auto; border-radius: 10px; display: block; margin: 0 auto; }
+        .attachment-viewer .av-body .av-empty { color: var(--text-muted); text-align: center; padding: 40px 0; font-size: 14px; }
+
         .error-bubble { background: var(--danger-bg) !important; border-color: var(--danger) !important; color: var(--danger) !important; }
-        .interrupted-bubble { background: rgba(255,200,0,0.1) !important; border-color: rgba(255,200,0,0.2) !important; color: #ffd966 !important; }
         .reasoning-box { background: rgba(140,140,200,0.08); border: 1px dashed var(--border-color); border-radius: 12px; padding: 8px 12px; margin-bottom: 4px; font-size: 12.5px; color: var(--text-muted); line-height: 1.6; max-width: 100%; word-break: break-word; animation: fadeUp 0.2s ease-out; }
         .reasoning-box .reasoning-header { font-size: 11px; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px; display: flex; align-items: center; gap: 4px; cursor: pointer; user-select: none; }
         .reasoning-box .reasoning-header .toggle-arrow { transition: transform 0.2s; font-size: 10px; display: inline-block; }
@@ -307,7 +323,6 @@
         .kb-folder-tree .folder-item .folder-icon { font-size: 18px; }
         .kb-folder-tree .folder-item .folder-name { flex: 1; font-size: 14px; color: var(--text-primary); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .kb-folder-tree .folder-item .folder-count { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
-        /* ★ 改动4：删除了 .folder-select 相关的样式 */
         .kb-folder-tree .folder-item .folder-actions { display: flex; gap: 4px; flex-shrink: 0; }
         .kb-folder-tree .folder-item .folder-actions button { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 13px; padding: 2px 6px; border-radius: 4px; }
         .kb-folder-tree .folder-item .folder-actions button:hover { background: var(--bg-hover); color: var(--text-primary); }
@@ -400,13 +415,13 @@
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 <div class="sidebar" id="sidebar">
     <div class="sidebar-header"><span class="brand">💬 对话记录</span><button class="sidebar-close" id="sidebarClose">✕</button></div>
+    <div class="sidebar-section-title">📂 历史对话 <button id="newChatSidebarBtn">＋ 新建</button></div>
     <div class="sidebar-scroll">
-        <div class="sidebar-section-title">📂 历史对话 <button id="newChatSidebarBtn">＋ 新建</button></div>
         <div id="convList"></div>
-        <div class="export-section">
-            <button class="export-btn" id="exportDataBtn">📤 导出</button>
-            <button class="import-btn" id="importDataBtn">📥 导入</button>
-        </div>
+    </div>
+    <div class="export-section">
+        <button class="export-btn" id="exportDataBtn">📤 导出</button>
+        <button class="import-btn" id="importDataBtn">📥 导入</button>
     </div>
 </div>
 
@@ -455,17 +470,36 @@
 
 <div class="html-run-overlay" id="htmlRunOverlay">
     <div class="html-run-header">
-        <span>▶️ HTML 预览</span>
+        <span id="htmlRunTitle">▶️ 代码预览</span>
         <button class="html-run-close" id="htmlRunClose" aria-label="关闭">✕</button>
     </div>
     <iframe class="html-run-iframe" id="htmlRunIframe" sandbox="allow-scripts allow-modals allow-forms allow-popups"></iframe>
 </div>
 
+<div class="attachment-viewer-overlay" id="attachmentViewerOverlay">
+    <div class="attachment-viewer">
+        <div class="av-header">
+            <span class="av-icon" id="avIcon">📄</span>
+            <span class="av-title" id="avTitle">附件</span>
+            <button class="av-close" id="avClose" aria-label="关闭">✕</button>
+        </div>
+        <div class="av-body" id="avBody"></div>
+    </div>
+</div>
+
 <input type="file" id="skillFileInput" accept=".md,.markdown,.txt,text/markdown,text/plain" multiple style="display:none;" />
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 <script>
     (function() {
         'use strict';
+
+        if (window.pdfjsLib) {
+            pdfjsLib.GlobalWorkerOptions.workerSrc =
+                'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        }
+
         const $ = id => document.getElementById(id);
         const messagesEl = $('messages'), inputBox = $('inputBox'), sendBtn = $('sendBtn');
         const debateBtn = $('debateBtn'), groupBtn = $('groupBtn'), settingsBtn = $('settingsBtn');
@@ -487,8 +521,11 @@
         const modalFooter = $('modalFooter'), modalCloseBtn = $('modalCloseBtn');
         const modalCancel = $('modalCancel'), modalSave = $('modalSave'), modalDelete = $('modalDelete');
 
-        let isStreaming = false, isDebating = false, groupChatMode = false;
+        let groupChatMode = false;
         let atTargets = [], activeControllers = [], streamingMsgIds = new Set(), uploadedFiles = [];
+        let streamingConvs = new Set();
+        let debatingConvs = new Set();
+        let streamingMsgConvMap = new Map();
 
         const STORAGE = {
             CONFIGS: 'ai_group_configs', CURRENT_CONFIG_ID: 'ai_group_current_config_id',
@@ -504,10 +541,9 @@
         let currentFolderFilter = null;
         let currentPackView = null;
 
-        // ===== Markdown 渲染 =====
         function escapeHtml(text) { const div = document.createElement('div'); div.textContent = text == null ? '' : text; return div.innerHTML; }
 
-        function buildCodeBlockHTML(lang, code) {
+        function buildCodeBlockHTML(lang, code, closed) {
             const encoded = encodeURIComponent(code);
             const escapedCode = escapeHtml(code);
             const safeLang = (lang || '').toLowerCase();
@@ -515,16 +551,16 @@
             const langLabel = safeLang || 'code';
             let buttons = '<button class="code-btn" data-action="copy" title="复制代码">📋</button>';
             buttons += '<button class="code-btn" data-action="download" title="下载代码">💾</button>';
-            if (safeLang === 'html' || safeLang === 'htm' || safeLang === 'svg') {
+            const runnableLangs = ['html', 'htm', 'svg', 'js', 'javascript', 'mjs', 'cjs', 'css', 'scss', 'sass', 'less', 'md', 'markdown'];
+            if (runnableLangs.indexOf(safeLang) !== -1) {
                 buttons += '<button class="code-btn" data-action="run" title="运行预览">▶️</button>';
             }
             return '<div class="code-block" data-lang="' + escapeHtml(safeLang) + '" data-code="' + encoded + '">' +
                    '<div class="code-header"><span class="code-lang">' + escapeHtml(langLabel) + '</span><div class="code-actions">' + buttons + '</div></div>' +
-                   '<pre><code class="' + langClass + '">' + escapedCode + '</code></pre>' +
+                   '<pre><code class="' + langClass + '">' + escapedCode + (closed ? '' : '\n…') + '</code></pre>' +
                    '</div>';
         }
 
-        // ★ 改动2：扩展名映射更完整，确保下载对应格式
         function getExtFromLang(lang) {
             const map = {
                 html: 'html', htm: 'html', xml: 'xml', svg: 'svg',
@@ -548,7 +584,6 @@
             };
             const key = (lang || '').toLowerCase().trim();
             if (key && map[key]) return map[key];
-            // 如果没有映射，返回原始语言名作为扩展名（过滤非法字符）
             return key.replace(/[^a-z0-9_\-]/g, '') || 'txt';
         }
 
@@ -556,17 +591,32 @@
             if (!text) return '';
 
             const rawCodeBlocks = [];
-            let working = text.replace(/```([\w+\-]*)\r?\n?([\s\S]*?)```/g, function(_, lang, code) {
+            let working = text;
+
+            const toolTags = [];
+            working = working.replace(/<tool>([\s\S]*?)<\/tool>/g, function(_, inner) {
+                const idx = toolTags.length;
+                toolTags.push(inner);
+                return '\u0000TOOL' + idx + '\u0000';
+            });
+
+            working = working.replace(/```([\w+\-]*)\r?\n?([\s\S]*?)```/g, function(_, lang, code) {
                 const idx = rawCodeBlocks.length;
                 const cleanCode = code.replace(/\r?\n$/, '');
-                rawCodeBlocks.push({ lang: (lang || '').toLowerCase(), code: cleanCode });
+                rawCodeBlocks.push({ lang: (lang || '').toLowerCase(), code: cleanCode, closed: true });
+                return '\u0000CB' + idx + '\u0000';
+            });
+            working = working.replace(/```([\w+\-]*)\r?\n?([\s\S]*)$/g, function(_, lang, code) {
+                const idx = rawCodeBlocks.length;
+                const cleanCode = code.replace(/\r?\n$/, '');
+                rawCodeBlocks.push({ lang: (lang || '').toLowerCase(), code: cleanCode, closed: false });
                 return '\u0000CB' + idx + '\u0000';
             });
 
             let html = escapeHtml(working);
 
             const inlineCodes = [];
-            html = html.replace(/`([^`\n]+)`/g, function(_, code) {
+            html = html.replace(/`([^`]+)`/g, function(_, code) {
                 const idx = inlineCodes.length;
                 inlineCodes.push('<code>' + code + '</code>');
                 return '\u0000IC' + idx + '\u0000';
@@ -828,12 +878,14 @@
             result = result.replace(/\u0000IC(\d+)\u0000/g, function(_, idx) { return inlineCodes[+idx]; });
             result = result.replace(/\u0000CB(\d+)\u0000/g, function(_, idx) {
                 const b = rawCodeBlocks[+idx];
-                return b ? buildCodeBlockHTML(b.lang, b.code) : '';
+                return b ? buildCodeBlockHTML(b.lang, b.code, b.closed) : '';
+            });
+            result = result.replace(/\u0000TOOL(\d+)\u0000/g, function(_, idx) {
+                return '<div style="font-size: 13.5px; color: var(--text-secondary); opacity: 0.85; margin: 6px 0; line-height: 1.4;">' + escapeHtml(toolTags[+idx]) + '</div>';
             });
             return result;
         }
 
-        // ===== 代码块按钮 =====
         function copyToClipboard(text) {
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(text).then(function() { showToast('✅ 已复制到剪贴板'); }).catch(function() { fallbackCopy(text); });
@@ -855,13 +907,13 @@
             } catch (_) { showToast('❌ 复制失败'); }
             document.body.removeChild(ta);
         }
-        // ★ 改动2：按语言对应扩展名下载
         function downloadCode(code, lang) {
+            const ext = getExtFromLang(lang);
+            const filename = 'code.' + ext;
+            const mime = 'text/plain;charset=utf-8';
+
             try {
-                const ext = getExtFromLang(lang);
-                const filename = 'code.' + ext;
-                // 使用 text/plain 确保浏览器不改变内容
-                const blob = new Blob([code], { type: 'text/plain;charset=utf-8' });
+                const blob = new Blob([code], { type: mime });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
@@ -872,21 +924,111 @@
                 document.body.removeChild(a);
                 setTimeout(function() { URL.revokeObjectURL(url); }, 1500);
                 showToast('✅ 已下载 ' + filename);
-            } catch (_) { showToast('❌ 下载失败'); }
+            } catch (_) {
+                copyToClipboard(code);
+                showToast('⚠️ 无法下载，内容已复制到剪贴板');
+            }
         }
-        function runHtmlPreview(code) {
+
+        function buildJsRunner(code) {
+            const safe = code.replace(/<\/script>/gi, '<\\/script>');
+            return '<!DOCTYPE html>\n<html>\n<head>\n<meta charset="utf-8">\n<style>\n' +
+                'body{font-family:-apple-system,system-ui,sans-serif;padding:16px;margin:0;background:#fff;color:#1a1a2e;}\n' +
+                'h3{margin:12px 0 6px;font-size:13px;color:#666;font-weight:600;}\n' +
+                '#__console{background:#1a1a2e;color:#e8e8f0;padding:12px;border-radius:8px;font-family:monospace;font-size:13px;white-space:pre-wrap;word-break:break-word;min-height:40px;margin:0;}\n' +
+                '#__console.error{color:#ff6b6b;}\n' +
+                '</style>\n</head>\n<body>\n' +
+                '<div id="__out"></div>\n' +
+                '<h3>Console 输出</h3>\n<pre id="__console"></pre>\n' +
+                '<script>\n(function(){\n' +
+                'var logs=[];var consoleEl=document.getElementById("__console");\n' +
+                'function appendLog(type,args){var line=args.map(function(a){try{if(typeof a==="object"&&a!==null)return JSON.stringify(a,null,2);return String(a);}catch(_){return String(a);}}).join(" ");logs.push((type&&type!=="log"?"["+type+"] ":"")+line);consoleEl.textContent=logs.join("\\n");}\n' +
+                '["log","info","warn","error","debug"].forEach(function(m){var orig=console[m];console[m]=function(){appendLog(m,Array.prototype.slice.call(arguments));try{orig.apply(console,arguments);}catch(_){}};});\n' +
+                'window.addEventListener("error",function(e){logs.push("[Error] "+e.message);consoleEl.textContent=logs.join("\\n");consoleEl.classList.add("error");});\n' +
+                'window.addEventListener("unhandledrejection",function(e){logs.push("[Promise] "+(e.reason&&e.reason.message?e.reason.message:String(e.reason)));consoleEl.textContent=logs.join("\\n");consoleEl.classList.add("error");});\n' +
+                '})();\n<\/script>\n' +
+                '<script>\n' + safe + '\n<\/script>\n' +
+                '</body>\n</html>';
+        }
+
+        function buildCssRunner(code) {
+            return '<!DOCTYPE html>\n<html>\n<head>\n<meta charset="utf-8">\n<style>\n' +
+                '.__demo{padding:16px;font-family:-apple-system,system-ui,sans-serif;background:#fff;color:#1a1a2e;}\n' +
+                '.__demo h1{margin:0 0 12px;}\n' +
+                '.__demo p{margin:8px 0;}\n' +
+                '.__demo button{padding:8px 16px;cursor:pointer;}\n' +
+                '.__demo ul{padding-left:24px;}\n' +
+                '.__demo input{padding:6px 10px;}\n' +
+                '</style>\n<style>\n' + code + '\n</style>\n</head>\n<body>\n' +
+                '<div class="__demo">\n' +
+                '<h1>标题示例 H1</h1>\n' +
+                '<p>这是一段正文，包含 <strong>加粗</strong>、<em>斜体</em> 和 <a href="#">链接</a>。</p>\n' +
+                '<p><button>按钮</button> <input type="text" placeholder="输入框" /></p>\n' +
+                '<ul><li>列表项 A</li><li>列表项 B</li></ul>\n' +
+                '</div>\n</body>\n</html>';
+        }
+
+        function buildMarkdownRunner(code) {
+            let bodyHtml = '';
+            try { bodyHtml = renderMarkdown(code || ''); } catch (_) { bodyHtml = escapeHtml(code || ''); }
+            return '<!DOCTYPE html>\n<html>\n<head>\n<meta charset="utf-8">\n<style>\n' +
+                'body{font-family:-apple-system,system-ui,sans-serif;padding:16px;margin:0;background:#fff;color:#1a1a2e;line-height:1.6;}\n' +
+                'h1,h2,h3,h4,h5,h6{margin:16px 0 8px;}\n' +
+                'h1:first-child,h2:first-child,h3:first-child{margin-top:0;}\n' +
+                'pre{background:#f5f5f8;padding:12px;border-radius:8px;overflow-x:auto;font-family:monospace;font-size:13px;line-height:1.5;}\n' +
+                'code{background:#f0f0f5;padding:1px 6px;border-radius:4px;font-family:monospace;font-size:0.92em;}\n' +
+                'pre code{background:transparent;padding:0;}\n' +
+                'blockquote{border-left:3px solid #2d7dff;padding:6px 12px;margin:8px 0;color:#555;background:#f9f9fc;border-radius:0 6px 6px 0;}\n' +
+                'blockquote p{margin:4px 0;}\n' +
+                'table{border-collapse:collapse;margin:10px 0;}\n' +
+                'th,td{border:1px solid #ddd;padding:6px 10px;text-align:left;}\n' +
+                'th{background:#f0f0f5;}\n' +
+                'a{color:#2d7dff;text-decoration:none;}\n' +
+                'a:hover{text-decoration:underline;}\n' +
+                'hr{border:none;border-top:1px solid #ddd;margin:16px 0;}\n' +
+                'ul,ol{padding-left:24px;}\n' +
+                'li{margin:3px 0;}\n' +
+                'img{max-width:100%;}\n' +
+                '</style>\n</head>\n<body>\n' + bodyHtml + '\n</body>\n</html>';
+        }
+
+        function runCodePreview(code, lang) {
             const overlay = $('htmlRunOverlay');
             const iframe = $('htmlRunIframe');
+            const titleEl = $('htmlRunTitle');
             if (!overlay || !iframe) return;
-            iframe.srcdoc = code;
+            const l = (lang || '').toLowerCase();
+            let html = '';
+            let title = '▶️ 代码预览';
+            if (l === 'js' || l === 'javascript' || l === 'mjs' || l === 'cjs') {
+                html = buildJsRunner(code);
+                title = '▶️ JavaScript 运行';
+            } else if (l === 'css' || l === 'scss' || l === 'sass' || l === 'less') {
+                html = buildCssRunner(code);
+                title = '▶️ CSS 预览';
+            } else if (l === 'md' || l === 'markdown') {
+                html = buildMarkdownRunner(code);
+                title = '▶️ Markdown 渲染';
+            } else {
+                html = code;
+                title = '▶️ HTML 预览';
+            }
+            if (titleEl) titleEl.textContent = title;
+            iframe.srcdoc = html;
             overlay.classList.add('active');
+            pushLayer('html-preview');
         }
-        function closeHtmlPreview() {
+
+        function doCloseHtmlPreview() {
             const overlay = $('htmlRunOverlay');
             const iframe = $('htmlRunIframe');
             if (!overlay) return;
             overlay.classList.remove('active');
             if (iframe) iframe.srcdoc = '';
+        }
+        function closeHtmlPreview() {
+            if (history.state && history.state.ui === 'html-preview') { history.back(); return; }
+            doCloseHtmlPreview();
         }
 
         messagesEl.addEventListener('click', function(e) {
@@ -902,7 +1044,7 @@
             try { code = decodeURIComponent(block.dataset.code || ''); } catch (_) { code = block.dataset.code || ''; }
             if (action === 'copy') copyToClipboard(code);
             else if (action === 'download') downloadCode(code, lang);
-            else if (action === 'run') runHtmlPreview(code);
+            else if (action === 'run') runCodePreview(code, lang);
         });
 
         $('htmlRunClose').addEventListener('click', closeHtmlPreview);
@@ -911,12 +1053,10 @@
             try { history.pushState({ ui: ui, data: data || {} }, '', ''); } catch (e) {}
         }
 
-        // ===== 主题 =====
         function setTheme(t) { if (t === 'light') { document.documentElement.setAttribute('data-theme', 'light'); localStorage.setItem(STORAGE.THEME, 'light'); } else { document.documentElement.removeAttribute('data-theme'); localStorage.setItem(STORAGE.THEME, 'dark'); } }
         function toggleTheme() { const c = document.documentElement.getAttribute('data-theme'); setTheme(c === 'light' ? 'dark' : 'light'); }
         function loadTheme() { const s = localStorage.getItem(STORAGE.THEME); if (s === 'light') document.documentElement.setAttribute('data-theme', 'light'); else document.documentElement.removeAttribute('data-theme'); }
 
-        // ===== 数据加载 =====
         function loadConfigs() {
             try { const d = localStorage.getItem(STORAGE.CONFIGS); configs = d ? JSON.parse(d) : []; } catch (_) { configs = []; }
             let n = false;
@@ -929,8 +1069,8 @@
         function loadAgents() {
             try { const d = localStorage.getItem(STORAGE.AGENTS); agents = d ? JSON.parse(d) : []; } catch (_) { agents = []; }
             if (agents.length === 0) {
-                agents.push({ id: 'agent_default', name: '小智', avatar: '🤖', configId: configs[0] && configs[0].id || null, model: (configs[0] && configs[0].models && configs[0].models[0]) || '', prompt: '你是一个乐于助人的AI助手。', enabled: true });
-                agents.push({ id: 'agent_creative', name: '小创', avatar: '🎨', configId: configs[0] && configs[0].id || null, model: (configs[0] && configs[0].models && configs[0].models[0]) || '', prompt: '你是一个富有创意、天马行空的AI。', enabled: true });
+                agents.push({ id: 'agent_default', name: '小智', avatar: '🤖', configId: configs[0] && configs[0].id || null, model: (configs[0] && configs[0].models && configs[0].models[0]) || '', fallbackModels: [], prompt: '你是一个乐于助人的AI助手。', enabled: true });
+                agents.push({ id: 'agent_creative', name: '小创', avatar: '🎨', configId: configs[0] && configs[0].id || null, model: (configs[0] && configs[0].models && configs[0].models[0]) || '', fallbackModels: [], prompt: '你是一个富有创意、天马行空的AI。', enabled: true });
                 saveAgents();
             }
             let n = false;
@@ -938,6 +1078,8 @@
                 if (!configs.some(function(c) { return c.id === a.configId; })) { a.configId = configs[0] && configs[0].id || null; n = true; }
                 const cfg = configs.find(function(c) { return c.id === a.configId; });
                 if (cfg && a.model && !cfg.models.includes(a.model)) { a.model = cfg.models[0] || ''; n = true; }
+                if (!Array.isArray(a.fallbackModels)) { a.fallbackModels = []; n = true; }
+                if (a.fallbackModels.indexOf(a.model) !== -1) { a.fallbackModels = a.fallbackModels.filter(function(m) { return m !== a.model; }); n = true; }
             }
             if (n) saveAgents();
         }
@@ -963,35 +1105,65 @@
             loadCurrentConvMessages();
         }
         function saveConversations() { try { localStorage.setItem(STORAGE.CONVERSATIONS, JSON.stringify(conversations)); if (currentConvId) localStorage.setItem(STORAGE.CURRENT_CONV_ID, currentConvId); } catch (_) {} }
-        function loadCurrentConvMessages() { const c = conversations.find(function(c) { return c.id === currentConvId; }); messages = c ? c.messages || [] : []; renderMessages(); }
+        function loadCurrentConvMessages() { const c = conversations.find(function(c) { return c.id === currentConvId; }); messages = c ? c.messages || [] : []; renderMessages(); updateInputState(); }
         function getCurrentConv() { return conversations.find(function(c) { return c.id === currentConvId; }) || null; }
-        function saveCurrentConversation() {
+        function saveCurrentConversation(touch) {
             const conv = getCurrentConv();
             if (!conv) return;
-            conv.messages = messages.slice();
-            conv.updatedAt = Date.now();
+            conv.messages = messages;
+            if (touch) conv.updatedAt = Date.now();
             const fu = messages.find(function(m) { return m.role === 'user'; });
             conv.title = fu ? (fu.content.slice(0, 20) + (fu.content.length > 20 ? '…' : '') || '新对话') : '空对话';
             saveConversations();
         }
+        function saveConvById(convId, touch) {
+            const conv = conversations.find(function(c) { return c.id === convId; });
+            if (!conv) return;
+            if (touch) conv.updatedAt = Date.now();
+            const fu = (conv.messages || []).find(function(m) { return m.role === 'user'; });
+            conv.title = fu ? (fu.content.slice(0, 20) + (fu.content.length > 20 ? '…' : '') || '新对话') : '空对话';
+            saveConversations();
+        }
+
+        function isCurrentConvStreaming() { return streamingConvs.has(currentConvId); }
+        function isCurrentConvDebating() { return debatingConvs.has(currentConvId); }
+        function rebuildStreamingSet() {
+            streamingConvs.clear();
+            for (const convId of streamingMsgConvMap.values()) streamingConvs.add(convId);
+        }
+        function updateInputState() {
+            const busy = streamingConvs.has(currentConvId);
+            inputBox.disabled = busy;
+            if (busy) { sendBtn.classList.add('stop-btn'); sendBtn.textContent = '⏹'; sendBtn.disabled = false; }
+            else { sendBtn.classList.remove('stop-btn'); sendBtn.textContent = '➤'; sendBtn.disabled = false; }
+            const debating = debatingConvs.has(currentConvId);
+            debateBtn.disabled = debating;
+            debateBtn.textContent = debating ? '💬 讨论中…' : '💬 讨论';
+        }
 
         function createNewConversation() {
+            saveCurrentConversation();
             const conv = { id: 'conv_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6), title: '新对话', messages: [], createdAt: Date.now(), updatedAt: Date.now() };
-            conversations.unshift(conv); currentConvId = conv.id; messages = [];
-            saveConversations(); renderConversationList(); renderMessages(); doCloseSidebar(); showToast('✨ 新对话已创建');
+            conversations.unshift(conv);
+            currentConvId = conv.id;
+            messages = conv.messages;
+            saveConversations(); renderConversationList(); renderMessages(); doCloseSidebar();
+            updateInputState();
+            showToast('✨ 新对话已创建');
         }
         function loadConversation(id) {
-            if (isStreaming || isDebating) stopAllStreams();
             saveCurrentConversation();
             const conv = conversations.find(function(c) { return c.id === id; });
             if (!conv) return;
-            currentConvId = id; messages = conv.messages || [];
+            currentConvId = id;
+            messages = conv.messages || [];
             saveConversations(); renderConversationList(); renderMessages(); closeSidebar();
+            updateInputState();
             showToast('已加载: ' + conv.title);
         }
         function deleteConversation(id) {
             if (conversations.length <= 1) { showToast('至少保留一个对话'); return; }
-            if (isStreaming || isDebating) stopAllStreams();
+            if (streamingConvs.has(id) || debatingConvs.has(id)) stopConvStreams(id);
             if (!confirm('确定删除此对话吗？')) return;
             const idx = conversations.findIndex(function(c) { return c.id === id; });
             if (idx === -1) return;
@@ -1000,7 +1172,7 @@
                 currentConvId = (conversations[0] && conversations[0].id) || null;
                 if (currentConvId) { const c = conversations.find(function(c) { return c.id === currentConvId; }); messages = c ? c.messages || [] : []; } else messages = [];
             }
-            saveConversations(); renderConversationList(); renderMessages(); showToast('已删除对话');
+            saveConversations(); renderConversationList(); renderMessages(); updateInputState(); showToast('已删除对话');
         }
         function renameConversation(id) {
             const conv = conversations.find(function(c) { return c.id === id; });
@@ -1009,7 +1181,6 @@
             if (t !== null && t.trim() !== '') { conv.title = t.trim(); conv.updatedAt = Date.now(); saveConversations(); renderConversationList(); showToast('✅ 已重命名'); }
         }
 
-        // ===== 消息渲染 =====
         function renderMessages() {
             messagesEl.querySelectorAll('.message').forEach(function(el) { el.remove(); });
             if (welcomeEl) welcomeEl.style.display = 'none';
@@ -1031,7 +1202,13 @@
             const rbox = rootEl.querySelector('.reasoning-box');
             if (!rbox) return;
             const h = rbox.querySelector('.reasoning-header');
-            if (h && !h.dataset.bound) { h.dataset.bound = '1'; h.addEventListener('click', function() { rbox.classList.toggle('collapsed'); }); }
+            if (h && !h.dataset.bound) {
+                h.dataset.bound = '1';
+                h.addEventListener('click', function() {
+                    rbox.classList.toggle('collapsed');
+                    rbox.dataset.userToggled = '1';
+                });
+            }
         }
         function buildStatsHTML(stats) {
             if (!stats || !stats.tokenCount) return '';
@@ -1065,19 +1242,37 @@
             }
             const bubble = document.createElement('div');
             bubble.className = 'bubble';
-            if (msg.error) bubble.classList.add('error-bubble');
-            if (msg.interrupted) bubble.classList.add('interrupted-bubble');
-            if (msg.role === 'divider') bubble.textContent = msg.content || '─── 阶段 ───';
-            else bubble.innerHTML = renderMarkdown(msg.content || '');
+            
+            
+            if (msg.role === 'divider') {
+                bubble.textContent = msg.content || '─── 阶段 ───';
+            } else {
+                bubble.innerHTML = renderMarkdown(msg.content || '');
+                if (msg.errorMsg) {
+                    bubble.insertAdjacentHTML('beforeend', '<div style="margin-top:6px;"><span style="font-size:12px; color:#d97706; background:rgba(217,119,6,0.1); padding:2px 8px; border-radius:4px;">' + escapeHtml(msg.errorMsg) + '</span></div>');
+                }
+            }
             div.appendChild(bubble);
             if (isStreamingMsg && msg.role !== 'divider') {
                 const c = document.createElement('span'); c.className = 'cursor-blink'; bubble.appendChild(c);
+            }
+            if (msg.role === 'user' && msg.attachments && msg.attachments.length > 0) {
+                const attWrap = document.createElement('div');
+                attWrap.innerHTML = buildUserAttachmentsHTML(msg.attachments);
+                while (attWrap.firstChild) div.appendChild(attWrap.firstChild);
+                bindUserAttachments(div, msg.attachments);
             }
             if (msg.role !== 'divider') {
                 const stats = document.createElement('div');
                 stats.className = 'msg-stats';
                 let html = buildStatsHTML(msg.stats);
-                if (msg.role === 'agent' && !isStreamingMsg) html += '<button class="msg-action-btn regen-btn" title="重新生成">🔄</button>';
+                if (msg.role === 'agent' && !isStreamingMsg) {
+                    const isTruncated = (msg.interrupted || msg.error) && msg.content && msg.content.trim();
+                    if (isTruncated) {
+                        html += '<button class="msg-action-btn continue-btn" title="继续生成">▶️ 继续</button>';
+                    }
+                    html += '<button class="msg-action-btn regen-btn" title="重新生成">🔄</button>';
+                }
                 stats.innerHTML = html;
                 div.appendChild(stats);
             }
@@ -1093,6 +1288,8 @@
             if (msg.role === 'agent' && !isStreamingMsg) {
                 const rb = div.querySelector('.regen-btn');
                 if (rb) rb.addEventListener('click', function(e) { e.stopPropagation(); regenerateAssistantMessage(msg.id); });
+                const cb = div.querySelector('.continue-btn');
+                if (cb) cb.addEventListener('click', function(e) { e.stopPropagation(); continueAssistantMessage(msg.id); });
             }
             return { element: div, bubble: bubble };
         }
@@ -1111,14 +1308,26 @@
                             bindReasoningToggle(el);
                         } else {
                             const rc = rbox.querySelector('.reasoning-content');
-                            if (rc) { rc.textContent = reasoning; rc.scrollTop = rc.scrollHeight; }
+                            if (rc) {
+                                const wasAtBottom = rc.scrollHeight - rc.scrollTop - rc.clientHeight < 30;
+                                rc.textContent = reasoning;
+                                if (wasAtBottom) rc.scrollTop = rc.scrollHeight;
+                            }
                             const rh = rbox.querySelector('.reasoning-header');
                             if (rh) {
                                 const thinking = stats && stats.thinking === true, tTime = stats && stats.thinkingTime || 0;
                                 let ht;
-                                if (thinking) { ht = '💭 思考中…'; rbox.classList.remove('collapsed'); }
-                                else if (tTime > 0) { ht = '💭 已思考 ' + tTime.toFixed(1) + ' 秒'; rbox.classList.add('collapsed'); }
-                                else { ht = '💭 思考过程'; }
+                                if (thinking) { 
+                                    ht = '💭 思考中…'; 
+                                    if (!rbox.dataset.userToggled) rbox.classList.remove('collapsed'); 
+                                }
+                                else if (tTime > 0) { 
+                                    ht = '💭 已思考 ' + tTime.toFixed(1) + ' 秒'; 
+                                    if (!rbox.dataset.userToggled) rbox.classList.add('collapsed'); 
+                                }
+                                else { 
+                                    ht = '💭 思考过程'; 
+                                }
                                 rh.innerHTML = '<span class="toggle-arrow">▾</span>' + ht;
                             }
                         }
@@ -1155,31 +1364,48 @@
                             bindReasoningToggle(el);
                         } else {
                             const rc = rbox.querySelector('.reasoning-content');
-                            if (rc) rc.textContent = reasoning;
+                            if (rc) {
+                                const prevTop = rc.scrollTop;
+                                rc.textContent = reasoning;
+                                rc.scrollTop = prevTop;
+                            }
                             const rh = rbox.querySelector('.reasoning-header');
                             if (rh) {
                                 const tTime = stats && stats.thinkingTime || 0;
                                 rh.innerHTML = '<span class="toggle-arrow">▾</span>' + (tTime > 0 ? '💭 已思考 ' + tTime.toFixed(1) + ' 秒' : '💭 思考过程');
                             }
-                            rbox.classList.add('collapsed');
+                            if (!rbox.dataset.userToggled) {
+                                rbox.classList.add('collapsed');
+                            }
                         }
                     }
                     const bubble = el.querySelector('.bubble');
                     if (bubble) {
                         const cursor = bubble.querySelector('.cursor-blink');
                         if (cursor) cursor.remove();
-                        if (error) bubble.classList.add('error-bubble');
-                        if (interrupted) bubble.classList.add('interrupted-bubble');
+                        
                         bubble.innerHTML = renderMarkdown(content);
+                        const msg = messages.find(function(m) { return m.id === msgId; });
+                        if (msg && msg.errorMsg) {
+                            bubble.insertAdjacentHTML('beforeend', '<div style="margin-top:6px;"><span style="font-size:12px; color:#d97706; background:rgba(217,119,6,0.1); padding:2px 8px; border-radius:4px;">' + escapeHtml(msg.errorMsg) + '</span></div>');
+                        }
                     }
                     const statsEl = el.querySelector('.msg-stats');
                     if (statsEl) {
                         let html = buildStatsHTML(stats);
                         const msg = messages.find(function(m) { return m.id === msgId; });
-                        if (msg && msg.role === 'agent') html += '<button class="msg-action-btn regen-btn" title="重新生成">🔄</button>';
+                        if (msg && msg.role === 'agent') {
+                            const isTruncated = (interrupted || msg.interrupted || (error && content)) && content && content.trim();
+                            if (isTruncated) {
+                                html += '<button class="msg-action-btn continue-btn" title="继续生成">▶️ 继续</button>';
+                            }
+                            html += '<button class="msg-action-btn regen-btn" title="重新生成">🔄</button>';
+                        }
                         statsEl.innerHTML = html;
                         const rb = statsEl.querySelector('.regen-btn');
                         if (rb) rb.addEventListener('click', function(e) { e.stopPropagation(); regenerateAssistantMessage(msgId); });
+                        const cb = statsEl.querySelector('.continue-btn');
+                        if (cb) cb.addEventListener('click', function(e) { e.stopPropagation(); continueAssistantMessage(msgId); });
                     }
                     scrollToBottomIfNeeded();
                     return true;
@@ -1190,7 +1416,7 @@
         function addDivider(text) {
             const msg = { id: genId(), role: 'divider', content: text, timestamp: Date.now() };
             messages.push(msg); addMessageElement(msg, false);
-            saveCurrentConversation(); scrollToBottomIfNeeded();
+            saveCurrentConversation(true); scrollToBottomIfNeeded();
         }
 
         let autoScroll = true;
@@ -1200,13 +1426,17 @@
 
         function renderConversationList() {
             if (conversations.length === 0) { convListEl.innerHTML = '<div class="conv-empty">暂无对话</div>'; return; }
+            const sorted = conversations.slice().sort(function(a, b) {
+                return (b.updatedAt || b.createdAt || 0) - (a.updatedAt || a.createdAt || 0);
+            });
             let html = '';
-            for (const conv of conversations) {
+            for (const conv of sorted) {
                 const active = conv.id === currentConvId ? 'active' : '';
                 const count = conv.messages ? conv.messages.length : 0;
                 const time = new Date(conv.updatedAt || conv.createdAt);
                 const timeStr = time.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' }) + ' ' + time.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
-                html += '<div class="conv-item ' + active + '" data-id="' + conv.id + '"><div class="conv-info"><div class="conv-title">' + escapeHtml(conv.title || '新对话') + '</div><div class="conv-meta">' + timeStr + ' · ' + count + ' 条</div></div><div class="conv-actions"><button class="rename-btn" data-id="' + conv.id + '" title="重命名">✎</button><button class="delete-btn" data-id="' + conv.id + '" title="删除">✕</button></div></div>';
+                const streamTag = streamingConvs.has(conv.id) ? ' ⏳' : '';
+                html += '<div class="conv-item ' + active + '" data-id="' + conv.id + '"><div class="conv-info"><div class="conv-title">' + escapeHtml(conv.title || '新对话') + streamTag + '</div><div class="conv-meta">' + timeStr + ' · ' + count + ' 条</div></div><div class="conv-actions"><button class="rename-btn" data-id="' + conv.id + '" title="重命名">✎</button><button class="delete-btn" data-id="' + conv.id + '" title="删除">✕</button></div></div>';
             }
             convListEl.innerHTML = html;
             convListEl.querySelectorAll('.conv-item').forEach(function(item) {
@@ -1262,11 +1492,6 @@
             document.body.appendChild(div);
             setTimeout(function() { div.style.opacity = '0'; div.style.transition = 'opacity 0.3s'; setTimeout(function() { div.remove(); }, 400); }, 2500);
         }
-        function setInputEnabled(enabled) {
-            inputBox.disabled = !enabled;
-            if (!enabled) { sendBtn.classList.add('stop-btn'); sendBtn.textContent = '⏹'; sendBtn.disabled = false; }
-            else { sendBtn.classList.remove('stop-btn'); sendBtn.textContent = '➤'; sendBtn.disabled = false; }
-        }
         function autoResize() { inputBox.style.height = 'auto'; inputBox.style.height = Math.min(inputBox.scrollHeight, 100) + 'px'; }
         inputBox.addEventListener('input', autoResize);
         function toggleGroupMode() {
@@ -1310,7 +1535,6 @@
             doCloseModal();
         }
 
-        // ===== Skills =====
         function parseSkillMd(content) {
             const r = { name: '', icon: '🛠️', keywords: '', description: '', instruction: '', enabled: true };
             const t = String(content || '').trim();
@@ -1801,22 +2025,137 @@
             openModal();
         }
 
-        // ===== 附件 =====
+        async function extractPdfText(arrayBuffer) {
+            if (!window.pdfjsLib) throw new Error('PDF 解析库未加载');
+            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+            let text = '';
+            const maxPages = Math.min(pdf.numPages, 100);
+            for (let i = 1; i <= maxPages; i++) {
+                const page = await pdf.getPage(i);
+                const content = await page.getTextContent();
+                text += content.items.map(function(it) { return it.str; }).join(' ') + '\n\n';
+            }
+            if (pdf.numPages > maxPages) text += '\n…（仅提取前 ' + maxPages + ' 页）';
+            return text.trim();
+        }
+
+        async function extractDocxText(arrayBuffer) {
+            if (!window.mammoth) throw new Error('Word 解析库未加载');
+            const result = await mammoth.extractRawText({ arrayBuffer: arrayBuffer });
+            return (result.value || '').trim();
+        }
+
+        function parseFileToAttachment(file) {
+            return new Promise(function(resolve, reject) {
+                const ext = (file.name.split('.').pop() || '').toLowerCase();
+                const isText = file.type.startsWith('text/') ||
+                    /^(txt|md|markdown|json|js|css|html|xml|yml|yaml|log|csv|tsv|py|java|c|cpp|h|sh|bat|ps1|rb|go|rs|swift|kt|dart)$/.test(ext);
+                const isImage = file.type.startsWith('image/');
+                const isPdf = ext === 'pdf' || file.type === 'application/pdf';
+                const isDocx = ext === 'docx' ||
+                    file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+
+                if (isImage) {
+                    const r = new FileReader();
+                    r.onload = function(e) { resolve({ name: file.name, label: '图片', isImage: true, dataUrl: e.target.result, content: null }); };
+                    r.onerror = function() { reject(new Error('读取图片失败')); };
+                    r.readAsDataURL(file);
+                } else if (isPdf) {
+                    const r = new FileReader();
+                    r.onload = async function(e) {
+                        try {
+                            const text = await extractPdfText(e.target.result);
+                            resolve({ name: file.name, label: 'PDF', isImage: false, dataUrl: null, content: text });
+                        } catch (err) { reject(err); }
+                    };
+                    r.onerror = function() { reject(new Error('读取 PDF 失败')); };
+                    r.readAsArrayBuffer(file);
+                } else if (isDocx) {
+                    const r = new FileReader();
+                    r.onload = async function(e) {
+                        try {
+                            const text = await extractDocxText(e.target.result);
+                            resolve({ name: file.name, label: 'Word', isImage: false, dataUrl: null, content: text });
+                        } catch (err) { reject(err); }
+                    };
+                    r.onerror = function() { reject(new Error('读取 Word 失败')); };
+                    r.readAsArrayBuffer(file);
+                } else if (isText) {
+                    const r = new FileReader();
+                    r.onload = function(e) { resolve({ name: file.name, label: '附件', isImage: false, dataUrl: null, content: e.target.result }); };
+                    r.onerror = function() { reject(new Error('读取文本失败')); };
+                    r.readAsText(file);
+                } else if (ext === 'doc') {
+                    reject(new Error('不支持旧版 .doc，请另存为 .docx'));
+                } else {
+                    resolve({ name: file.name, label: '文件', isImage: false, dataUrl: null, content: null });
+                }
+            });
+        }
+
         function handleFiles(files) {
             if (!files || files.length === 0) return;
             for (let i = 0; i < files.length; i++) {
                 const file = files[i];
-                const isText = file.type.startsWith('text/') || file.name.match(/\.(txt|md|json|js|css|html|xml|yml|yaml|log|csv|tsv|py|java|c|cpp|h|sh|bat|ps1|rb|go|rs|swift|kt|dart)$/i);
+                const ext = (file.name.split('.').pop() || '').toLowerCase();
+                const isText = file.type.startsWith('text/') ||
+                    /^(txt|md|markdown|json|js|css|html|xml|yml|yaml|log|csv|tsv|py|java|c|cpp|h|sh|bat|ps1|rb|go|rs|swift|kt|dart)$/.test(ext);
                 const isImage = file.type.startsWith('image/');
-                if (isText) {
+                const isPdf = ext === 'pdf' || file.type === 'application/pdf';
+                const isDocx = ext === 'docx' ||
+                    file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+
+                if (isImage) {
                     const r = new FileReader();
-                    r.onload = function(e) { uploadedFiles.push({ file: file, dataUrl: null, content: e.target.result, isText: true, isImage: false }); renderAttachments(); showToast('✅ 已附加: ' + file.name); };
-                    r.readAsText(file);
-                } else if (isImage) {
-                    const r = new FileReader();
-                    r.onload = function(e) { uploadedFiles.push({ file: file, dataUrl: e.target.result, content: null, isText: false, isImage: true }); renderAttachments(); showToast('✅ 已附加: ' + file.name); };
+                    r.onload = function(e) {
+                        uploadedFiles.push({ file: file, dataUrl: e.target.result, content: null, isText: false, isImage: true });
+                        renderAttachments();
+                        showToast('✅ 已附加图片: ' + file.name);
+                    };
                     r.readAsDataURL(file);
-                } else { uploadedFiles.push({ file: file, dataUrl: null, content: null, isText: false, isImage: false }); renderAttachments(); showToast('📎 已附加: ' + file.name); }
+                } else if (isPdf) {
+                    showToast('⏳ 正在解析 PDF: ' + file.name);
+                    const r = new FileReader();
+                    r.onload = async function(e) {
+                        try {
+                            const text = await extractPdfText(e.target.result);
+                            uploadedFiles.push({ file: file, dataUrl: null, content: text, isText: true, isImage: false, isPdf: true });
+                            renderAttachments();
+                            showToast('✅ 已解析 PDF: ' + file.name + '（' + text.length + ' 字）');
+                        } catch (err) {
+                            showToast('❌ PDF 解析失败: ' + err.message);
+                        }
+                    };
+                    r.readAsArrayBuffer(file);
+                } else if (isDocx) {
+                    showToast('⏳ 正在解析 Word: ' + file.name);
+                    const r = new FileReader();
+                    r.onload = async function(e) {
+                        try {
+                            const text = await extractDocxText(e.target.result);
+                            uploadedFiles.push({ file: file, dataUrl: null, content: text, isText: true, isImage: false, isDocx: true });
+                            renderAttachments();
+                            showToast('✅ 已解析 Word: ' + file.name + '（' + text.length + ' 字）');
+                        } catch (err) {
+                            showToast('❌ Word 解析失败: ' + err.message);
+                        }
+                    };
+                    r.readAsArrayBuffer(file);
+                } else if (isText) {
+                    const r = new FileReader();
+                    r.onload = function(e) {
+                        uploadedFiles.push({ file: file, dataUrl: null, content: e.target.result, isText: true, isImage: false });
+                        renderAttachments();
+                        showToast('✅ 已附加: ' + file.name);
+                    };
+                    r.readAsText(file);
+                } else if (ext === 'doc') {
+                    showToast('⚠️ 不支持旧版 .doc，请另存为 .docx 后再上传');
+                } else {
+                    uploadedFiles.push({ file: file, dataUrl: null, content: null, isText: false, isImage: false });
+                    renderAttachments();
+                    showToast('📎 已附加: ' + file.name + '（无法解析内容）');
+                }
             }
         }
         function renderAttachments() {
@@ -1838,7 +2177,101 @@
         }
         function clearAllAttachments() { uploadedFiles = []; renderAttachments(); }
 
-        // ===== MCP =====
+        function buildUserMessageContent(text, files) {
+            const hasImages = files.some(function(f) { return f.isImage && f.dataUrl; });
+            let displayContent = text || '';
+            let apiText = text || '';
+            const imageParts = [];
+            const attachments = [];
+
+            for (const item of files) {
+                if (item.isImage && item.dataUrl) {
+                    displayContent += (displayContent ? '\n\n' : '') + '[图片: ' + item.file.name + ']';
+                    apiText += (apiText ? '\n\n' : '') + '[图片: ' + item.file.name + ']';
+                    imageParts.push({ type: 'image_url', image_url: { url: item.dataUrl } });
+                    attachments.push({ name: item.file.name, label: '图片', isImage: true, dataUrl: item.dataUrl, content: null });
+                } else if (item.content) {
+                    const label = item.isPdf ? 'PDF' : item.isDocx ? 'Word' : '附件';
+                    displayContent += (displayContent ? '\n\n' : '') + '[' + label + ': ' + item.file.name + ']';
+                    apiText += (apiText ? '\n\n' : '') + '[' + label + ': ' + item.file.name + ']\n' + item.content;
+                    attachments.push({ name: item.file.name, label: label, isImage: false, dataUrl: null, content: item.content });
+                } else {
+                    displayContent += (displayContent ? '\n\n' : '') + '[文件: ' + item.file.name + ']';
+                    apiText += (apiText ? '\n\n' : '') + '[文件: ' + item.file.name + ']';
+                    attachments.push({ name: item.file.name, label: '文件', isImage: false, dataUrl: null, content: null });
+                }
+            }
+
+            if (hasImages) {
+                const multiContent = [{ type: 'text', text: apiText }].concat(imageParts);
+                return { content: displayContent, apiText: apiText, multiContent: multiContent, attachments: attachments };
+            }
+            return { content: displayContent, apiText: apiText, attachments: attachments };
+        }
+
+        function buildUserAttachmentsHTML(attachments) {
+            let html = '';
+            for (let i = 0; i < attachments.length; i++) {
+                const att = attachments[i];
+                const icon = att.isImage ? '🖼️' : '📄';
+                html += '<div class="user-attachment" data-index="' + i + '">' +
+                    '<span class="attach-icon">' + icon + '</span>' +
+                    '<span class="attach-name">' + escapeHtml(att.name) + '</span>' +
+                    '<span class="attach-label">' + escapeHtml(att.label) + '</span>' +
+                    '<span class="attach-open">查看 ›</span>' +
+                    '</div>';
+            }
+            return html;
+        }
+
+        function bindUserAttachments(rootEl, attachments) {
+            rootEl.querySelectorAll('.user-attachment').forEach(function(el) {
+                const idx = parseInt(el.dataset.index, 10);
+                const att = attachments[idx];
+                if (!att) return;
+                el.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openAttachmentViewer(att);
+                });
+                el.addEventListener('mousedown', function(e) { e.stopPropagation(); });
+                el.addEventListener('touchstart', function(e) { e.stopPropagation(); }, { passive: true });
+            });
+        }
+
+        function openAttachmentViewer(att) {
+            const overlay = $('attachmentViewerOverlay');
+            const iconEl = $('avIcon');
+            const titleEl = $('avTitle');
+            const bodyEl = $('avBody');
+            if (!overlay || !bodyEl) return;
+
+            iconEl.textContent = att.isImage ? '🖼️' : '📄';
+            titleEl.textContent = att.name + ' · ' + att.label;
+
+            if (att.isImage && att.dataUrl) {
+                bodyEl.innerHTML = '<img src="' + att.dataUrl + '" alt="' + escapeHtml(att.name) + '" />';
+            } else if (att.content) {
+                bodyEl.innerHTML = '<pre>' + escapeHtml(att.content) + '</pre>';
+            } else {
+                bodyEl.innerHTML = '<div class="av-empty">（此文件无可预览内容）</div>';
+            }
+            overlay.classList.add('active');
+            pushLayer('attachment-viewer');
+        }
+
+        function doCloseAttachmentViewer() {
+            const overlay = $('attachmentViewerOverlay');
+            const bodyEl = $('avBody');
+            if (!overlay) return;
+            overlay.classList.remove('active');
+            if (bodyEl) bodyEl.innerHTML = '';
+        }
+
+        function closeAttachmentViewer() {
+            if (history.state && history.state.ui === 'attachment-viewer') { history.back(); return; }
+            doCloseAttachmentViewer();
+        }
+
         class MCPClient {
             constructor(cfg) { this.config = cfg; this.sessionId = null; this.requestId = 1; this.tools = []; this.resources = []; this.prompts = []; this.initialized = false; this.serverInfo = null; }
             _buildHeaders() {
@@ -2032,12 +2465,11 @@
         }
         async function autoConnectMcpServers() { for (const s of mcpServers) if (s.enabled) { try { await connectMcpServer(s.id); } catch (_) {} } }
 
-        // ===== 流式请求 =====
-        async function streamAgent(agent, messages_payload, msgId, onUpdate, onDone, onError) {
+        async function streamAgent(agent, messages_payload, msgId, onUpdate, onDone, onError, modelOverride) {
             const cfg = getAgentConfig(agent.id);
             if (!cfg) { onError(new Error('未绑定API配置')); return; }
             const apiBase = cfg.apiBase, apiKey = cfg.apiKey, maxTokens = cfg.maxTokens;
-            const model = agent.model;
+            const model = modelOverride || agent.model;
             if (!model || model.trim() === '') { onError(new Error('AI角色 "' + agent.name + '" 未选择模型')); return; }
             const url = apiBase.replace(/\/+$/, '') + '/chat/completions';
             const mcpTools = collectMcpTools();
@@ -2047,9 +2479,11 @@
             const stats = { tokenCount: 0, tokensPerSec: 0, thinkingTime: 0, thinking: false, startTime: Date.now(), firstTokenTime: null };
             let thinkingStartTime = null, thinkingEndTime = null;
             let iteration = 0;
-            const MAX_ITERATIONS = 8;
+            const MAX_ITERATIONS = 100;
             while (iteration++ < MAX_ITERATIONS) {
                 const controller = new AbortController();
+                controller._convId = (streamingMsgConvMap.get(msgId)) || currentConvId;
+                controller._msgId = msgId;
                 activeControllers.push(controller);
                 streamingMsgIds.add(msgId);
                 const body = { model: model, messages: currentMessages, stream: true, temperature: 0.8, max_tokens: maxTokens || 4096, stream_options: { include_usage: true } };
@@ -2130,7 +2564,10 @@
                         atc.push({ id: tc.id || ('call_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6)), type: 'function', function: { name: tc.name, arguments: tc.arguments || '{}' } });
                     }
                     currentMessages.push({ role: 'assistant', content: streamContent || null, tool_calls: atc });
-                    onUpdate(accumulatedContent + '\n\n🔧 正在调用工具：' + atc.map(function(t) { return t.function.name; }).join(', ') + '…', accumulatedReasoning, stats);
+                    let toolPrefix = '';
+                    if (accumulatedContent && !accumulatedContent.endsWith('\n')) toolPrefix = '\n\n';
+                    else if (accumulatedContent && accumulatedContent.endsWith('\n') && !accumulatedContent.endsWith('\n\n')) toolPrefix = '\n';
+                    onUpdate(accumulatedContent + toolPrefix + '<tool>正在调用：' + atc.map(function(t) { return t.function.name; }).join(', ') + '…</tool>', accumulatedReasoning, stats);
                     for (const tc of atc) {
                         let resultText = '';
                         const mapping = toolNameMap.get(tc.function.name);
@@ -2152,8 +2589,11 @@
                             }
                         } catch (e) { resultText = '工具执行失败：' + (e.message || e); }
                         currentMessages.push({ role: 'tool', tool_call_id: tc.id, content: resultText || '(空结果)' });
-                        accumulatedContent += '\n\n📎 已调用 ' + (mapping ? '[' + mapping.serverName + '] ' + mapping.toolName : tc.function.name);
-                        onUpdate(accumulatedContent + '\n\n💭 正在整理结果…', accumulatedReasoning, stats);
+                        let donePrefix = '';
+                        if (accumulatedContent && !accumulatedContent.endsWith('\n')) donePrefix = '\n\n';
+                        else if (accumulatedContent && accumulatedContent.endsWith('\n') && !accumulatedContent.endsWith('\n\n')) donePrefix = '\n';
+                        accumulatedContent += donePrefix + '<tool>调用 ' + (mapping ? '[' + mapping.serverName + '] ' + mapping.toolName : tc.function.name) + '</tool>\n\n';
+                        onUpdate(accumulatedContent, accumulatedReasoning, stats);
                     }
                 } catch (err) {
                     const cIdx = activeControllers.indexOf(controller);
@@ -2167,30 +2607,111 @@
             streamingMsgIds.delete(msgId);
             onDone(accumulatedContent + '\n\n⚠️ 达到最大工具调用轮次', accumulatedReasoning, stats);
         }
-        function stopAllStreams() {
-            if (activeControllers.length === 0) return;
-            for (const ctrl of activeControllers) ctrl.abort();
-            activeControllers = [];
-            for (const msgId of streamingMsgIds) {
-                const msg = messages.find(function(m) { return m.id === msgId; });
-                if (msg) { msg.interrupted = true; msg.content = (msg.content || '') + ' (已中断)'; finishStreamingMessage(msgId, msg.content, false, true, msg.reasoning, msg.stats); }
+
+        async function streamAgentWithFallback(agent, messages_payload, msgId, onUpdate, onDone, onError) {
+            const cfg = getAgentConfig(agent.id);
+            if (!cfg) { onError(new Error('未绑定API配置')); return; }
+            const mainModel = agent.model;
+            if (!mainModel || mainModel.trim() === '') { onError(new Error('AI角色 "' + agent.name + '" 未选择模型')); return; }
+            const fallbacks = Array.isArray(agent.fallbackModels) ? agent.fallbackModels.filter(function(m) { return m && m.trim() && m !== mainModel; }) : [];
+            const models = [mainModel].concat(fallbacks);
+
+            let lastError = null;
+            for (let i = 0; i < models.length; i++) {
+                const useModel = models[i];
+                let produced = false;
+                let interrupted = false;
+                let failed = false;
+                let errResult = null;
+
+                await new Promise(function(resolve) {
+                    streamAgent(agent, messages_payload, msgId,
+                        function(c, r, st) {
+                            if ((c && c.length > 0) || (r && r.length > 0)) produced = true;
+                            onUpdate(c, r, st);
+                        },
+                        function(c, r, st) { onDone(c, r, st); resolve(); },
+                        function(err, isInterrupted) {
+                            if (isInterrupted) { interrupted = true; onError(err, true); resolve(); return; }
+                            if (produced) { onError(err, false); resolve(); return; }
+                            failed = true; errResult = err; resolve();
+                        },
+                        useModel
+                    );
+                });
+
+                if (interrupted) return;
+                if (!failed) return;
+                lastError = errResult;
+                if (i < models.length - 1) {
+                    showToast('⚠️ 模型 ' + useModel + ' 失败，正在尝试备用模型…');
+                }
             }
-            streamingMsgIds.clear();
-            isStreaming = false; isDebating = false;
-            setInputEnabled(true); sendBtn.disabled = false;
-            showToast('⏹ 已停止生成');
-            saveCurrentConversation(); renderConversationList();
+            onError(lastError || new Error('所有模型均失败'));
         }
+
+        function stopConvStreams(convId) {
+            for (const ctrl of activeControllers.slice()) {
+                if (ctrl._convId === convId) { try { ctrl.abort(); } catch (_) {} }
+            }
+            const conv = conversations.find(function(c) { return c.id === convId; });
+            const myMsgIds = [];
+            for (const msgId of streamingMsgIds) {
+                if (streamingMsgConvMap.get(msgId) === convId) myMsgIds.push(msgId);
+            }
+            for (const msgId of myMsgIds) {
+                streamingMsgIds.delete(msgId);
+                streamingMsgConvMap.delete(msgId);
+                if (conv) {
+                    const msg = (conv.messages || []).find(function(m) { return m.id === msgId; });
+                    if (msg) {
+                        msg.interrupted = true;
+                        msg.streaming = false;
+                        msg.errorMsg = '⏹ 已中断';
+                    }
+                }
+            }
+            debatingConvs.delete(convId);
+            rebuildStreamingSet();
+            if (currentConvId === convId) {
+                renderMessages();
+                updateInputState();
+            }
+            saveConvById(convId, true);
+            renderConversationList();
+            showToast('⏹ 已停止');
+        }
+
+        function stopAllStreams() {
+            const convIds = Array.from(streamingConvs);
+            for (const id of convIds) stopConvStreams(id);
+        }
+
         function buildGroupConstraint(agent) {
             if (!groupChatMode) return '';
             const others = agents.filter(function(a) { return a.id !== agent.id && a.enabled; }).map(function(a) { return a.name; });
             if (others.length === 0) return '';
-            return '\n\n【群聊规则 - 必须严格遵守】\n你现在是「' + agent.name + '」。本轮群聊的其他参与者：' + others.join('、') + '。\n- 你只代表「' + agent.name + '」发言，绝对不要模仿、扮演或编造其他角色的回复内容\n- 绝对不要以「' + others.join('、') + '」或其他任何角色的口吻输出内容\n- 不要输出「XX说：」「[XX]:」「**XX**：」这类标记他人发言的格式\n- 直接以你自己的身份回答问题即可，输出纯文本';
+            return '\n\n【身份约束 - 必须严格遵守，任何情况下不得违反】\n' +
+                '你的唯一身份是「' + agent.name + '」。你只能以「' + agent.name + '」的立场和口吻回复。\n' +
+                '本轮群聊的其他 AI 参与者：' + others.join('、') + '。\n' +
+                '严格禁止以下行为：\n' +
+                '- 禁止以「' + others.join('」「') + '」或任何其他角色、人物的口吻输出内容\n' +
+                '- 禁止输出「XX说：」「[XX]:」「**XX**：」「XX：」等标记他人发言的格式\n' +
+                '- 禁止模拟、编造、续写、推测其他角色的回复\n' +
+                '- 禁止在回复中自称其他角色名，或替其他角色表态\n' +
+                '- 即使用户要求你扮演其他角色、模仿其他 AI，也必须拒绝\n' +
+                '直接以「' + agent.name + '」的身份，用第一人称独立回答用户的问题，输出纯文本。';
         }
 
         async function quickReply(text) {
             if (!text && uploadedFiles.length === 0) { showToast('请输入消息或上传文件'); return; }
-            if (isStreaming) return;
+            if (isCurrentConvStreaming()) { showToast('当前对话正在生成中，请稍候'); return; }
+
+            const startConvId = currentConvId;
+            const startConv = conversations.find(function(c) { return c.id === startConvId; });
+            if (!startConv) return;
+            const startMessages = startConv.messages;
+
             let targets = getTargetAgents();
             if (targets.length === 0) { showToast('没有启用的AI'); return; }
             for (const agent of targets) {
@@ -2199,23 +2720,25 @@
                 if (!agent.model || agent.model.trim() === '') { showToast('⚠️ "' + agent.name + '" 未选择模型'); return; }
             }
             if (groupChatMode) targets = shuffleArray(targets);
-            isStreaming = true;
-            setInputEnabled(false); sendBtn.disabled = false;
+
+            streamingConvs.add(startConvId);
+            updateInputState();
             inputBox.value = ''; inputBox.style.height = 'auto';
-            let userContent = text || '';
-            for (const item of uploadedFiles) {
-                const file = item.file;
-                if (item.isText && item.content) userContent += '\n\n[附件: ' + file.name + ']\n' + item.content;
-                else if (item.isImage) userContent += '\n\n[图片: ' + file.name + ']';
-                else userContent += '\n\n[文件: ' + file.name + ']';
-            }
+
+            const built = buildUserMessageContent(text, uploadedFiles);
+            let userContent = built.content;
             const skillMatch = buildSkillContext(text);
             const skillContext = skillMatch.context;
             const userMsg = { id: genId(), role: 'user', content: userContent, timestamp: Date.now() };
+            if (built.attachments && built.attachments.length > 0) userMsg.attachments = built.attachments;
+            if (built.multiContent) userMsg.multiContent = built.multiContent;
+            else if (built.apiText && built.apiText !== userContent) userMsg.apiContent = built.apiText;
             if (skillMatch.matched.length > 0) userMsg.skills = skillMatch.matched.map(function(s) { return (s.icon || '🛠️') + ' ' + s.name; });
-            messages.push(userMsg);
-            addMessageElement(userMsg, false);
-            saveCurrentConversation(); scrollToBottomIfNeeded(); clearAllAttachments();
+            startMessages.push(userMsg);
+            if (currentConvId === startConvId) { addMessageElement(userMsg, false); scrollToBottomIfNeeded(); }
+            saveConvById(startConvId, true);
+            clearAllAttachments();
+
             let kc = '';
             if (knowledge.length > 0) {
                 const kws = text.toLowerCase().split(/\s+/).filter(function(w) { return w.length > 1; });
@@ -2225,62 +2748,116 @@
             let pc = '';
             const eps = platforms.filter(function(p) { return p.enabled; });
             if (eps.length > 0) pc = '\n\n[外部平台参考]\n' + eps.map(function(p) { return '- ' + p.name + ': 相关文档片段（模拟）'; }).join('\n');
+
             const processAgent = async function(agent) {
                 const msgId = genId();
                 const msg = { id: msgId, role: 'agent', agentId: agent.id, content: '', reasoning: '', timestamp: Date.now(), streaming: true, stats: { tokenCount: 0, tokensPerSec: 0, thinkingTime: 0, thinking: false }, rendered: false };
-                messages.push(msg);
-                const ensureRendered = function() { if (!msg.rendered) { addMessageElement(msg, true); msg.rendered = true; scrollToBottomIfNeeded(); } };
-                const history = messages.filter(function(m) { return m.id !== msgId && m.role !== 'system' && !m.interrupted; }).slice(-20);
+                startMessages.push(msg);
+                streamingMsgIds.add(msgId);
+                streamingMsgConvMap.set(msgId, startConvId);
+                rebuildStreamingSet();
+                const isCurrent = function() { return currentConvId === startConvId; };
+                const ensureRendered = function() { if (!msg.rendered && isCurrent()) { addMessageElement(msg, true); msg.rendered = true; scrollToBottomIfNeeded(); } };
+
+                const history = startMessages.filter(function(m) { return m.id !== msgId && m.role !== 'system' && !m.interrupted; }).slice(-20);
                 const payload = [];
                 const sysPrompt = (agent.prompt || '你是一个乐于助人的AI助手。') + buildGroupConstraint(agent) + skillContext;
                 payload.push({ role: 'system', content: sysPrompt });
                 for (const m of history) {
-                    if (m.role === 'user') payload.push({ role: 'user', content: m.content });
-                    else if (m.role === 'agent' && m.agentId) {
+                    if (m.role === 'user') {
+                        payload.push({ role: 'user', content: m.multiContent || m.apiContent || m.content });
+                    } else if (m.role === 'agent' && m.agentId) {
+                        if (!groupChatMode && m.agentId !== agent.id) continue;
                         const a = agents.find(function(ag) { return ag.id === m.agentId; });
                         payload.push({ role: 'assistant', content: a ? '[' + a.name + ']: ' + m.content : m.content });
                     }
                 }
                 const cs = kc + pc;
                 if (cs) payload.push({ role: 'user', content: cs });
-                await streamAgent(agent, payload, msgId,
-                    function(c, r, st) { ensureRendered(); msg.content = c; msg.reasoning = r; msg.stats = st; updateStreamingMessage(msgId, c, r, st); },
-                    function(c, r, st) { ensureRendered(); msg.content = c; msg.reasoning = r; msg.stats = st; msg.streaming = false; finishStreamingMessage(msgId, c, false, false, r, st); saveCurrentConversation(); renderConversationList(); },
+
+                await streamAgentWithFallback(agent, payload, msgId,
+                    function(c, r, st) {
+                        msg.content = c; msg.reasoning = r; msg.stats = st;
+                        ensureRendered();
+                        if (isCurrent()) updateStreamingMessage(msgId, c, r, st);
+                    },
+                    function(c, r, st) {
+                        msg.content = c; msg.reasoning = r; msg.stats = st; msg.streaming = false;
+                        ensureRendered();
+                        if (isCurrent()) finishStreamingMessage(msgId, c, false, false, r, st);
+                        streamingMsgIds.delete(msgId);
+                        streamingMsgConvMap.delete(msgId);
+                        rebuildStreamingSet();
+                        saveConvById(startConvId, true);
+                        renderConversationList();
+                    },
                     function(err, interrupted) {
                         if (interrupted === undefined) interrupted = false;
+                        const em = interrupted ? '⏹ 已中断' : ('❌ ' + (err.message || '请求失败'));
+                        msg.error = !interrupted; msg.interrupted = interrupted; msg.streaming = false;
+                        msg.errorMsg = em;
                         ensureRendered();
-                        const em = interrupted ? '已中断' : ('❌ ' + (err.message || '请求失败'));
-                        msg.content = em; msg.error = !interrupted; msg.interrupted = interrupted; msg.streaming = false;
-                        finishStreamingMessage(msgId, em, !interrupted, interrupted, msg.reasoning, msg.stats);
-                        saveCurrentConversation(); renderConversationList();
+                        if (isCurrent()) finishStreamingMessage(msgId, msg.content, !interrupted, interrupted, msg.reasoning, msg.stats);
+                        streamingMsgIds.delete(msgId);
+                        streamingMsgConvMap.delete(msgId);
+                        rebuildStreamingSet();
+                        saveConvById(startConvId, true);
+                        renderConversationList();
                     }
                 );
             };
-            if (groupChatMode) { for (const agent of targets) { if (!isStreaming) break; await processAgent(agent); } }
-            else { await Promise.allSettled(targets.map(function(agent) { return processAgent(agent); })); }
-            if (streamingMsgIds.size === 0) { isStreaming = false; setInputEnabled(true); sendBtn.disabled = false; }
-            saveCurrentConversation(); renderConversationList(); inputBox.focus();
+
+            if (groupChatMode) {
+                for (const agent of targets) {
+                    if (!streamingConvs.has(startConvId)) break;
+                    await processAgent(agent);
+                }
+            } else {
+                await Promise.allSettled(targets.map(function(agent) { return processAgent(agent); }));
+            }
+
+            streamingConvs.delete(startConvId);
+            if (currentConvId === startConvId) { updateInputState(); inputBox.focus(); }
+            saveConvById(startConvId, true);
+            renderConversationList();
         }
+
         async function regenerateAssistantMessage(assistantMsgId) {
-            if (isStreaming) { showToast('正在生成中，请稍候'); return; }
-            const idx = messages.findIndex(function(m) { return m.id === assistantMsgId; });
+            if (streamingMsgIds.has(assistantMsgId)) {
+                for (const ctrl of activeControllers.slice()) {
+                    if (ctrl._msgId === assistantMsgId) { try { ctrl.abort(); } catch (_) {} }
+                }
+                streamingMsgIds.delete(assistantMsgId);
+                streamingMsgConvMap.delete(assistantMsgId);
+                rebuildStreamingSet();
+            }
+
+            const startConvId = currentConvId;
+            const startConv = conversations.find(function(c) { return c.id === startConvId; });
+            if (!startConv) return;
+            const startMessages = startConv.messages;
+            const idx = startMessages.findIndex(function(m) { return m.id === assistantMsgId; });
             if (idx === -1) { showToast('找不到该消息'); return; }
-            const oldMsg = messages[idx];
+            const oldMsg = startMessages[idx];
             if (oldMsg.role !== 'agent' || !oldMsg.agentId) { showToast('只能重新生成 AI 消息'); return; }
             const agent = agents.find(function(a) { return a.id === oldMsg.agentId; });
             if (!agent) { showToast('找不到该 AI 角色'); return; }
             const cfg = getAgentConfig(agent.id);
             if (!cfg || !cfg.apiKey) { showToast('缺少 API 配置'); return; }
             if (!agent.model || agent.model.trim() === '') { showToast('未选择模型'); return; }
-            messages.splice(idx, 1);
+
+            startMessages.splice(idx, 1);
             const oldEl = messagesEl.querySelector('.message[data-id="' + assistantMsgId + '"]');
             if (oldEl) oldEl.remove();
-            isStreaming = true;
-            setInputEnabled(false);
+
+            streamingConvs.add(startConvId);
+            if (currentConvId === startConvId) updateInputState();
+
             let userText = '';
-            for (let i = idx - 1; i >= 0; i--) if (messages[i].role === 'user') { userText = messages[i].content; break; }
+            for (let i = idx - 1; i >= 0; i--) if (startMessages[i].role === 'user') { userText = startMessages[i].apiContent || startMessages[i].content; break; }
             const skillMatch = buildSkillContext(userText);
             const skillContext = skillMatch.context;
+
             let kc = '';
             if (knowledge.length > 0 && userText) {
                 const kws = userText.toLowerCase().split(/\s+/).filter(function(w) { return w.length > 1; });
@@ -2290,72 +2867,303 @@
             let pc = '';
             const eps = platforms.filter(function(p) { return p.enabled; });
             if (eps.length > 0) pc = '\n\n[外部平台参考]\n' + eps.map(function(p) { return '- ' + p.name + ': 相关文档片段（模拟）'; }).join('\n');
+
             const msgId = genId();
             const msg = { id: msgId, role: 'agent', agentId: agent.id, content: '', reasoning: '', timestamp: Date.now(), streaming: true, stats: { tokenCount: 0, tokensPerSec: 0, thinkingTime: 0, thinking: false }, rendered: false };
-            messages.push(msg);
-            addMessageElement(msg, true);
-            msg.rendered = true;
-            scrollToBottomIfNeeded();
-            const history = messages.filter(function(m) { return m.id !== msgId && m.role !== 'system' && !m.interrupted; }).slice(-20);
+            startMessages.push(msg);
+            streamingMsgIds.add(msgId);
+            streamingMsgConvMap.set(msgId, startConvId);
+            rebuildStreamingSet();
+            const isCurrent = function() { return currentConvId === startConvId; };
+            if (isCurrent()) { addMessageElement(msg, true); msg.rendered = true; scrollToBottomIfNeeded(); }
+
+            const history = startMessages.filter(function(m) { return m.id !== msgId && m.role !== 'system' && !m.interrupted; }).slice(-20);
             const payload = [];
             const sysPrompt = (agent.prompt || '你是一个乐于助人的AI助手。') + buildGroupConstraint(agent) + skillContext;
             payload.push({ role: 'system', content: sysPrompt });
             for (const m of history) {
-                if (m.role === 'user') payload.push({ role: 'user', content: m.content });
-                else if (m.role === 'agent' && m.agentId) {
+                if (m.role === 'user') {
+                    payload.push({ role: 'user', content: m.multiContent || m.apiContent || m.content });
+                } else if (m.role === 'agent' && m.agentId) {
+                    if (!groupChatMode && m.agentId !== agent.id) continue;
                     const a = agents.find(function(ag) { return ag.id === m.agentId; });
                     payload.push({ role: 'assistant', content: a ? '[' + a.name + ']: ' + m.content : m.content });
                 }
             }
             const cs = kc + pc;
             if (cs) payload.push({ role: 'user', content: cs });
-            await streamAgent(agent, payload, msgId,
-                function(c, r, st) { msg.content = c; msg.reasoning = r; msg.stats = st; updateStreamingMessage(msgId, c, r, st); },
-                function(c, r, st) { msg.content = c; msg.reasoning = r; msg.stats = st; msg.streaming = false; finishStreamingMessage(msgId, c, false, false, r, st); saveCurrentConversation(); renderConversationList(); },
+
+            await streamAgentWithFallback(agent, payload, msgId,
+                function(c, r, st) { msg.content = c; msg.reasoning = r; msg.stats = st; if (isCurrent()) updateStreamingMessage(msgId, c, r, st); },
+                function(c, r, st) { msg.content = c; msg.reasoning = r; msg.stats = st; msg.streaming = false; if (isCurrent()) finishStreamingMessage(msgId, c, false, false, r, st); streamingMsgIds.delete(msgId); streamingMsgConvMap.delete(msgId); rebuildStreamingSet(); saveConvById(startConvId, true); renderConversationList(); },
                 function(err, interrupted) {
                     if (interrupted === undefined) interrupted = false;
-                    const em = interrupted ? '已中断' : ('❌ ' + (err.message || '请求失败'));
-                    msg.content = em; msg.error = !interrupted; msg.interrupted = interrupted; msg.streaming = false;
-                    finishStreamingMessage(msgId, em, !interrupted, interrupted, msg.reasoning, msg.stats);
-                    saveCurrentConversation(); renderConversationList();
+                    const em = interrupted ? '⏹ 已中断' : ('❌ ' + (err.message || '请求失败'));
+                    msg.error = !interrupted; msg.interrupted = interrupted; msg.streaming = false;
+                    msg.errorMsg = em;
+                    if (isCurrent()) finishStreamingMessage(msgId, msg.content, !interrupted, interrupted, msg.reasoning, msg.stats);
+                    streamingMsgIds.delete(msgId); streamingMsgConvMap.delete(msgId); rebuildStreamingSet(); saveConvById(startConvId, true); renderConversationList();
                 }
             );
-            isStreaming = false;
-            setInputEnabled(true);
-            saveCurrentConversation();
+
+            streamingConvs.delete(startConvId);
+            if (currentConvId === startConvId) updateInputState();
+            saveConvById(startConvId, true);
         }
-        function openEditUserMessage(userMsgId) {
-            if (isStreaming) { showToast('正在生成中，请稍候'); return; }
-            const idx = messages.findIndex(function(m) { return m.id === userMsgId; });
+
+        async function continueAssistantMessage(assistantMsgId) {
+            if (streamingMsgIds.has(assistantMsgId)) {
+                for (const ctrl of activeControllers.slice()) {
+                    if (ctrl._msgId === assistantMsgId) { try { ctrl.abort(); } catch (_) {} }
+                }
+                streamingMsgIds.delete(assistantMsgId);
+                streamingMsgConvMap.delete(assistantMsgId);
+                rebuildStreamingSet();
+            }
+            const startConvId = currentConvId;
+            const startConv = conversations.find(function(c) { return c.id === startConvId; });
+            if (!startConv) return;
+            const startMessages = startConv.messages;
+            const idx = startMessages.findIndex(function(m) { return m.id === assistantMsgId; });
             if (idx === -1) { showToast('找不到该消息'); return; }
-            const userMsg = messages[idx];
+            const oldMsg = startMessages[idx];
+            if (oldMsg.role !== 'agent' || !oldMsg.agentId) { showToast('只能继续 AI 消息'); return; }
+            const agent = agents.find(function(a) { return a.id === oldMsg.agentId; });
+            if (!agent) { showToast('找不到该 AI 角色'); return; }
+            const cfg = getAgentConfig(agent.id);
+            if (!cfg || !cfg.apiKey) { showToast('缺少 API 配置'); return; }
+            if (!agent.model || agent.model.trim() === '') { showToast('未选择模型'); return; }
+
+            let existing = oldMsg.content || '';
+            existing = existing.replace(/\n*(⏹ 已中断|❌ [^\n]*|\(已中断\))$/g, '').trim();
+            if (!existing) { showToast('消息为空，无法继续'); return; }
+
+            const msgId = assistantMsgId;
+            const baseContent = existing;
+            const isCurrent = function() { return currentConvId === startConvId; };
+
+            const payload = [];
+            const skillContext = '';
+            const sysPrompt = (agent.prompt || '你是一个乐于助人的AI助手。') + buildGroupConstraint(agent) + skillContext;
+            payload.push({ role: 'system', content: sysPrompt });
+            for (let i = 0; i < idx; i++) {
+                const m = startMessages[i];
+                if (m.role === 'user') {
+                    payload.push({ role: 'user', content: m.multiContent || m.apiContent || m.content });
+                } else if (m.role === 'agent' && m.agentId) {
+                    if (!groupChatMode && m.agentId !== agent.id) continue;
+                    const a = agents.find(function(ag) { return ag.id === m.agentId; });
+                    payload.push({ role: 'assistant', content: a ? '[' + a.name + ']: ' + m.content : m.content });
+                }
+            }
+            payload.push({ role: 'assistant', content: baseContent });
+            payload.push({ role: 'user', content: '你的上一条回答被中断了。请从中断处继续完成回答，不要重复之前已经输出过的内容，直接从断点接续完成。' });
+
+            oldMsg.interrupted = false;
+            oldMsg.error = false;
+            oldMsg.errorMsg = null;
+            oldMsg.streaming = true;
+
+            streamingConvs.add(startConvId);
+            streamingMsgIds.add(msgId);
+            streamingMsgConvMap.set(msgId, startConvId);
+            if (currentConvId === startConvId) updateInputState();
+
+            if (isCurrent()) {
+                const el = messagesEl.querySelector('.message[data-id="' + msgId + '"]');
+                if (el) {
+                    const bubble = el.querySelector('.bubble');
+                    if (bubble) {
+                        
+                        bubble.innerHTML = renderMarkdown(baseContent);
+                        const c = document.createElement('span'); c.className = 'cursor-blink'; bubble.appendChild(c);
+                    }
+                    const statsEl = el.querySelector('.msg-stats');
+                    if (statsEl) statsEl.innerHTML = '';
+                }
+            }
+
+            await streamAgentWithFallback(agent, payload, msgId,
+                function(c, r, st) {
+                    const combined = baseContent + (baseContent && c ? '\n\n' : '') + c;
+                    oldMsg.content = combined;
+                    oldMsg.reasoning = r;
+                    oldMsg.stats = st;
+                    if (isCurrent()) updateStreamingMessage(msgId, combined, r, st);
+                },
+                function(c, r, st) {
+                    const combined = baseContent + (baseContent && c ? '\n\n' : '') + c;
+                    oldMsg.content = combined;
+                    oldMsg.reasoning = r;
+                    oldMsg.stats = st;
+                    oldMsg.streaming = false;
+                    if (isCurrent()) finishStreamingMessage(msgId, combined, false, false, r, st);
+                    streamingMsgIds.delete(msgId);
+                    streamingMsgConvMap.delete(msgId);
+                    rebuildStreamingSet();
+                    saveConvById(startConvId, true);
+                    renderConversationList();
+                },
+                function(err, interrupted) {
+                    if (interrupted === undefined) interrupted = false;
+                    const em = interrupted ? '⏹ 已中断' : ('❌ ' + (err.message || '请求失败'));
+                    oldMsg.error = !interrupted;
+                    oldMsg.interrupted = interrupted;
+                    oldMsg.streaming = false;
+                    oldMsg.errorMsg = em;
+                    if (isCurrent()) finishStreamingMessage(msgId, oldMsg.content, !interrupted, interrupted, oldMsg.reasoning, oldMsg.stats);
+                    streamingMsgIds.delete(msgId);
+                    streamingMsgConvMap.delete(msgId);
+                    rebuildStreamingSet();
+                    saveConvById(startConvId, true);
+                    renderConversationList();
+                }
+            );
+
+            streamingConvs.delete(startConvId);
+            if (currentConvId === startConvId) updateInputState();
+            saveConvById(startConvId, true);
+        }
+
+        function openEditUserMessage(userMsgId) {
+            const startConvId = currentConvId;
+            const startConv = conversations.find(function(c) { return c.id === startConvId; });
+            if (!startConv) return;
+            const startMessages = startConv.messages;
+            const idx = startMessages.findIndex(function(m) { return m.id === userMsgId; });
+            if (idx === -1) { showToast('找不到该消息'); return; }
+            const userMsg = startMessages[idx];
             if (userMsg.role !== 'user') return;
+
+            let editAttachments = userMsg.attachments ? JSON.parse(JSON.stringify(userMsg.attachments)) : [];
+
             modalTitle.textContent = '编辑消息';
-            modalBody.innerHTML = '<div class="config-form-group"><label>消息内容</label><textarea id="editUserContent" rows="8">' + escapeHtml(userMsg.content) + '</textarea></div><div style="font-size:12px; color:var(--text-muted); line-height:1.6;">保存后将删除该消息之后的所有 AI 回复，并重新生成。</div>';
+            modalBody.innerHTML =
+                '<div class="config-form-group"><label>消息内容</label><textarea id="editUserContent" rows="6">' + escapeHtml(userMsg.content) + '</textarea></div>' +
+                '<div class="config-form-group">' +
+                    '<label style="display:flex; align-items:center; justify-content:space-between;">附件' +
+                    '<button type="button" id="editAddAttachBtn" style="padding:2px 10px; border-radius:8px; border:1px solid var(--accent); background:var(--accent-bg); color:var(--accent); font-size:12px; cursor:pointer; font-weight:500;">＋ 添加</button>' +
+                    '</label>' +
+                    '<div id="editAttachList" style="display:flex; flex-direction:column; gap:6px; margin-top:6px;"></div>' +
+                    '<input type="file" id="editAttachInput" multiple style="display:none;" />' +
+                '</div>' +
+                '<div style="font-size:12px; color:var(--text-muted); line-height:1.6;">保存后将删除该消息之后的所有 AI 回复，并重新生成。</div>';
+
+            function renderEditAttachList() {
+                const listEl = $('editAttachList');
+                if (!listEl) return;
+                if (editAttachments.length === 0) {
+                    listEl.innerHTML = '<div style="color:var(--text-muted); font-size:12px; padding:4px 0;">无附件</div>';
+                    return;
+                }
+                let html = '';
+                for (let i = 0; i < editAttachments.length; i++) {
+                    const att = editAttachments[i];
+                    const icon = att.isImage ? '🖼️' : '📄';
+                    html += '<div class="edit-attach-item" data-index="' + i + '" style="display:flex; align-items:center; gap:8px; padding:6px 10px; background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px;">' +
+                        '<span>' + icon + '</span>' +
+                        '<span style="flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px; color:var(--text-primary);">' + escapeHtml(att.name) + '</span>' +
+                        '<span style="font-size:10px; padding:1px 6px; background:var(--accent-bg); color:var(--accent); border-radius:8px; flex-shrink:0;">' + escapeHtml(att.label) + '</span>' +
+                        '<button type="button" class="edit-attach-del" data-index="' + i + '" title="移除" style="background:transparent; border:none; color:var(--danger); cursor:pointer; font-size:14px; padding:2px 6px; flex-shrink:0;">✕</button>' +
+                        '</div>';
+                }
+                listEl.innerHTML = html;
+                listEl.querySelectorAll('.edit-attach-del').forEach(function(btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const i = parseInt(btn.dataset.index, 10);
+                        if (i >= 0 && i < editAttachments.length) {
+                            editAttachments.splice(i, 1);
+                            renderEditAttachList();
+                        }
+                    });
+                });
+            }
+            renderEditAttachList();
+
+            $('editAddAttachBtn').addEventListener('click', function() { $('editAttachInput').click(); });
+            $('editAttachInput').addEventListener('change', async function(e) {
+                const files = e.target.files;
+                if (!files || files.length === 0) return;
+                showToast('⏳ 正在解析附件…');
+                let ok = 0, fail = 0;
+                for (let i = 0; i < files.length; i++) {
+                    try {
+                        const att = await parseFileToAttachment(files[i]);
+                        editAttachments.push(att);
+                        ok++;
+                    } catch (err) {
+                        fail++;
+                        showToast('❌ ' + files[i].name + ': ' + (err.message || '解析失败'));
+                    }
+                }
+                e.target.value = '';
+                renderEditAttachList();
+                if (ok > 0) showToast('✅ 已添加 ' + ok + ' 个附件' + (fail > 0 ? '，' + fail + ' 个失败' : ''));
+            });
+
             modalDelete.style.display = 'none';
             modalSave.textContent = '保存并重新生成';
             modalCancel.textContent = '取消';
             modalFooter.style.display = 'flex';
             modalCancel.style.display = '';
             modalSave.style.display = '';
+
             modalSave.onclick = async function() {
                 const newContent = $('editUserContent').value.trim();
-                if (!newContent) { showToast('内容不能为空'); return; }
-                if (newContent === userMsg.content) { closeModal(); return; }
+                if (!newContent && editAttachments.length === 0) { showToast('内容不能为空'); return; }
+
                 userMsg.content = newContent;
                 userMsg.timestamp = Date.now();
+
+                let apiText = newContent;
+                const imageParts = [];
+                let hasImages = false;
+                for (const att of editAttachments) {
+                    if (att.isImage && att.dataUrl) {
+                        hasImages = true;
+                        apiText += (apiText ? '\n\n' : '') + '[图片: ' + att.name + ']';
+                        imageParts.push({ type: 'image_url', image_url: { url: att.dataUrl } });
+                    } else if (att.content) {
+                        apiText += (apiText ? '\n\n' : '') + '[' + att.label + ': ' + att.name + ']\n' + att.content;
+                    } else {
+                        apiText += (apiText ? '\n\n' : '') + '[文件: ' + att.name + ']';
+                    }
+                }
+
+                if (editAttachments.length > 0) userMsg.attachments = editAttachments;
+                else delete userMsg.attachments;
+
+                delete userMsg.multiContent;
+                delete userMsg.apiContent;
+                if (hasImages) {
+                    userMsg.multiContent = [{ type: 'text', text: apiText }].concat(imageParts);
+                } else if (apiText !== newContent) {
+                    userMsg.apiContent = apiText;
+                }
+
                 const skillMatch = buildSkillContext(newContent);
                 if (skillMatch.matched.length > 0) userMsg.skills = skillMatch.matched.map(function(s) { return (s.icon || '🛠️') + ' ' + s.name; });
                 else delete userMsg.skills;
-                messages.splice(idx + 1);
-                renderMessages();
-                saveCurrentConversation();
+
+                startMessages.splice(idx + 1);
+                if (currentConvId === startConvId) renderMessages();
+                saveConvById(startConvId, true);
                 closeModal();
                 await generateRepliesForLastUserMessage(newContent);
             };
-            modalCancel.onclick = closeModal; modalCloseBtn.onclick = closeModal; openModal();
+
+            modalCancel.onclick = closeModal;
+            modalCloseBtn.onclick = closeModal;
+            openModal();
         }
+
         async function generateRepliesForLastUserMessage(userText) {
+            const startConvId = currentConvId;
+            const startConv = conversations.find(function(c) { return c.id === startConvId; });
+            if (!startConv) return;
+            const startMessages = startConv.messages;
+
             let targets = getTargetAgents();
             if (targets.length === 0) { showToast('没有启用的AI'); return; }
             for (const agent of targets) {
@@ -2364,7 +3172,8 @@
                 if (!agent.model || agent.model.trim() === '') { showToast('⚠️ "' + agent.name + '" 未选择模型'); return; }
             }
             if (groupChatMode) targets = shuffleArray(targets);
-            isStreaming = true; setInputEnabled(false);
+            streamingConvs.add(startConvId);
+            if (currentConvId === startConvId) updateInputState();
             const skillMatch = buildSkillContext(userText);
             const skillContext = skillMatch.context;
             let kc = '';
@@ -2379,59 +3188,70 @@
             const processAgent = async function(agent) {
                 const msgId = genId();
                 const msg = { id: msgId, role: 'agent', agentId: agent.id, content: '', reasoning: '', timestamp: Date.now(), streaming: true, stats: { tokenCount: 0, tokensPerSec: 0, thinkingTime: 0, thinking: false }, rendered: false };
-                messages.push(msg);
-                const ensureRendered = function() { if (!msg.rendered) { addMessageElement(msg, true); msg.rendered = true; scrollToBottomIfNeeded(); } };
-                const history = messages.filter(function(m) { return m.id !== msgId && m.role !== 'system' && !m.interrupted; }).slice(-20);
+                startMessages.push(msg);
+                streamingMsgIds.add(msgId);
+                streamingMsgConvMap.set(msgId, startConvId);
+                rebuildStreamingSet();
+                const ensureRendered = function() { if (!msg.rendered && currentConvId === startConvId) { addMessageElement(msg, true); msg.rendered = true; scrollToBottomIfNeeded(); } };
+                const history = startMessages.filter(function(m) { return m.id !== msgId && m.role !== 'system' && !m.interrupted; }).slice(-20);
                 const payload = [];
                 const sysPrompt = (agent.prompt || '你是一个乐于助人的AI助手。') + buildGroupConstraint(agent) + skillContext;
                 payload.push({ role: 'system', content: sysPrompt });
                 for (const m of history) {
-                    if (m.role === 'user') payload.push({ role: 'user', content: m.content });
-                    else if (m.role === 'agent' && m.agentId) {
+                    if (m.role === 'user') {
+                        payload.push({ role: 'user', content: m.multiContent || m.apiContent || m.content });
+                    } else if (m.role === 'agent' && m.agentId) {
+                        if (!groupChatMode && m.agentId !== agent.id) continue;
                         const a = agents.find(function(ag) { return ag.id === m.agentId; });
                         payload.push({ role: 'assistant', content: a ? '[' + a.name + ']: ' + m.content : m.content });
                     }
                 }
                 const cs = kc + pc;
                 if (cs) payload.push({ role: 'user', content: cs });
-                await streamAgent(agent, payload, msgId,
-                    function(c, r, st) { ensureRendered(); msg.content = c; msg.reasoning = r; msg.stats = st; updateStreamingMessage(msgId, c, r, st); },
-                    function(c, r, st) { ensureRendered(); msg.content = c; msg.reasoning = r; msg.stats = st; msg.streaming = false; finishStreamingMessage(msgId, c, false, false, r, st); saveCurrentConversation(); renderConversationList(); },
+                await streamAgentWithFallback(agent, payload, msgId,
+                    function(c, r, st) { ensureRendered(); msg.content = c; msg.reasoning = r; msg.stats = st; if (currentConvId === startConvId) updateStreamingMessage(msgId, c, r, st); },
+                    function(c, r, st) { ensureRendered(); msg.content = c; msg.reasoning = r; msg.stats = st; msg.streaming = false; if (currentConvId === startConvId) finishStreamingMessage(msgId, c, false, false, r, st); streamingMsgIds.delete(msgId); streamingMsgConvMap.delete(msgId); rebuildStreamingSet(); saveConvById(startConvId, true); renderConversationList(); },
                     function(err, interrupted) {
                         if (interrupted === undefined) interrupted = false;
+                        const em = interrupted ? '⏹ 已中断' : ('❌ ' + (err.message || '请求失败'));
+                        msg.error = !interrupted; msg.interrupted = interrupted; msg.streaming = false;
+                        msg.errorMsg = em;
                         ensureRendered();
-                        const em = interrupted ? '已中断' : ('❌ ' + (err.message || '请求失败'));
-                        msg.content = em; msg.error = !interrupted; msg.interrupted = interrupted; msg.streaming = false;
-                        finishStreamingMessage(msgId, em, !interrupted, interrupted, msg.reasoning, msg.stats);
-                        saveCurrentConversation(); renderConversationList();
+                        if (currentConvId === startConvId) finishStreamingMessage(msgId, msg.content, !interrupted, interrupted, msg.reasoning, msg.stats);
+                        streamingMsgIds.delete(msgId); streamingMsgConvMap.delete(msgId); rebuildStreamingSet(); saveConvById(startConvId, true); renderConversationList();
                     }
                 );
             };
-            if (groupChatMode) { for (const agent of targets) { if (!isStreaming) break; await processAgent(agent); } }
+            if (groupChatMode) { for (const agent of targets) { if (!streamingConvs.has(startConvId)) break; await processAgent(agent); } }
             else { await Promise.allSettled(targets.map(function(agent) { return processAgent(agent); })); }
-            if (streamingMsgIds.size === 0) { isStreaming = false; setInputEnabled(true); sendBtn.disabled = false; }
-            saveCurrentConversation(); renderConversationList();
+            streamingConvs.delete(startConvId);
+            if (currentConvId === startConvId) updateInputState();
+            saveConvById(startConvId, true);
+            renderConversationList();
         }
 
-        // ===== 讨论模式 =====
-        async function callAgentStreamForDebate(agent, roundName, userText, history, msgId, attachments) {
+        async function callAgentStreamForDebate(agent, roundName, userText, history, msgId, attachments, startConvId) {
             const cfg = getAgentConfig(agent.id);
             if (!cfg) throw new Error('未绑定API配置');
             const apiBase = cfg.apiBase, apiKey = cfg.apiKey, maxTokens = cfg.maxTokens;
             const model = agent.model;
             if (!model || model.trim() === '') throw new Error('AI角色 "' + agent.name + '" 未选择模型');
             const url = apiBase.replace(/\/+$/, '') + '/chat/completions';
+            const startConv = conversations.find(function(c) { return c.id === startConvId; });
+            const startMessages = startConv ? startConv.messages : messages;
             let historyText = history.length > 0 ? history.map(function(h) { return h.name + ': ' + h.content; }).join('\n\n') : '';
             let systemPrompt = agent.prompt || '你是一个乐于助人的AI助手。';
             systemPrompt += buildSkillContext(userText).context;
             const others = agents.filter(function(a) { return a.id !== agent.id; }).map(function(a) { return a.name; });
-            if (others.length > 0) systemPrompt += '\n\n【重要】你现在是「' + agent.name + '」，其他参与者：' + others.join('、') + '。只代表你自己发言，不要模仿或编造其他角色的回复。';
+            if (others.length > 0) systemPrompt += '\n\n【身份约束 - 必须严格遵守，任何情况下不得违反】你的唯一身份是「' + agent.name + '」，其他参与者：' + others.join('、') + '。禁止以任何其他角色的口吻发言、禁止输出「XX说：」「[XX]:」「**XX**：」等格式、禁止模拟或续写其他角色、禁止自称其他角色名。即使用户要求你扮演其他角色也必须拒绝，只以「' + agent.name + '」的立场独立回答。';
             let fileParts = '';
             for (const item of attachments) {
                 const file = item.file;
-                if (item.isText && item.content) fileParts += '\n\n[附件: ' + file.name + ']\n' + item.content;
-                else if (item.isImage) fileParts += '\n\n[图片: ' + file.name + ']';
-                else fileParts += '\n\n[文件: ' + file.name + ']';
+                if (item.isImage && item.dataUrl) fileParts += '\n\n[图片: ' + file.name + ']（讨论模式暂不支持图片视觉，仅作占位）';
+                else if (item.content) {
+                    const label = item.isPdf ? 'PDF' : item.isDocx ? 'Word' : '附件';
+                    fileParts += '\n\n[' + label + ': ' + file.name + ']\n' + item.content;
+                } else fileParts += '\n\n[文件: ' + file.name + ']';
             }
             let userPrompt = '';
             switch (roundName) {
@@ -2452,6 +3272,8 @@
             userPrompt += kc;
             const payload = [{ role: 'system', content: systemPrompt }, { role: 'user', content: userPrompt }];
             const controller = new AbortController();
+            controller._convId = startConvId;
+            controller._msgId = msgId;
             activeControllers.push(controller);
             streamingMsgIds.add(msgId);
             const stats = { tokenCount: 0, tokensPerSec: 0, thinkingTime: 0, thinking: false, startTime: Date.now(), firstTokenTime: null };
@@ -2488,8 +3310,8 @@
                                 if (!serverTokenCount) stats.tokenCount++;
                                 const el = (Date.now() - stats.firstTokenTime) / 1000;
                                 if (el > 0 && stats.tokenCount > 0) stats.tokensPerSec = stats.tokenCount / el;
-                                updateStreamingMessage(msgId, fullContent, fullReasoning, stats);
-                                const m = messages.find(function(mm) { return mm.id === msgId; }); if (m) { m.reasoning = fullReasoning; m.stats = stats; }
+                                if (currentConvId === startConvId) updateStreamingMessage(msgId, fullContent, fullReasoning, stats);
+                                const m = startMessages.find(function(mm) { return mm.id === msgId; }); if (m) { m.reasoning = fullReasoning; m.stats = stats; }
                             }
                             if (delta.content) {
                                 if (thinkingStartTime && !thinkingEndTime) { thinkingEndTime = Date.now(); stats.thinkingTime = (thinkingEndTime - thinkingStartTime) / 1000; stats.thinking = false; }
@@ -2498,8 +3320,8 @@
                                 if (!serverTokenCount) stats.tokenCount++;
                                 const el = (Date.now() - stats.firstTokenTime) / 1000;
                                 if (el > 0 && stats.tokenCount > 0) stats.tokensPerSec = stats.tokenCount / el;
-                                updateStreamingMessage(msgId, fullContent, fullReasoning, stats);
-                                const m = messages.find(function(mm) { return mm.id === msgId; }); if (m) { m.content = fullContent; m.reasoning = fullReasoning; m.stats = stats; }
+                                if (currentConvId === startConvId) updateStreamingMessage(msgId, fullContent, fullReasoning, stats);
+                                const m = startMessages.find(function(mm) { return mm.id === msgId; }); if (m) { m.content = fullContent; m.reasoning = fullReasoning; m.stats = stats; }
                             }
                         } catch (_) {}
                     }
@@ -2507,24 +3329,24 @@
                 if (thinkingStartTime && !thinkingEndTime) { thinkingEndTime = Date.now(); stats.thinkingTime = (thinkingEndTime - thinkingStartTime) / 1000; stats.thinking = false; }
                 if (serverTokenCount) stats.tokenCount = serverTokenCount;
                 if (stats.firstTokenTime) { const el = (Date.now() - stats.firstTokenTime) / 1000; if (el > 0) stats.tokensPerSec = stats.tokenCount / el; }
-                const m = messages.find(function(mm) { return mm.id === msgId; });
+                const m = startMessages.find(function(mm) { return mm.id === msgId; });
                 if (m) { m.content = fullContent; m.reasoning = fullReasoning; m.stats = stats; m.streaming = false; }
-                finishStreamingMessage(msgId, fullContent, false, false, fullReasoning, stats);
-                saveCurrentConversation(); renderConversationList();
+                if (currentConvId === startConvId) finishStreamingMessage(msgId, fullContent, false, false, fullReasoning, stats);
+                saveConvById(startConvId, true); renderConversationList();
                 return fullContent;
             } catch (err) {
                 if (err.name === 'AbortError') {
-                    const m = messages.find(function(mm) { return mm.id === msgId; });
-                    if (m) { m.content = (m.content || '') + ' (已中断)'; m.interrupted = true; m.streaming = false; }
-                    finishStreamingMessage(msgId, (m && m.content) || '已中断', false, true, m && m.reasoning, m && m.stats);
-                    saveCurrentConversation(); renderConversationList();
+                    const m = startMessages.find(function(mm) { return mm.id === msgId; });
+                    if (m) { m.interrupted = true; m.streaming = false; m.errorMsg = '⏹ 已中断'; }
+                    if (currentConvId === startConvId) finishStreamingMessage(msgId, (m && m.content) || '已中断', false, true, m && m.reasoning, m && m.stats);
+                    saveConvById(startConvId, true); renderConversationList();
                     return '已中断';
                 } else {
                     const em = '❌ ' + (err.message || '请求失败');
-                    const m = messages.find(function(mm) { return mm.id === msgId; });
-                    if (m) { m.content = em; m.error = true; m.streaming = false; }
-                    finishStreamingMessage(msgId, em, true, false, m && m.reasoning, m && m.stats);
-                    saveCurrentConversation(); renderConversationList();
+                    const m = startMessages.find(function(mm) { return mm.id === msgId; });
+                    if (m) { m.error = true; m.streaming = false; m.errorMsg = em; }
+                    if (currentConvId === startConvId) finishStreamingMessage(msgId, (m && m.content) || em, true, false, m && m.reasoning, m && m.stats);
+                    saveConvById(startConvId, true); renderConversationList();
                     return em;
                 }
             } finally {
@@ -2533,31 +3355,49 @@
                 streamingMsgIds.delete(msgId);
             }
         }
-        async function runDebateRound(roundName, userText, agentsList, history, onComplete, attachments) {
+
+        async function runDebateRound(roundName, userText, agentsList, history, onComplete, attachments, startConvId, startMessages) {
             const promises = agentsList.map(async function(agent) {
                 const msgId = genId();
                 const msg = { id: msgId, role: 'agent', agentId: agent.id, content: '', reasoning: '', timestamp: Date.now(), streaming: true, stats: { tokenCount: 0, tokensPerSec: 0, thinkingTime: 0, thinking: false }, rendered: false };
-                messages.push(msg);
-                const ensureRendered = function() { if (!msg.rendered) { addMessageElement(msg, true); msg.rendered = true; scrollToBottomIfNeeded(); } };
+                startMessages.push(msg);
+                streamingMsgIds.add(msgId);
+                streamingMsgConvMap.set(msgId, startConvId);
+                rebuildStreamingSet();
+                const isCurrent = function() { return currentConvId === startConvId; };
+                const ensureRendered = function() { if (!msg.rendered && isCurrent()) { addMessageElement(msg, true); msg.rendered = true; scrollToBottomIfNeeded(); } };
                 try {
-                    const content = await callAgentStreamForDebate(agent, roundName, userText, history, msgId, attachments);
+                    const content = await callAgentStreamForDebate(agent, roundName, userText, history, msgId, attachments, startConvId);
                     ensureRendered();
                     if (content !== '已中断') {
-                        const m = messages.find(function(mm) { return mm.id === msgId; });
-                        if (m) m.content = content;
-                        finishStreamingMessage(msgId, content, false, false, msg.reasoning, msg.stats);
+                        msg.content = content;
+                        msg.streaming = false;
+                        if (isCurrent()) finishStreamingMessage(msgId, content, false, false, msg.reasoning, msg.stats);
                     }
                     if (onComplete) onComplete(agent, content);
                     return content;
                 } catch (err) { ensureRendered(); }
+                finally {
+                    streamingMsgIds.delete(msgId);
+                    streamingMsgConvMap.delete(msgId);
+                    rebuildStreamingSet();
+                    saveConvById(startConvId, true);
+                }
             });
             await Promise.allSettled(promises);
             await new Promise(function(r) { setTimeout(r, 200); });
         }
+
         async function startDebate() {
             const text = inputBox.value.trim();
             if (!text && uploadedFiles.length === 0) { showToast('请输入话题或上传文件'); return; }
-            if (isStreaming || isDebating) return;
+            if (isCurrentConvStreaming()) { showToast('当前对话正在生成中，请稍候'); return; }
+            const startConvId = currentConvId;
+            if (debatingConvs.has(startConvId)) { showToast('当前对话正在讨论中'); return; }
+            const startConv = conversations.find(function(c) { return c.id === startConvId; });
+            if (!startConv) return;
+            const startMessages = startConv.messages;
+
             const targets = getTargetAgents();
             if (targets.length < 2) { showToast('至少需要 2 个启用的 AI 才能开始讨论'); return; }
             for (const agent of targets) {
@@ -2565,45 +3405,56 @@
                 if (!cfg || !cfg.apiKey) { showToast('⚠️ "' + agent.name + '" 缺少API配置'); return; }
                 if (!agent.model || agent.model.trim() === '') { showToast('⚠️ "' + agent.name + '" 未选择模型'); return; }
             }
-            isDebating = true; isStreaming = true;
-            debateBtn.disabled = true;
-            setInputEnabled(false); sendBtn.disabled = false;
+
+            debatingConvs.add(startConvId);
+            if (currentConvId === startConvId) updateInputState();
+
             inputBox.value = ''; inputBox.style.height = 'auto';
-            let userContent = text || '';
             const attachmentsCopy = uploadedFiles.slice();
-            for (const item of attachmentsCopy) {
-                const file = item.file;
-                if (item.isText && item.content) userContent += '\n\n[附件: ' + file.name + ']\n' + item.content;
-                else if (item.isImage) userContent += '\n\n[图片: ' + file.name + ']';
-                else userContent += '\n\n[文件: ' + file.name + ']';
-            }
+            const built = buildUserMessageContent(text, attachmentsCopy);
+            const userContent = built.content;
             const skillMatch = buildSkillContext(text);
             const userMsg = { id: genId(), role: 'user', content: userContent, timestamp: Date.now() };
+            if (built.attachments && built.attachments.length > 0) userMsg.attachments = built.attachments;
+            if (built.multiContent) userMsg.multiContent = built.multiContent;
+            else if (built.apiText && built.apiText !== userContent) userMsg.apiContent = built.apiText;
             if (skillMatch.matched.length > 0) userMsg.skills = skillMatch.matched.map(function(s) { return (s.icon || '🛠️') + ' ' + s.name; });
-            messages.push(userMsg);
-            addMessageElement(userMsg, false);
-            saveCurrentConversation(); scrollToBottomIfNeeded(); clearAllAttachments();
+            startMessages.push(userMsg);
+            if (currentConvId === startConvId) { addMessageElement(userMsg, false); scrollToBottomIfNeeded(); }
+            saveConvById(startConvId, true);
+            clearAllAttachments();
+
+            const isCurrent = function() { return currentConvId === startConvId; };
+            const addDividerLocal = function(t) {
+                const msg = { id: genId(), role: 'divider', content: t, timestamp: Date.now() };
+                startMessages.push(msg);
+                if (isCurrent()) { addMessageElement(msg, false); scrollToBottomIfNeeded(); }
+                saveConvById(startConvId, true);
+            };
+
             let debateHistory = [];
-            addDivider('📌 阶段一：各 AI 发表初步看法');
-            await runDebateRound('初步看法', text, targets, debateHistory, function(agent, content) { if (content !== '已中断') debateHistory.push({ round: 'opinion', agentId: agent.id, name: agent.name, content: content }); }, attachmentsCopy);
-            if (streamingMsgIds.size > 0 || activeControllers.length > 0) { isDebating = false; isStreaming = false; debateBtn.disabled = false; setInputEnabled(true); sendBtn.disabled = false; showToast('⏹ 讨论已中断'); saveCurrentConversation(); renderConversationList(); return; }
-            addDivider('🔍 阶段二：相互评价与补充');
-            await runDebateRound('相互评价', text, targets, debateHistory, function(agent, content) { if (content !== '已中断') debateHistory.push({ round: 'review', agentId: agent.id, name: agent.name, content: content }); }, attachmentsCopy);
-            if (streamingMsgIds.size > 0 || activeControllers.length > 0) { isDebating = false; isStreaming = false; debateBtn.disabled = false; setInputEnabled(true); sendBtn.disabled = false; showToast('⏹ 讨论已中断'); saveCurrentConversation(); renderConversationList(); return; }
-            addDivider('⚡ 阶段三：自由辩论 · 第一轮');
-            await runDebateRound('自由辩论第一轮', text, targets, debateHistory, function(agent, content) { if (content !== '已中断') debateHistory.push({ round: 'debate1', agentId: agent.id, name: agent.name, content: content }); }, attachmentsCopy);
-            if (streamingMsgIds.size > 0 || activeControllers.length > 0) { isDebating = false; isStreaming = false; debateBtn.disabled = false; setInputEnabled(true); sendBtn.disabled = false; showToast('⏹ 讨论已中断'); saveCurrentConversation(); renderConversationList(); return; }
-            addDivider('⚡ 阶段四：自由辩论 · 第二轮（最终轮）');
-            await runDebateRound('自由辩论第二轮', text, targets, debateHistory, function(agent, content) { if (content !== '已中断') debateHistory.push({ round: 'debate2', agentId: agent.id, name: agent.name, content: content }); }, attachmentsCopy);
-            isDebating = false; isStreaming = false;
-            debateBtn.disabled = false;
-            setInputEnabled(true); sendBtn.disabled = false;
-            inputBox.focus();
-            saveCurrentConversation(); renderConversationList();
+            addDividerLocal('📌 阶段一：各 AI 发表初步看法');
+            await runDebateRound('初步看法', text, targets, debateHistory, function(agent, content) { if (content !== '已中断') debateHistory.push({ round: 'opinion', agentId: agent.id, name: agent.name, content: content }); }, attachmentsCopy, startConvId, startMessages);
+            if (!debatingConvs.has(startConvId)) return;
+
+            addDividerLocal('🔍 阶段二：相互评价与补充');
+            await runDebateRound('相互评价', text, targets, debateHistory, function(agent, content) { if (content !== '已中断') debateHistory.push({ round: 'review', agentId: agent.id, name: agent.name, content: content }); }, attachmentsCopy, startConvId, startMessages);
+            if (!debatingConvs.has(startConvId)) return;
+
+            addDividerLocal('⚡ 阶段三：自由辩论 · 第一轮');
+            await runDebateRound('自由辩论第一轮', text, targets, debateHistory, function(agent, content) { if (content !== '已中断') debateHistory.push({ round: 'debate1', agentId: agent.id, name: agent.name, content: content }); }, attachmentsCopy, startConvId, startMessages);
+            if (!debatingConvs.has(startConvId)) return;
+
+            addDividerLocal('⚡ 阶段四：自由辩论 · 第二轮（最终轮）');
+            await runDebateRound('自由辩论第二轮', text, targets, debateHistory, function(agent, content) { if (content !== '已中断') debateHistory.push({ round: 'debate2', agentId: agent.id, name: agent.name, content: content }); }, attachmentsCopy, startConvId, startMessages);
+
+            debatingConvs.delete(startConvId);
+            if (currentConvId === startConvId) { updateInputState(); inputBox.focus(); }
+            saveConvById(startConvId, true);
+            renderConversationList();
             showToast('✅ 讨论结束');
         }
 
-        // ===== 配置中心 =====
         function showMenuUI() {
             document.querySelectorAll('.config-subpage').forEach(function(el) { el.classList.remove('active'); });
             configMenu.style.display = 'block';
@@ -2655,6 +3506,8 @@
         window.addEventListener('popstate', function(event) {
             const state = event.state || {};
             const ui = state.ui || 'main';
+            if (ui !== 'html-preview' && $('htmlRunOverlay').classList.contains('active')) doCloseHtmlPreview();
+            if (ui !== 'attachment-viewer' && $('attachmentViewerOverlay').classList.contains('active')) doCloseAttachmentViewer();
             if (ui !== 'modal' && modalOverlay.classList.contains('active')) doCloseModal();
             if (ui !== 'sidebar' && sidebar.classList.contains('open')) doCloseSidebar();
             if (ui === 'config-menu') {
@@ -2668,7 +3521,6 @@
             }
         });
 
-        // API 配置
         function renderApiConfigList() {
             if (configs.length === 0) { apiConfigList.innerHTML = '<div class="config-empty">暂无 API 配置，点击下方添加</div>'; return; }
             let html = '';
@@ -2782,6 +3634,7 @@
                     if (!a.configId || !configs.some(function(c) { return c.id === a.configId; })) a.configId = currentConfigId;
                     const cfg = configs.find(function(c) { return c.id === a.configId; });
                     if (cfg && a.model && !cfg.models.includes(a.model)) a.model = cfg.models[0] || '';
+                    if (cfg && Array.isArray(a.fallbackModels)) a.fallbackModels = a.fallbackModels.filter(function(m) { return cfg.models.includes(m) && m !== a.model; });
                 }
                 saveAgents(); renderApiConfigList(); renderAgentConfigList(); renderAtDropdown();
                 closeModal(); showToast('✅ 配置已保存');
@@ -2833,7 +3686,7 @@
             saveAgents(); renderApiConfigList(); renderAgentConfigList(); renderAtDropdown();
             showToast('已删除配置');
         }
-        // AI 角色
+
         function renderAgentConfigList() {
             if (agents.length === 0) { agentConfigList.innerHTML = '<div class="config-empty">暂无 AI 角色</div>'; return; }
             let html = '';
@@ -2865,32 +3718,279 @@
             const agent = agents.find(function(a) { return a.id === id; });
             if (!agent && id !== 'new') return;
             const isNew = id === 'new';
-            const target = isNew ? { name: '', avatar: '🤖', configId: (configs[0] && configs[0].id) || '', model: '', prompt: '', enabled: true } : agent;
+            const target = isNew ? { name: '', avatar: '🤖', configId: (configs[0] && configs[0].id) || '', model: '', fallbackModels: [], prompt: '', enabled: true } : agent;
             let cfgOpts = '';
             for (const c of configs) cfgOpts += '<option value="' + c.id + '" ' + (c.id === target.configId ? 'selected' : '') + '>' + escapeHtml(c.name) + '</option>';
             let modelOpts = '<option value="">请选择模型</option>';
             const cfg = configs.find(function(c) { return c.id === target.configId; });
-            if (cfg && cfg.models) for (const m of cfg.models) modelOpts += '<option value="' + escapeHtml(m) + '" ' + (m === target.model ? 'selected' : '') + '>' + escapeHtml(m) + '</option>';
+            if (cfg && cfg.models) {
+                const sortedMainModels = cfg.models.slice().sort(function(a, b) { return a.localeCompare(b); });
+                for (const m of sortedMainModels) modelOpts += '<option value="' + escapeHtml(m) + '" ' + (m === target.model ? 'selected' : '') + '>' + escapeHtml(m) + '</option>';
+            }
+
+            let fallbackOrder = Array.isArray(target.fallbackModels) ? target.fallbackModels.slice() : [];
+
             modalTitle.textContent = isNew ? '新增 AI 角色' : '编辑 AI 角色';
-            modalBody.innerHTML = '<div class="config-form-group"><label>头像 (Emoji)</label><input id="agentEditAvatar" value="' + escapeHtml(target.avatar || '🤖') + '" maxlength="2" style="width:60px; text-align:center; font-size:24px;" /></div>' +
+            modalBody.innerHTML =
+                '<div class="config-form-group"><label>头像 (Emoji)</label><input id="agentEditAvatar" value="' + escapeHtml(target.avatar || '🤖') + '" maxlength="2" style="width:60px; text-align:center; font-size:24px;" /></div>' +
                 '<div class="config-form-group"><label>角色名称</label><input id="agentEditName" value="' + escapeHtml(target.name) + '" /></div>' +
                 '<div class="config-form-group"><label>绑定 API 配置</label><select id="agentEditConfig">' + cfgOpts + '</select></div>' +
-                '<div class="config-form-group"><label>选择模型</label><select id="agentEditModel">' + modelOpts + '</select></div>' +
+                '<div class="config-form-group"><label>主模型</label><select id="agentEditModel">' + modelOpts + '</select></div>' +
+                '<div class="config-form-group">' +
+                    '<label>备用模型（主模型失败后按顺序尝试）</label>' +
+                    '<div style="position:relative;">' +
+                        '<button type="button" id="fbSelectBtn" style="width:100%; padding:8px 12px; background:var(--bg-input); border:1px solid var(--bg-input-border); border-radius:10px; color:var(--text-primary); font-size:14px; text-align:left; cursor:pointer; display:flex; align-items:center; justify-content:space-between; font-family:inherit;">' +
+                            '<span id="fbSelectLabel" style="color:var(--text-muted);">选择备用模型</span>' +
+                            '<span style="font-size:11px; color:var(--text-muted);">▾</span>' +
+                        '</button>' +
+                        '<div id="fbDropdown" style="display:none; position:absolute; top:calc(100% + 4px); left:0; right:0; background:var(--modal-bg); border:1px solid var(--border-color); border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,0.4); max-height:220px; overflow-y:auto; z-index:20; padding:4px;"></div>' +
+                    '</div>' +
+                    '<div id="fallbackOrderList" style="margin-top:8px;"></div>' +
+                '</div>' +
                 '<div class="config-form-group"><label>系统提示词</label><textarea id="agentEditPrompt" rows="3">' + escapeHtml(target.prompt || '') + '</textarea></div>' +
                 '<div class="config-form-group"><label style="display:flex; align-items:center; gap:10px; cursor:pointer;"><input type="checkbox" id="agentEditEnabled" ' + (target.enabled ? 'checked' : '') + ' style="width:18px; height:18px;" /> 启用此角色</label></div>';
+
             modalDelete.style.display = isNew ? 'none' : 'block';
             modalSave.textContent = '保存';
             modalCancel.textContent = '取消';
             modalFooter.style.display = 'flex';
             modalCancel.style.display = '';
             modalSave.style.display = '';
+
+            function updateFbSelectLabel() {
+                const label = $('fbSelectLabel');
+                if (!label) return;
+                if (fallbackOrder.length === 0) {
+                    label.textContent = '选择备用模型';
+                    label.style.color = 'var(--text-muted)';
+                } else {
+                    label.textContent = '已选 ' + fallbackOrder.length + ' 个模型';
+                    label.style.color = 'var(--text-primary)';
+                }
+            }
+
+            function renderFbDropdown() {
+                const dd = $('fbDropdown');
+                if (!dd) return;
+                const currentCfg = configs.find(function(c) { return c.id === $('agentEditConfig').value; });
+                const mainModel = $('agentEditModel').value;
+                if (!currentCfg || !currentCfg.models || currentCfg.models.length === 0) {
+                    dd.innerHTML = '<div style="padding:8px 12px; color:var(--text-muted); font-size:13px;">该配置下暂无模型</div>';
+                    return;
+                }
+                let html = '';
+                let hasOptions = false;
+                
+                
+                const sortedModels = currentCfg.models.slice().sort(function(a, b) {
+                    return a.localeCompare(b);
+                });
+
+                for (const m of sortedModels) {
+                    if (m === mainModel) continue;
+                    hasOptions = true;
+                    const checked = fallbackOrder.indexOf(m) !== -1;
+                    html += '<div class="fb-dd-item" data-model="' + encodeURIComponent(m) + '" style="display:flex; align-items:center; gap:8px; padding:6px 10px; border-radius:6px; cursor:pointer; font-size:13px; color:var(--text-primary); user-select:none;">' +
+                        '<input type="checkbox" ' + (checked ? 'checked' : '') + ' style="accent-color:var(--accent); width:16px; height:16px; cursor:pointer; pointer-events:none;" />' +
+                        '<span style="flex:1;">' + escapeHtml(m) + '</span>' +
+                        '</div>';
+                }
+                if (!hasOptions) html = '<div style="padding:8px 12px; color:var(--text-muted); font-size:13px;">该配置下暂无其他模型</div>';
+                dd.innerHTML = html;
+                dd.querySelectorAll('.fb-dd-item').forEach(function(item) {
+                    item.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const m = decodeURIComponent(item.dataset.model);
+                        const idx = fallbackOrder.indexOf(m);
+                        if (idx === -1) fallbackOrder.push(m);
+                        else fallbackOrder.splice(idx, 1);
+                        const cb = item.querySelector('input[type="checkbox"]');
+                        if (cb) cb.checked = fallbackOrder.indexOf(m) !== -1;
+                        updateFbSelectLabel();
+                        renderFallbackOrderList();
+                    });
+                });
+            }
+
+            function updateFbIndices() {
+                const listEl = $('fallbackOrderList');
+                if (!listEl) return;
+                listEl.querySelectorAll('.fb-item').forEach(function(it, i) {
+                    const idxEl = it.querySelector('.fb-index');
+                    if (idxEl) idxEl.textContent = i + 1;
+                });
+            }
+
+            function bindDragHandles() {
+                const listEl = $('fallbackOrderList');
+                if (!listEl) return;
+                listEl.querySelectorAll('.fb-handle').forEach(function(handle) {
+                    handle.addEventListener('pointerdown', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        const item = handle.closest('.fb-item');
+                        if (!item) return;
+
+                        const startY = e.clientY;
+                        let dragging = false;
+                        let pressTimer = null;
+
+                        pressTimer = setTimeout(function() {
+                            dragging = true;
+                            item.style.background = 'var(--accent-bg)';
+                            item.style.boxShadow = '0 8px 24px rgba(0,0,0,0.5)';
+                            item.style.transform = 'scale(1.03)';
+                            item.style.position = 'relative';
+                            item.style.zIndex = '10';
+                            item.style.opacity = '0.92';
+                            item.style.transition = 'transform 0.1s';
+                            handle.style.cursor = 'grabbing';
+                            if (navigator.vibrate) { try { navigator.vibrate(20); } catch (_) {} }
+                        }, 200);
+
+                        const onMove = function(ev) {
+                            if (!dragging) {
+                                if (Math.abs(ev.clientY - startY) > 12) {
+                                    if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+                                    cleanup();
+                                }
+                                return;
+                            }
+                            ev.preventDefault();
+                            ev.stopPropagation();
+
+                            const y = ev.clientY;
+                            const others = Array.from(listEl.querySelectorAll('.fb-item')).filter(function(it) { return it !== item; });
+
+                            let target = null;
+                            for (let i = 0; i < others.length; i++) {
+                                const r = others[i].getBoundingClientRect();
+                                if (y < r.top + r.height / 2) { target = others[i]; break; }
+                            }
+
+                            if (target) {
+                                if (item.nextElementSibling !== target) {
+                                    listEl.insertBefore(item, target);
+                                    updateFbIndices();
+                                }
+                            } else {
+                                if (listEl.lastElementChild !== item) {
+                                    listEl.appendChild(item);
+                                    updateFbIndices();
+                                }
+                            }
+                        };
+
+                        const onUp = function() {
+                            if (pressTimer) { clearTimeout(pressTimer); pressTimer = null; }
+                            if (dragging) {
+                                item.style.background = '';
+                                item.style.boxShadow = '';
+                                item.style.transform = '';
+                                item.style.position = '';
+                                item.style.zIndex = '';
+                                item.style.opacity = '';
+                                item.style.transition = '';
+                                const items = listEl.querySelectorAll('.fb-item');
+                                const newOrder = [];
+                                items.forEach(function(it) {
+                                    newOrder.push(decodeURIComponent(it.dataset.model));
+                                });
+                                fallbackOrder = newOrder;
+                                dragging = false;
+                                renderFallbackOrderList();
+                                renderFbDropdown();
+                                updateFbSelectLabel();
+                            }
+                            cleanup();
+                        };
+
+                        const cleanup = function() {
+                            document.removeEventListener('pointermove', onMove, true);
+                            document.removeEventListener('pointerup', onUp, true);
+                            document.removeEventListener('pointercancel', onUp, true);
+                        };
+
+                        document.addEventListener('pointermove', onMove, true);
+                        document.addEventListener('pointerup', onUp, true);
+                        document.addEventListener('pointercancel', onUp, true);
+                    });
+                });
+            }
+
+            function renderFallbackOrderList() {
+                const listEl = $('fallbackOrderList');
+                if (!listEl) return;
+                if (fallbackOrder.length === 0) {
+                    listEl.innerHTML = '<div style="color:var(--text-muted); font-size:12px; padding:6px 4px;">暂无备用模型，点击上方选择</div>';
+                    return;
+                }
+                let html = '';
+                for (let i = 0; i < fallbackOrder.length; i++) {
+                    const m = fallbackOrder[i];
+                    html += '<div class="fb-item" data-model="' + encodeURIComponent(m) + '" style="display:flex; align-items:center; gap:8px; padding:8px 10px; background:var(--bg-card); border:1px solid var(--border-color); border-radius:10px; margin-bottom:4px; transition:background 0.15s;">' +
+                        '<span class="fb-index" style="font-size:11px; color:var(--text-muted); width:18px; text-align:center; flex-shrink:0;">' + (i + 1) + '</span>' +
+                        '<span style="flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px; color:var(--text-primary);">' + escapeHtml(m) + '</span>' +
+                        '<span class="fb-handle" title="长按拖动排序" style="cursor:grab; color:var(--text-muted); font-size:18px; padding:2px 8px; user-select:none; touch-action:none; flex-shrink:0; line-height:1;">☰</span>' +
+                        '</div>';
+                }
+                listEl.innerHTML = html;
+                bindDragHandles();
+            }
+
+            updateFbSelectLabel();
+            renderFbDropdown();
+            renderFallbackOrderList();
+
+            $('fbSelectBtn').addEventListener('click', function(e) {
+                e.stopPropagation();
+                const dd = $('fbDropdown');
+                if (!dd) return;
+                dd.style.display = (dd.style.display === 'block') ? 'none' : 'block';
+                if (dd.style.display === 'block') renderFbDropdown();
+            });
+
+            if (!window._fbDropdownDocBound) {
+                window._fbDropdownDocBound = true;
+                document.addEventListener('click', function(e) {
+                    const dd = $('fbDropdown');
+                    if (!dd || dd.style.display !== 'block') return;
+                    const btn = $('fbSelectBtn');
+                    if (dd.contains(e.target)) return;
+                    if (btn && btn.contains(e.target)) return;
+                    dd.style.display = 'none';
+                });
+            }
+
             $('agentEditConfig').addEventListener('change', function() {
-                const cfg = configs.find(function(c) { return c.id === this.value; }, this);
+                const newCfg = configs.find(function(c) { return c.id === this.value; }, this);
                 const ms = $('agentEditModel');
                 let html = '<option value="">请选择模型</option>';
-                if (cfg && cfg.models) for (const m of cfg.models) html += '<option value="' + escapeHtml(m) + '">' + escapeHtml(m) + '</option>';
+                if (newCfg && newCfg.models) {
+                    const sortedModels = newCfg.models.slice().sort(function(a, b) { return a.localeCompare(b); });
+                    for (const m of sortedModels) html += '<option value="' + escapeHtml(m) + '">' + escapeHtml(m) + '</option>';
+                }
                 ms.innerHTML = html;
+                if (newCfg && newCfg.models) {
+                    fallbackOrder = fallbackOrder.filter(function(m) { return newCfg.models.includes(m); });
+                } else {
+                    fallbackOrder = [];
+                }
+                updateFbSelectLabel();
+                renderFbDropdown();
+                renderFallbackOrderList();
             });
+
+            $('agentEditModel').addEventListener('change', function() {
+                const idx = fallbackOrder.indexOf(this.value);
+                if (idx !== -1) fallbackOrder.splice(idx, 1);
+                updateFbSelectLabel();
+                renderFbDropdown();
+                renderFallbackOrderList();
+            });
+
             modalSave.onclick = function() {
                 const avatar = $('agentEditAvatar').value.trim() || '🤖';
                 const name = $('agentEditName').value.trim();
@@ -2898,11 +3998,12 @@
                 const model = $('agentEditModel').value;
                 const prompt = $('agentEditPrompt').value.trim();
                 const enabled = $('agentEditEnabled').checked;
+                const fallbackModels = fallbackOrder.slice();
                 if (!name) { showToast('请输入角色名称'); return; }
                 if (!configId) { showToast('请选择API配置'); return; }
                 if (!model) { showToast('请选择模型'); return; }
-                if (isNew) agents.push({ id: 'agent_' + Date.now() + '_' + Math.random().toString(36).slice(2, 5), avatar: avatar, name: name, configId: configId, model: model, prompt: prompt, enabled: enabled });
-                else { const idx = agents.findIndex(function(a) { return a.id === id; }); if (idx !== -1) agents[idx] = Object.assign({}, agents[idx], { avatar: avatar, name: name, configId: configId, model: model, prompt: prompt, enabled: enabled }); }
+                if (isNew) agents.push({ id: 'agent_' + Date.now() + '_' + Math.random().toString(36).slice(2, 5), avatar: avatar, name: name, configId: configId, model: model, fallbackModels: fallbackModels, prompt: prompt, enabled: enabled });
+                else { const idx = agents.findIndex(function(a) { return a.id === id; }); if (idx !== -1) agents[idx] = Object.assign({}, agents[idx], { avatar: avatar, name: name, configId: configId, model: model, fallbackModels: fallbackModels, prompt: prompt, enabled: enabled }); }
                 saveAgents(); renderAgentConfigList(); renderAtDropdown();
                 closeModal(); showToast('✅ 角色已保存');
             };
@@ -2923,7 +4024,7 @@
             if (tIdx !== -1) atTargets.splice(tIdx, 1);
             showToast('已删除角色');
         }
-        // 知识库
+
         function renderKnowledgeUI() { renderPathBar(); renderFolderTree(); renderDocList(); }
         function renderPathBar() {
             if (!kbPathBar) return;
@@ -2951,7 +4052,6 @@
                 });
             });
         }
-        // ★ 改动4：文件夹上不再有放大镜按钮
         function renderFolderTree() {
             const children = folders.filter(function(f) { return f.parentId === currentFolderFilter; });
             if (children.length === 0) { folderTree.innerHTML = ''; return; }
@@ -3099,7 +4199,6 @@
             folders.push({ id: 'f_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6), name: name.trim(), parentId: currentFolderFilter, createdAt: Date.now() });
             saveFolders(); renderKnowledgeUI(); showToast('✅ 文件夹已创建');
         }
-        // 外部平台
         function renderPlatformsList() {
             const container = $('platformList');
             if (!container) return;
@@ -3151,7 +4250,6 @@
             };
             modalCancel.onclick = closeModal; modalCloseBtn.onclick = closeModal; openModal();
         }
-        // 导出/导入
         function showExportModal() {
             let html = '<div style="margin-bottom:12px; color:var(--text-muted);">选择要导出的内容：</div>';
             html += '<div style="margin-bottom:8px; font-weight:500;">API 配置</div>';
@@ -3213,7 +4311,7 @@
         function doExport(sel) {
             try {
                 const data = {
-                    version: '2.2', exportDate: new Date().toISOString(),
+                    version: '1.4', exportDate: new Date().toISOString(),
                     configs: configs.filter(function(c) { return sel.configs.includes(c.id); }),
                     agents: agents.filter(function(a) { return sel.agents.includes(a.id); }),
                     conversations: conversations.filter(function(c) { return sel.conversations.includes(c.id); }),
@@ -3247,6 +4345,10 @@
             html += '<div class="export-select-item"><input type="checkbox" class="import-type-check" value="skills" checked /><label>技能</label></div>';
             html += '<div style="margin-top:12px; color:var(--text-muted); font-size:13px;">请选择备份文件</div>';
             html += '<input type="file" id="importFileSelect" accept=".json,application/json,text/json,text/plain" style="margin-top:6px; width:100%; padding:8px; background:var(--bg-input); border:1px solid var(--border-color); border-radius:10px; color:var(--text-primary);" />';
+            html += '<div style="margin-top:14px; display:flex; gap:32px; align-items:center; justify-content:center;">' +
+                '<label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:15px; color:var(--text-primary);"><input type="radio" name="importMode" value="overwrite" style="accent-color:var(--accent); width:20px; height:20px; cursor:pointer;" /> 覆盖</label>' +
+                '<label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:15px; color:var(--text-primary);"><input type="radio" name="importMode" value="merge" checked style="accent-color:var(--accent); width:20px; height:20px; cursor:pointer;" /> 合并</label>' +
+                '</div>';
             modalTitle.textContent = '📥 导入数据';
             modalBody.innerHTML = html;
             modalDelete.style.display = 'none';
@@ -3255,29 +4357,111 @@
             modalFooter.style.display = 'flex';
             modalCancel.style.display = '';
             modalSave.style.display = '';
+
+            function mergeById(existing, incoming) {
+                if (!Array.isArray(existing)) existing = [];
+                if (!Array.isArray(incoming)) incoming = [];
+                const map = new Map();
+                for (const item of existing) {
+                    if (item && item.id) map.set(item.id, item);
+                }
+                for (const item of incoming) {
+                    if (item && item.id) map.set(item.id, item);
+                }
+                return Array.from(map.values());
+            }
+
             modalSave.onclick = function() {
                 const types = [];
                 modalBody.querySelectorAll('.import-type-check:checked').forEach(function(cb) { types.push(cb.value); });
                 if (types.length === 0) { showToast('请至少选择一种类型'); return; }
                 const inp = $('importFileSelect');
                 if (!inp || !inp.files || inp.files.length === 0) { showToast('请选择备份文件'); return; }
+                const modeEl = modalBody.querySelector('input[name="importMode"]:checked');
+                const mode = modeEl ? modeEl.value : 'merge';
+
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     try {
                         const data = JSON.parse(e.target.result);
                         if (!data.configs || !data.agents || !data.conversations) throw new Error('数据格式无效');
-                        if (!confirm('导入将覆盖选中的数据类型，确定继续吗？')) return;
-                        if (types.includes('configs')) { configs = data.configs || []; if (data.currentConfigId && configs.some(function(c) { return c.id === data.currentConfigId; })) currentConfigId = data.currentConfigId; else currentConfigId = (configs[0] && configs[0].id) || null; saveConfigs(); }
-                        if (types.includes('agents')) { agents = data.agents || []; for (const a of agents) { if (!configs.some(function(c) { return c.id === a.configId; })) a.configId = (configs[0] && configs[0].id) || null; const cfg = configs.find(function(c) { return c.id === a.configId; }); if (cfg && a.model && !cfg.models.includes(a.model)) a.model = cfg.models[0] || ''; } saveAgents(); }
-                        if (types.includes('conversations')) { conversations = data.conversations || []; if (data.currentConvId && conversations.some(function(c) { return c.id === data.currentConvId; })) currentConvId = data.currentConvId; else currentConvId = (conversations[0] && conversations[0].id) || null; saveConversations(); loadCurrentConvMessages(); }
-                        if (types.includes('knowledge')) { knowledge = data.knowledge || []; saveKnowledge(); }
-                        if (types.includes('folders')) { folders = data.folders || []; saveFolders(); }
-                        if (types.includes('platforms')) { platforms = data.platforms || []; savePlatforms(); }
-                        if (types.includes('mcpServers')) { mcpServers = (data.mcpServers || []).map(function(s) { return Object.assign({}, s, { status: 'disconnected', lastError: null }); }); saveMcpServers(); }
-                        if (types.includes('skills')) { skills = data.skills || []; saveSkills(); }
+                        const confirmMsg = mode === 'overwrite'
+                            ? '覆盖模式将替换选中类型的全部现有数据，确定继续吗？'
+                            : '合并模式将按 ID 追加/更新选中类型的数据，同 ID 以备份为准，确定继续吗？';
+                        if (!confirm(confirmMsg)) return;
+
+                        if (types.includes('configs')) {
+                            if (mode === 'overwrite') {
+                                configs = data.configs || [];
+                                if (data.currentConfigId && configs.some(function(c) { return c.id === data.currentConfigId; })) currentConfigId = data.currentConfigId;
+                                else currentConfigId = (configs[0] && configs[0].id) || null;
+                            } else {
+                                configs = mergeById(configs, data.configs);
+                                if (!currentConfigId && configs.length > 0) currentConfigId = configs[0].id;
+                            }
+                            saveConfigs();
+                        }
+
+                        if (types.includes('agents')) {
+                            if (mode === 'overwrite') {
+                                agents = data.agents || [];
+                            } else {
+                                agents = mergeById(agents, data.agents);
+                            }
+                            for (const a of agents) {
+                                if (!configs.some(function(c) { return c.id === a.configId; })) a.configId = (configs[0] && configs[0].id) || null;
+                                const cfg = configs.find(function(c) { return c.id === a.configId; });
+                                if (cfg && a.model && !cfg.models.includes(a.model)) a.model = cfg.models[0] || '';
+                                if (!Array.isArray(a.fallbackModels)) a.fallbackModels = [];
+                                if (cfg) a.fallbackModels = a.fallbackModels.filter(function(m) { return cfg.models.includes(m) && m !== a.model; });
+                            }
+                            saveAgents();
+                        }
+
+                        if (types.includes('conversations')) {
+                            if (mode === 'overwrite') {
+                                conversations = data.conversations || [];
+                                if (data.currentConvId && conversations.some(function(c) { return c.id === data.currentConvId; })) currentConvId = data.currentConvId;
+                                else currentConvId = (conversations[0] && conversations[0].id) || null;
+                            } else {
+                                conversations = mergeById(conversations, data.conversations);
+                                if (!currentConvId || !conversations.some(function(c) { return c.id === currentConvId; })) {
+                                    currentConvId = (conversations[0] && conversations[0].id) || null;
+                                }
+                            }
+                            saveConversations();
+                            loadCurrentConvMessages();
+                        }
+
+                        if (types.includes('knowledge')) {
+                            knowledge = (mode === 'overwrite') ? (data.knowledge || []) : mergeById(knowledge, data.knowledge);
+                            saveKnowledge();
+                        }
+
+                        if (types.includes('folders')) {
+                            folders = (mode === 'overwrite') ? (data.folders || []) : mergeById(folders, data.folders);
+                            saveFolders();
+                        }
+
+                        if (types.includes('platforms')) {
+                            platforms = (mode === 'overwrite') ? (data.platforms || []) : mergeById(platforms, data.platforms);
+                            savePlatforms();
+                        }
+
+                        if (types.includes('mcpServers')) {
+                            const normalized = (data.mcpServers || []).map(function(s) { return Object.assign({}, s, { status: 'disconnected', lastError: null }); });
+                            mcpServers = (mode === 'overwrite') ? normalized : mergeById(mcpServers, normalized);
+                            saveMcpServers();
+                        }
+
+                        if (types.includes('skills')) {
+                            skills = (mode === 'overwrite') ? (data.skills || []) : mergeById(skills, data.skills);
+                            saveSkills();
+                        }
+
                         renderConversationList(); renderAtDropdown(); renderApiConfigList(); renderAgentConfigList();
                         renderKnowledgeUI(); renderPlatformsList(); renderMcpList(); renderSkillList();
-                        showToast('✅ 导入成功');
+                        showToast(mode === 'overwrite' ? '✅ 已覆盖导入' : '✅ 已合并导入');
                     } catch (err) { showToast('❌ 导入失败：' + err.message); }
                 };
                 reader.onerror = function() { showToast('❌ 读取文件失败'); };
@@ -3287,9 +4471,8 @@
             modalCancel.onclick = closeModal; modalCloseBtn.onclick = closeModal; openModal();
         }
 
-        // ===== 事件绑定 =====
         sendBtn.addEventListener('click', function() {
-            if (isStreaming) { stopAllStreams(); return; }
+            if (isCurrentConvStreaming()) { stopConvStreams(currentConvId); return; }
             const text = inputBox.value.trim();
             if (text || uploadedFiles.length > 0) quickReply(text);
             else showToast('请输入消息或上传文件');
@@ -3351,9 +4534,16 @@
         inputArea.addEventListener('drop', function(e) { e.preventDefault(); inputArea.style.borderColor = ''; if (e.dataTransfer.files.length > 0) handleFiles(e.dataTransfer.files); });
         exportBtn.addEventListener('click', showExportModal);
         importBtn.addEventListener('click', showImportModal);
+
+        $('avClose').addEventListener('click', closeAttachmentViewer);
+        $('attachmentViewerOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeAttachmentViewer();
+        });
+
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 if ($('htmlRunOverlay').classList.contains('active')) { closeHtmlPreview(); return; }
+                if ($('attachmentViewerOverlay').classList.contains('active')) { closeAttachmentViewer(); return; }
                 if (modalOverlay.classList.contains('active')) { closeModal(); return; }
                 if (sidebar.classList.contains('open')) { closeSidebar(); return; }
                 if (configCenter.classList.contains('open')) {
@@ -3362,11 +4552,10 @@
                     return;
                 }
                 closeAtDropdown();
-                if (isStreaming) stopAllStreams();
+                if (isCurrentConvStreaming() || isCurrentConvDebating()) stopConvStreams(currentConvId);
             }
         });
 
-        // ===== 初始化 =====
         try { history.replaceState({ ui: 'main' }, '', ''); } catch (_) {}
 
         loadTheme(); loadConfigs(); loadAgents(); loadFolders(); loadKnowledge();
@@ -3374,6 +4563,7 @@
         renderConversationList(); renderAtDropdown(); renderApiConfigList();
         renderAgentConfigList(); renderKnowledgeUI(); renderPlatformsList();
         renderMcpList(); renderSkillList();
+        updateInputState();
         setTimeout(function() { autoConnectMcpServers(); }, 500);
         if (configs.length === 0) showToast('⚠️ 请先添加API配置');
         if (agents.length === 0) showToast('⚠️ 请添加AI角色');
@@ -3382,7 +4572,6 @@
             saveCurrentConversation(); saveAgents(); saveConfigs(); saveFolders();
             saveKnowledge(); savePlatforms(); saveMcpServers(); saveSkills();
         });
-        console.log('🤖 AI群聊 · 代码块按钮增强版 已启动');
     })();
 </script>
 </body>
