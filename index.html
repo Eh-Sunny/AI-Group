@@ -49,11 +49,27 @@
         
         /* 顶部增加空行留白 */
         .header { display: flex; justify-content: space-between; align-items: center; padding: 24px 14px 8px; background: var(--header-bg); backdrop-filter: blur(12px); flex-shrink: 0; z-index: 10; min-height: 52px; }
-        .header-left { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+        .header-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
         .menu-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary); width: 34px; height: 34px; border-radius: 50%; font-size: 17px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .menu-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
-        .header .logo { font-size: 17px; font-weight: 700; background: linear-gradient(135deg,#4f8cff,#7c5cfc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
-        .header .logo .logo-icon svg { width: 22px; height: 22px; }
+        
+        /* 模式选择器（仅显示模式） */
+        .mode-selector { position: relative; display: inline-block; margin-left: 2px; }
+        .mode-btn { background: transparent; border: none; color: var(--text-secondary); padding: 2px 0; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 4px; white-space: nowrap; line-height: 1.2; }
+        .mode-btn:hover { color: var(--text-primary); }
+        .mode-btn .arrow { font-size: 10px; transition: transform 0.25s; }
+        .mode-btn .arrow.open { transform: rotate(180deg); }
+        .mode-selector .mode-dropdown { position: absolute; top: calc(100% + 8px); left: 0; min-width: 140px; background: var(--modal-bg); border-radius: 14px; border: 1px solid var(--border-color); box-shadow: 0 8px 40px var(--shadow-color); padding: 4px 0; max-height: 260px; overflow-y: auto; z-index: 100; display: none; }
+        .mode-selector .mode-dropdown.open { display: block; }
+        .mode-selector .mode-dropdown-item { padding: 8px 14px; font-size: 13px; color: var(--text-primary); cursor: pointer; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border-color); user-select: none; }
+        .mode-selector .mode-dropdown-item:last-child { border-bottom: none; }
+        .mode-selector .mode-dropdown-item:hover { background: var(--bg-hover); }
+        .mode-selector .mode-dropdown-item .check { margin-left: auto; opacity: 0; font-size: 16px; font-weight: 700; }
+        .mode-selector .mode-dropdown-item .check.checked { opacity: 1; color: var(--accent); }
+        
+        .mode-selector.locked .mode-btn { cursor: default; pointer-events: none; color: var(--text-muted); }
+        .mode-selector.locked .mode-btn .arrow { display: none; }
+        
         .header-actions { display: flex; align-items: center; gap: 4px; }
         .header-actions button { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary); width: 34px; height: 34px; border-radius: 50%; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .header-actions button:hover { background: var(--bg-hover); color: var(--text-primary); }
@@ -193,15 +209,28 @@
         .msg-action-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-muted); font-size: 12px; padding: 3px 8px; border-radius: 8px; cursor: pointer; transition: all 0.15s; display: inline-flex; align-items: center; justify-content: center; gap: 3px; font-family: inherit; line-height: 1; }
         .msg-action-btn:hover { background: var(--accent-bg); color: var(--accent); border-color: var(--accent); }
         .msg-action-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .msg-action-btn.regen-btn {
+            width: 25px;
+            height: 25px;
+            padding: 0;
+            border-radius: 50%;
+            border: none;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1;
+            flex-shrink: 0;
+        }
         
         .input-area { background: var(--input-area-bg); backdrop-filter: blur(12px); flex-shrink: 0; display: flex; flex-direction: column; padding: 6px 12px 12px; }
         .input-toolbar { display: flex; align-items: center; gap: 6px; padding: 2px 2px 6px 2px; flex-wrap: wrap; }
         .input-toolbar .spacer { flex: 1; }
+        
         .at-selector { position: relative; display: inline-block; }
         .at-selector .at-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 2px 12px 2px 10px; border-radius: 16px; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 4px; height: 30px; white-space: nowrap; }
         .at-selector .at-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
         .at-selector .at-btn .arrow { font-size: 11px; transition: transform 0.25s; }
         .at-selector .at-btn .arrow.open { transform: rotate(180deg); }
+        
         .at-selector .at-dropdown { position: absolute; bottom: calc(100% + 6px); left: 0; min-width: 180px; background: var(--modal-bg); border-radius: 14px; border: 1px solid var(--border-color); box-shadow: 0 -8px 40px var(--shadow-color); padding: 4px 0; max-height: 200px; overflow-y: auto; z-index: 20; display: none; }
         .at-selector .at-dropdown.open { display: block; }
         .at-selector .at-dropdown-item { padding: 8px 14px; font-size: 14px; color: var(--text-primary); cursor: pointer; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border-color); user-select: none; }
@@ -209,12 +238,7 @@
         .at-selector .at-dropdown-item:hover { background: var(--bg-hover); }
         .at-selector .at-dropdown-item .check { margin-left: auto; opacity: 0; font-size: 16px; font-weight: 700; }
         .at-selector .at-dropdown-item .check.checked { opacity: 1; color: var(--accent); }
-        .input-toolbar .group-btn { background: var(--accent-bg); border: 1px solid var(--accent); color: var(--accent); padding: 2px 14px 2px 10px; border-radius: 16px; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 4px; height: 30px; white-space: nowrap; }
-        .input-toolbar .group-btn:hover { background: var(--accent); color: #fff; }
-        .input-toolbar .group-btn.active { background: var(--accent); color: #fff; }
-        .input-toolbar .debate-btn { background: rgba(124,92,252,0.15); border: 1px solid rgba(124,92,252,0.2); color: #b8a0ff; padding: 2px 14px 2px 12px; border-radius: 16px; font-size: 13px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 4px; height: 30px; white-space: nowrap; }
-        .input-toolbar .debate-btn:hover { background: rgba(124,92,252,0.25); color: #fff; }
-        .input-toolbar .debate-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        
         .input-toolbar .file-btn { background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-secondary); width: 30px; height: 30px; border-radius: 50%; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
         .input-toolbar .file-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
         .input-toolbar .plugin-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary); width: 30px; height: 30px; border-radius: 50%; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
@@ -229,11 +253,13 @@
         .file-tip .file-item .file-name { font-size: 12px; color: var(--text-secondary); max-width: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .file-tip .file-item .remove-attachment { background: transparent; border: none; color: var(--text-muted); font-size: 14px; cursor: pointer; padding: 2px 4px; }
         .file-tip .file-item .remove-attachment:hover { color: var(--danger); }
-        .input-area .input-wrap { flex: 1; background: var(--bg-input); border-radius: 22px; padding: 2px 10px 2px 14px; border: 1px solid var(--bg-input-border); display: flex; align-items: flex-end; gap: 4px; margin-top: 2px; }
+        
+        .input-area .input-wrap { flex: 1; background: var(--bg-input); border-radius: 22px; padding: 2px 2px 2px 14px; border: 1px solid var(--bg-input-border); display: flex; align-items: flex-end; margin-top: 2px; }
         .input-area .input-wrap:focus-within { border-color: var(--accent); }
-        .input-area textarea { flex: 1; background: transparent; border: none; outline: none; color: var(--text-primary); font-size: 15px; font-family: inherit; resize: none; padding: 8px 0; min-height: 22px; max-height: 100px; line-height: 1.5; }
+        .input-area textarea { flex: 1; background: transparent; border: none; outline: none; color: var(--text-primary); font-size: 15px; font-family: inherit; resize: none; padding: 6px 0; min-height: 22px; max-height: 100px; line-height: 1.5; }
         .input-area textarea::placeholder { color: var(--text-muted); }
-        .input-area .send-btn { background: var(--accent); border: none; color: #fff; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+        
+        .input-area .send-btn { background: var(--accent); border: none; color: #fff; width: 34px; height: 34px; border-radius: 50%; font-size: 16px; font-weight: bold; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin: 0; }
         .input-area .send-btn:hover { background: var(--accent-hover); }
         .input-area .send-btn:disabled { background: var(--bg-card); color: var(--text-muted); cursor: not-allowed; }
         .input-area .send-btn.stop-btn { background: var(--danger); }
@@ -320,11 +346,11 @@
         .export-select-item label { cursor: pointer; flex: 1; }
         .export-select-item .badge { font-size: 12px; color: var(--text-muted); margin-left: 8px; }
         
-        .kb-search { display: flex; gap: 8px; margin-bottom: 10px; position: relative; margin-top: 12px; }
-        .kb-search input { flex: 1; padding: 8px 12px; background: var(--bg-input); border: 1px solid var(--bg-input-border); border-radius: 10px; color: var(--text-primary); font-size: 14px; outline: none; min-width: 0; }
-        .kb-search input:focus { border-color: var(--accent); }
-        .kb-search button { background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 14px; border-radius: 10px; cursor: pointer; transition: all 0.15s; }
-        .kb-search button:hover { background: var(--bg-hover); color: var(--text-primary); }
+        .kb-search { display: flex; gap: 8px; margin-bottom: 10px; position: relative; margin-top: 12px; align-items: center; }
+        .kb-search-input-wrap { flex: 1; position: relative; min-width: 0; }
+        .kb-search-input-wrap input { width: 100%; padding: 8px 12px 8px 34px; background: var(--bg-input); border: 1px solid var(--bg-input-border); border-radius: 10px; color: var(--text-primary); font-size: 14px; outline: none; }
+        .kb-search-input-wrap input:focus { border-color: var(--accent); }
+        .kb-search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); font-size: 14px; pointer-events: none; opacity: 0.55; line-height: 1; }
         .kb-add-wrap { position: relative; flex-shrink: 0; }
         .kb-add-btn { width: 38px; height: 38px; border-radius: 10px; border: none; background: transparent; color: var(--text-primary); font-size: 26px; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; transition: all 0.15s; }
         .kb-add-btn:hover { background: var(--bg-hover); }
@@ -390,9 +416,44 @@
         .html-run-close { background: transparent; border: 1px solid var(--border-color); color: var(--text-secondary); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; }
         .html-run-close:hover { background: var(--bg-hover); color: var(--text-primary); }
         .html-run-iframe { flex: 1; border: none; width: 100%; background: #fff; }
+
+        /* ===== 滚动导航按钮 ===== */
+        .scroll-nav {
+            position: absolute;
+            z-index: 30;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s;
+        }
+        .scroll-nav.show { opacity: 1; pointer-events: auto; }
+        .scroll-nav-up { top: 66px; right: 12px; }
+        .scroll-nav-down { bottom: 128px; right: 12px; }
+        .scroll-nav-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+            backdrop-filter: blur(8px);
+            -webkit-tap-highlight-color: transparent;
+            line-height: 1;
+        }
+        .scroll-nav-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+        .scroll-nav-btn:active { transform: scale(0.92); }
         
         @media (max-width:430px) {
-            .at-selector .at-btn, .input-toolbar .group-btn, .input-toolbar .debate-btn { font-size: 12px; padding: 1px 10px; height: 28px; }
+            .at-selector .at-btn { font-size: 12px; padding: 1px 10px; height: 28px; }
             .bubble { font-size: 14px; padding: 8px 12px; }
             .reasoning-box { font-size: 12px; padding: 6px 10px; }
         }
@@ -404,7 +465,18 @@
     <header class="header">
         <div class="header-left">
             <button class="menu-btn" id="menuBtn" aria-label="菜单">☰</button>
-            <span class="logo"><span class="logo-icon"><svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="url(#logoGrad)"/><path d="M9 20.5C9 16.5 12 14 16 14C20 14 23 16.5 23 20.5" stroke="white" stroke-width="1.8" stroke-linecap="round"/><circle cx="13" cy="11" r="1.8" fill="white"/><circle cx="19" cy="11" r="1.8" fill="white"/><path d="M16 9V7M16 9V11M16 9H14M16 9H18" stroke="white" stroke-width="1.6" stroke-linecap="round"/><defs><linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#4F8CFF"/><stop offset="100%" stop-color="#7C5CFC"/></linearGradient></defs></svg></span>AI 群聊</span>
+            <div class="mode-selector" id="modeSelector">
+                <button class="mode-btn" id="modeBtn">
+                    <span id="modeBtnText">群聊模式</span>
+                    <span class="arrow" id="modeArrow">▾</span>
+                </button>
+                <div class="mode-dropdown" id="modeDropdown">
+                    <div class="mode-dropdown-item mode-item" data-mode="group"><span>群聊模式</span><span class="check checked">✓</span></div>
+                    <div class="mode-dropdown-item mode-item" data-mode="parallel"><span>并列模式</span><span class="check">✓</span></div>
+                    <div class="mode-dropdown-item mode-item" data-mode="debate"><span>辩论模式</span><span class="check">✓</span></div>
+                    <div class="mode-dropdown-item mode-item" data-mode="traditional"><span>传统模式</span><span class="check">✓</span></div>
+                </div>
+            </div>
         </div>
         <div class="header-right">
             <div class="header-actions">
@@ -417,9 +489,18 @@
     <div class="messages" id="messages">
         <div class="welcome" id="welcome">
             <div class="icon-wrap"><svg viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="url(#welcomeGrad)"/><path d="M18 42C18 32 24 28 32 28C40 28 46 32 46 42" stroke="white" stroke-width="3" stroke-linecap="round"/><circle cx="26" cy="22" r="3.5" fill="white"/><circle cx="38" cy="22" r="3.5" fill="white"/><path d="M32 17V13M32 17V21M32 17H28M32 17H36" stroke="white" stroke-width="3" stroke-linecap="round"/><defs><linearGradient id="welcomeGrad" x1="0" y1="0" x2="64" y2="64"><stop offset="0%" stop-color="#4F8CFF"/><stop offset="100%" stop-color="#7C5CFC"/></linearGradient></defs></svg></div>
-            <h2>🤖 群聊 · 知识库 Pro</h2>
-            <p>群聊模式：随机顺序，接力发言</p>
+            <h2 id="welcomeTitle">群聊模式</h2>
+            <p id="welcomeDesc">随机顺序，接力发言</p>
         </div>
+    </div>
+    <!-- 滚动导航按钮 -->
+    <div class="scroll-nav scroll-nav-up" id="scrollNavUp">
+        <button class="scroll-nav-btn" id="scrollToTopBtn" aria-label="回到顶部">⇑</button>
+        <button class="scroll-nav-btn" id="scrollPrevMsgBtn" aria-label="上一条消息">↑</button>
+    </div>
+    <div class="scroll-nav scroll-nav-down" id="scrollNavDown">
+        <button class="scroll-nav-btn" id="scrollNextMsgBtn" aria-label="下一条消息">↓</button>
+        <button class="scroll-nav-btn" id="scrollToBottomBtn" aria-label="回到底部">⇓</button>
     </div>
     <div class="input-area" id="inputArea">
         <div class="input-toolbar">
@@ -427,8 +508,6 @@
                 <button class="at-btn" id="atBtn"><span id="atLabel">@ 全部</span><span class="arrow" id="atArrow">▾</span></button>
                 <div class="at-dropdown" id="atDropdown"></div>
             </div>
-            <button class="group-btn" id="groupBtn">👥 群聊</button>
-            <button class="debate-btn" id="debateBtn">💬 讨论</button>
             <button class="file-btn" id="fileBtn" title="上传文件">📎</button>
             <input type="file" id="fileInput" multiple />
             <div class="spacer"></div>
@@ -437,7 +516,7 @@
         <div class="file-tip" id="fileTip"></div>
         <div class="input-wrap">
             <textarea id="inputBox" rows="1" placeholder="输入消息…" autofocus></textarea>
-            <button class="send-btn" id="sendBtn" aria-label="发送">➤</button>
+            <button class="send-btn" id="sendBtn" aria-label="发送">↑</button>
         </div>
     </div>
 </div>
@@ -481,7 +560,20 @@
         </div>
         <div class="config-subpage" id="subpage-knowledge">
             <div class="sub-body">
-                <div class="kb-search"><input id="kbSearchInput" placeholder="搜索文档内容、标题、标签…" /><button id="kbSearchBtn">🔍</button><div class="kb-add-wrap" id="kbAddWrap"><button class="kb-add-btn" id="kbAddBtn">＋</button><div class="kb-add-menu" id="kbAddMenu"><div class="kb-add-item" data-action="doc"><span>📄</span><span>添加文档</span></div><div class="kb-add-item" data-action="upload"><span>📤</span><span>上传文件</span></div><div class="kb-add-item" data-action="folder"><span>📁</span><span>新建文件夹</span></div></div></div></div>
+                <div class="kb-search">
+                    <div class="kb-search-input-wrap">
+                        <span class="kb-search-icon">🔍</span>
+                        <input id="kbSearchInput" placeholder="搜索文档内容、标题、标签…" />
+                    </div>
+                    <div class="kb-add-wrap" id="kbAddWrap">
+                        <button class="kb-add-btn" id="kbAddBtn">＋</button>
+                        <div class="kb-add-menu" id="kbAddMenu">
+                            <div class="kb-add-item" data-action="doc"><span>📄</span><span>添加文档</span></div>
+                            <div class="kb-add-item" data-action="upload"><span>📤</span><span>上传文件</span></div>
+                            <div class="kb-add-item" data-action="folder"><span>📁</span><span>新建文件夹</span></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="kb-path-bar" id="kbPathBar"></div>
                 <input type="file" id="kbFileInput" multiple style="display:none;" />
                 <div class="kb-folder-tree" id="kbFolderTree"></div>
@@ -561,12 +653,14 @@
 
         const $ = id => document.getElementById(id);
         const messagesEl = $('messages'), inputBox = $('inputBox'), sendBtn = $('sendBtn');
-        const debateBtn = $('debateBtn'), groupBtn = $('groupBtn'), settingsBtn = $('settingsBtn');
+        const settingsBtn = $('settingsBtn');
         const themeToggleBtn = $('themeToggleBtn'), welcomeEl = $('welcome');
+        const welcomeTitle = $('welcomeTitle'), welcomeDesc = $('welcomeDesc');
         const newChatBtn = $('newChatBtn'), newChatSidebarBtn = $('newChatSidebarBtn');
         const sidebar = $('sidebar'), sidebarOverlay = $('sidebarOverlay'), sidebarClose = $('sidebarClose');
         const menuBtn = $('menuBtn'), convListEl = $('convList');
         const atSelector = $('atSelector'), atBtn = $('atBtn'), atLabel = $('atLabel'), atArrow = $('atArrow'), atDropdown = $('atDropdown');
+        const modeSelector = $('modeSelector'), modeBtn = $('modeBtn'), modeBtnText = $('modeBtnText'), modeArrow = $('modeArrow'), modeDropdown = $('modeDropdown');
         const fileBtn = $('fileBtn'), fileInput = $('fileInput');
         const exportBtn = $('exportDataBtn'), importBtn = $('importDataBtn');
         const fileTip = $('fileTip'), skillFileInput = $('skillFileInput');
@@ -574,17 +668,19 @@
         const configMenu = $('configMenu');
         const apiConfigList = $('apiConfigList'), agentConfigList = $('agentConfigList');
         const knowledgeList = $('kbDocList'), folderTree = $('kbFolderTree'), kbPathBar = $('kbPathBar');
-        const kbSearchInput = $('kbSearchInput'), kbSearchBtn = $('kbSearchBtn'), kbFileInput = $('kbFileInput');
+        const kbSearchInput = $('kbSearchInput'), kbFileInput = $('kbFileInput');
         const apiAddBtn = $('apiAddBtn'), agentAddBtn = $('agentAddBtn');
         const modalOverlay = $('modalOverlay'), modalTitle = $('modalTitle'), modalBody = $('modalBody');
         const modalFooter = $('modalFooter'), modalCloseBtn = $('modalCloseBtn');
         const modalCancel = $('modalCancel'), modalSave = $('modalSave'), modalDelete = $('modalDelete');
 
-        let groupChatMode = false;
+        let appMode = 'group'; // group, parallel, debate, traditional
         let atTargets = [], activeControllers = [], streamingMsgIds = new Set(), uploadedFiles = [];
         let streamingConvs = new Set();
         let debatingConvs = new Set();
         let streamingMsgConvMap = new Map();
+        let scrollNavTimer = null;
+        let lastNavScrollTop = null;
 
         const STORAGE = {
             CONFIGS: 'ai_group_configs', CURRENT_CONFIG_ID: 'ai_group_current_config_id',
@@ -592,7 +688,7 @@
             CURRENT_CONV_ID: 'ai_group_current_conv_id', KNOWLEDGE: 'ai_group_knowledge_pro',
             FOLDERS: 'ai_group_folders', PLATFORMS: 'ai_group_platforms',
             THEME: 'ai_group_theme', MCP: 'ai_group_mcp_servers', SKILLS: 'ai_group_skills',
-            PLUGINS: 'ai_group_plugins',
+            PLUGINS: 'ai_group_plugins', APP_MODE: 'ai_group_app_mode'
         };
 
         let configs = [], currentConfigId = null, agents = [], conversations = [], currentConvId = null, messages = [];
@@ -602,6 +698,100 @@
         let currentPackView = null;
 
         function escapeHtml(text) { const div = document.createElement('div'); div.textContent = text == null ? '' : text; return div.innerHTML; }
+
+        function updateWelcomeUI() {
+            if (!welcomeTitle || !welcomeDesc) return;
+            if (appMode === 'group') {
+                welcomeTitle.textContent = '群聊模式';
+                welcomeDesc.textContent = '随机顺序，接力发言';
+            } else if (appMode === 'parallel') {
+                welcomeTitle.textContent = '并列模式';
+                welcomeDesc.textContent = '统一回复，横向对比';
+            } else if (appMode === 'debate') {
+                welcomeTitle.textContent = '辩论模式';
+                welcomeDesc.textContent = '各自发言，自由辩论';
+            } else if (appMode === 'traditional') {
+                welcomeTitle.textContent = '传统模式';
+                welcomeDesc.textContent = '单个模型，一问一答';
+            }
+        }
+
+        function updateModeUI() {
+            if (!modeBtn || !modeBtnText) return;
+            let txt = '';
+            if (appMode === 'group') txt = '群聊模式';
+            else if (appMode === 'parallel') txt = '并列模式';
+            else if (appMode === 'debate') txt = '辩论模式';
+            else if (appMode === 'traditional') txt = '传统模式';
+            
+            modeBtnText.textContent = txt;
+            
+            if (modeArrow) {
+                if (modeDropdown.classList.contains('open')) modeArrow.classList.add('open');
+                else modeArrow.classList.remove('open');
+            }
+            
+            const conv = getCurrentConv();
+            const hasMessages = !!(conv && conv.messages && conv.messages.length > 0);
+            if (hasMessages) {
+                modeSelector.classList.add('locked');
+                if (modeArrow) modeArrow.style.display = 'none';
+                closeModeDropdown();
+            } else {
+                modeSelector.classList.remove('locked');
+                if (modeArrow) modeArrow.style.display = '';
+            }
+            
+            document.querySelectorAll('.mode-item').forEach(item => {
+                const check = item.querySelector('.check');
+                if (item.dataset.mode === appMode) check.classList.add('checked');
+                else check.classList.remove('checked');
+            });
+            updateWelcomeUI();
+        }
+
+        function enforceTraditionalSelection() {
+            if (appMode !== 'traditional') return;
+            const enabled = getEnabledAgents();
+            if (enabled.length > 0) {
+                if (atTargets.length === 0) {
+                    atTargets = [enabled[0].id];
+                } else if (atTargets.length > 1) {
+                    atTargets = [atTargets[0]];
+                } else {
+                    if (!enabled.some(a => a.id === atTargets[0])) {
+                        atTargets = [enabled[0].id];
+                    }
+                }
+            }
+            renderAtDropdown();
+        }
+
+        function setAppMode(mode) {
+            const conv = getCurrentConv();
+            if (conv && conv.messages && conv.messages.length > 0) return;
+            appMode = mode;
+            localStorage.setItem(STORAGE.APP_MODE, mode);
+            if (conv && (!conv.messages || conv.messages.length === 0)) {
+                conv.mode = mode;
+                saveConversations();
+            }
+            if (appMode === 'traditional') {
+                enforceTraditionalSelection();
+            }
+            updateModeUI();
+            updateInputState();
+        }
+
+        function toggleModeDropdown() {
+            if (modeSelector.classList.contains('locked')) return;
+            const o = modeDropdown.classList.toggle('open');
+            if (modeArrow) modeArrow.classList.toggle('open', o);
+        }
+        function closeModeDropdown() {
+            modeDropdown.classList.remove('open');
+            if (modeArrow) modeArrow.classList.remove('open');
+        }
 
         function buildCodeBlockHTML(lang, code, closed) {
             const encoded = encodeURIComponent(code);
@@ -1161,13 +1351,28 @@
         function saveMcpServers() { try { const t = mcpServers.map(function(s) { return { id: s.id, name: s.name, url: s.url, transport: s.transport || 'http', apiKey: s.apiKey || '', headers: s.headers || {}, enabled: s.enabled }; }); localStorage.setItem(STORAGE.MCP, JSON.stringify(t)); } catch (_) {} }
         function loadConversations() {
             try { const d = localStorage.getItem(STORAGE.CONVERSATIONS); conversations = d ? JSON.parse(d) : []; } catch (_) { conversations = []; }
-            if (conversations.length === 0) { conversations.push({ id: 'conv_default', title: '新对话', messages: [], createdAt: Date.now(), updatedAt: Date.now() }); saveConversations(); }
+            if (conversations.length === 0) { conversations.push({ id: 'conv_default', title: '新对话', mode: 'group', messages: [], createdAt: Date.now(), updatedAt: Date.now() }); saveConversations(); }
             try { const id = localStorage.getItem(STORAGE.CURRENT_CONV_ID); currentConvId = (id && conversations.some(function(c) { return c.id === id; })) ? id : (conversations[0] && conversations[0].id || null); } catch (_) { currentConvId = conversations[0] && conversations[0].id || null; }
             if (!currentConvId && conversations.length > 0) currentConvId = conversations[0].id;
             loadCurrentConvMessages();
         }
         function saveConversations() { try { localStorage.setItem(STORAGE.CONVERSATIONS, JSON.stringify(conversations)); if (currentConvId) localStorage.setItem(STORAGE.CURRENT_CONV_ID, currentConvId); } catch (_) {} }
-        function loadCurrentConvMessages() { const c = conversations.find(function(c) { return c.id === currentConvId; }); messages = c ? c.messages || [] : []; renderMessages(); updateInputState(); }
+        function loadCurrentConvMessages() { 
+            const c = conversations.find(function(c) { return c.id === currentConvId; }); 
+            messages = c ? c.messages || [] : []; 
+            if (c && c.mode) {
+                appMode = c.mode;
+            } else if (c) {
+                c.mode = appMode;
+            }
+            localStorage.setItem(STORAGE.APP_MODE, appMode);
+            if (appMode === 'traditional') {
+                enforceTraditionalSelection();
+            }
+            updateModeUI();
+            renderMessages(); 
+            updateInputState(); 
+        }
         function getCurrentConv() { return conversations.find(function(c) { return c.id === currentConvId; }) || null; }
         function saveCurrentConversation(touch) {
             const conv = getCurrentConv();
@@ -1176,6 +1381,9 @@
             if (touch) conv.updatedAt = Date.now();
             const fu = messages.find(function(m) { return m.role === 'user'; });
             conv.title = fu ? (fu.content.slice(0, 20) + (fu.content.length > 20 ? '…' : '') || '新对话') : '空对话';
+            if (conv.messages.length > 0 && !conv.mode) {
+                conv.mode = appMode;
+            }
             saveConversations();
         }
         function saveConvById(convId, touch) {
@@ -1184,6 +1392,9 @@
             if (touch) conv.updatedAt = Date.now();
             const fu = (conv.messages || []).find(function(m) { return m.role === 'user'; });
             conv.title = fu ? (fu.content.slice(0, 20) + (fu.content.length > 20 ? '…' : '') || '新对话') : '空对话';
+            if ((conv.messages || []).length > 0 && !conv.mode) {
+                conv.mode = appMode;
+            }
             saveConversations();
         }
 
@@ -1194,18 +1405,15 @@
             for (const convId of streamingMsgConvMap.values()) streamingConvs.add(convId);
         }
         function updateInputState() {
-            const busy = streamingConvs.has(currentConvId);
+            const busy = streamingConvs.has(currentConvId) || debatingConvs.has(currentConvId);
             inputBox.disabled = busy;
             if (busy) { sendBtn.classList.add('stop-btn'); sendBtn.textContent = '⏹'; sendBtn.disabled = false; }
-            else { sendBtn.classList.remove('stop-btn'); sendBtn.textContent = '➤'; sendBtn.disabled = false; }
-            const debating = debatingConvs.has(currentConvId);
-            debateBtn.disabled = debating;
-            debateBtn.textContent = debating ? '💬 讨论中…' : '💬 讨论';
+            else { sendBtn.classList.remove('stop-btn'); sendBtn.textContent = '↑'; sendBtn.disabled = false; }
         }
 
         function createNewConversation() {
             saveCurrentConversation();
-            const conv = { id: 'conv_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6), title: '新对话', messages: [], createdAt: Date.now(), updatedAt: Date.now() };
+            const conv = { id: 'conv_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6), title: '新对话', mode: appMode, messages: [], createdAt: Date.now(), updatedAt: Date.now() };
             conversations.unshift(conv);
             currentConvId = conv.id;
             messages = conv.messages;
@@ -1219,6 +1427,16 @@
             if (!conv) return;
             currentConvId = id;
             messages = conv.messages || [];
+            if (conv.mode) {
+                appMode = conv.mode;
+            } else {
+                conv.mode = appMode;
+            }
+            localStorage.setItem(STORAGE.APP_MODE, appMode);
+            if (appMode === 'traditional') {
+                enforceTraditionalSelection();
+            }
+            updateModeUI();
             saveConversations(); renderConversationList(); renderMessages(); closeSidebar();
             updateInputState();
             showToast('已加载: ' + conv.title);
@@ -1246,9 +1464,13 @@
         function renderMessages() {
             messagesEl.querySelectorAll('.message').forEach(function(el) { el.remove(); });
             if (welcomeEl) welcomeEl.style.display = 'none';
+            updateModeUI();
             if (!messages || messages.length === 0) { welcomeEl.style.display = 'flex'; return; }
             for (const msg of messages) addMessageElement(msg, false);
-            scrollToBottomIfNeeded();
+            messagesEl.style.scrollBehavior = 'auto';
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+            lastNavScrollTop = messagesEl.scrollTop;
+            requestAnimationFrame(function() { messagesEl.style.scrollBehavior = ''; });
         }
         function buildReasoningHTML(reasoning, stats, isStreaming) {
             if (!reasoning) return '';
@@ -1331,7 +1553,7 @@
                     if (isTruncated) {
                         html += '<button class="msg-action-btn continue-btn" title="继续生成">▶️ 继续</button>';
                     }
-                    html += '<button class="msg-action-btn regen-btn" title="重新生成">🔄</button>';
+                    html += '<button class="msg-action-btn regen-btn" title="重新生成">↺</button>';
                 }
                 stats.innerHTML = html;
                 div.appendChild(stats);
@@ -1458,7 +1680,7 @@
                             if (isTruncated) {
                                 html += '<button class="msg-action-btn continue-btn" title="继续生成">▶️ 继续</button>';
                             }
-                            html += '<button class="msg-action-btn regen-btn" title="重新生成">🔄</button>';
+                            html += '<button class="msg-action-btn regen-btn" title="重新生成">↺</button>';
                         }
                         statsEl.innerHTML = html;
                         const rb = statsEl.querySelector('.regen-btn');
@@ -1480,8 +1702,84 @@
 
         let autoScroll = true;
         function scrollToBottomIfNeeded() { if (autoScroll) requestAnimationFrame(function() { messagesEl.scrollTop = messagesEl.scrollHeight; }); }
-        messagesEl.addEventListener('scroll', function() { autoScroll = messagesEl.scrollHeight - messagesEl.scrollTop - messagesEl.clientHeight < 50; });
+        messagesEl.addEventListener('scroll', function() {
+            autoScroll = messagesEl.scrollHeight - messagesEl.scrollTop - messagesEl.clientHeight < 50;
+            const currentTop = messagesEl.scrollTop;
+            if (lastNavScrollTop !== null) {
+                const delta = currentTop - lastNavScrollTop;
+                if (Math.abs(delta) > 5) {
+                    if (delta < 0) triggerScrollNav('up');
+                    else triggerScrollNav('down');
+                }
+            }
+            lastNavScrollTop = currentTop;
+        });
         function shuffleArray(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const tmp = a[i]; a[i] = a[j]; a[j] = tmp; } return a; }
+
+        // ===== 滚动导航 =====
+        function triggerScrollNav(direction) {
+            const upEl = $('scrollNavUp');
+            const downEl = $('scrollNavDown');
+            if (!upEl || !downEl) return;
+            if (direction === 'up') {
+                upEl.classList.add('show');
+                downEl.classList.remove('show');
+            } else {
+                downEl.classList.add('show');
+                upEl.classList.remove('show');
+            }
+            if (scrollNavTimer) clearTimeout(scrollNavTimer);
+            scrollNavTimer = setTimeout(function() {
+                upEl.classList.remove('show');
+                downEl.classList.remove('show');
+            }, 2500);
+        }
+
+        function scrollToElementTop(el) {
+            const msgsRect = messagesEl.getBoundingClientRect();
+            const elRect = el.getBoundingClientRect();
+            const delta = elRect.top - msgsRect.top - 8;
+            messagesEl.scrollTo({ top: messagesEl.scrollTop + delta, behavior: 'smooth' });
+        }
+
+        function findFirstVisibleMsgIdx() {
+            const msgEls = Array.from(messagesEl.querySelectorAll('.message'));
+            const msgsRect = messagesEl.getBoundingClientRect();
+            const viewTop = msgsRect.top + 4;
+            for (let i = 0; i < msgEls.length; i++) {
+                if (msgEls[i].getBoundingClientRect().bottom > viewTop) return i;
+            }
+            return -1;
+        }
+
+        function scrollToPrevMessage() {
+            const msgEls = Array.from(messagesEl.querySelectorAll('.message'));
+            if (msgEls.length === 0) return;
+            const idx = findFirstVisibleMsgIdx();
+            if (idx <= 0) {
+                messagesEl.scrollTo({ top: 0, behavior: 'smooth' });
+                return;
+            }
+            const currentTopRel = msgEls[idx].getBoundingClientRect().top - messagesEl.getBoundingClientRect().top;
+            const targetEl = currentTopRel < -4 ? msgEls[idx] : msgEls[idx - 1];
+            scrollToElementTop(targetEl);
+        }
+
+        function scrollToNextMessage() {
+            const msgEls = Array.from(messagesEl.querySelectorAll('.message'));
+            if (msgEls.length === 0) return;
+            const idx = findFirstVisibleMsgIdx();
+            if (idx === -1 || idx >= msgEls.length - 1) {
+                messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' });
+                return;
+            }
+            scrollToElementTop(msgEls[idx + 1]);
+        }
+
+        $('scrollToTopBtn').addEventListener('click', function() { messagesEl.scrollTo({ top: 0, behavior: 'smooth' }); });
+        $('scrollToBottomBtn').addEventListener('click', function() { messagesEl.scrollTo({ top: messagesEl.scrollHeight, behavior: 'smooth' }); });
+        $('scrollPrevMsgBtn').addEventListener('click', scrollToPrevMessage);
+        $('scrollNextMsgBtn').addEventListener('click', scrollToNextMessage);
 
         function renderConversationList() {
             if (conversations.length === 0) { convListEl.innerHTML = '<div class="conv-empty">暂无对话</div>'; return; }
@@ -1514,7 +1812,10 @@
         function renderAtDropdown() {
             const enabled = getEnabledAgents();
             const allChecked = atTargets.length === 0;
-            let html = '<div class="at-dropdown-item ' + (allChecked ? 'active' : '') + '" data-id="__all"><span>🌐 全部</span><span class="check ' + (allChecked ? 'checked' : '') + '">✓</span></div>';
+            let html = '';
+            if (appMode !== 'traditional') {
+                html += '<div class="at-dropdown-item ' + (allChecked ? 'active' : '') + '" data-id="__all"><span>🌐 全部</span><span class="check ' + (allChecked ? 'checked' : '') + '">✓</span></div>';
+            }
             for (const agent of enabled) {
                 const checked = atTargets.includes(agent.id);
                 html += '<div class="at-dropdown-item ' + (checked ? 'active' : '') + '" data-id="' + agent.id + '"><span style="font-size:16px;">' + (agent.avatar || '🤖') + '</span><span>' + escapeHtml(agent.name) + '</span><span class="check ' + (checked ? 'checked' : '') + '">✓</span></div>';
@@ -1529,15 +1830,30 @@
                 item.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const id = item.dataset.id;
-                    if (id === '__all') atTargets = [];
-                    else { const i = atTargets.indexOf(id); if (i !== -1) atTargets.splice(i, 1); else atTargets.push(id); }
+                    if (appMode === 'traditional') {
+                        if (id === '__all') return;
+                        atTargets = [id];
+                    } else {
+                        if (id === '__all') atTargets = [];
+                        else { 
+                            const i = atTargets.indexOf(id); 
+                            if (i !== -1) atTargets.splice(i, 1); 
+                            else atTargets.push(id); 
+                        }
+                    }
                     renderAtDropdown();
                 });
             });
         }
         function toggleAtDropdown() { const o = atDropdown.classList.toggle('open'); atArrow.classList.toggle('open', o); if (o) renderAtDropdown(); }
         function closeAtDropdown() { atDropdown.classList.remove('open'); atArrow.classList.remove('open'); }
-        function getTargetAgents() { return atTargets.length === 0 ? getEnabledAgents() : agents.filter(function(a) { return atTargets.includes(a.id) && a.enabled; }); }
+        function getTargetAgents() { 
+            if (appMode === 'traditional') {
+                const targets = atTargets.length === 0 ? getEnabledAgents().slice(0, 1) : agents.filter(function(a) { return atTargets.includes(a.id) && a.enabled; });
+                return targets.slice(0, 1); 
+            }
+            return atTargets.length === 0 ? getEnabledAgents() : agents.filter(function(a) { return atTargets.includes(a.id) && a.enabled; }); 
+        }
         function getEnabledAgents() { return agents.filter(function(a) { return a.enabled; }); }
         function getAgentConfig(agentId) { const a = agents.find(function(a) { return a.id === agentId; }); return a ? configs.find(function(c) { return c.id === a.configId; }) || null : null; }
         function genId() { return 'id_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6); }
@@ -1553,13 +1869,7 @@
         }
         function autoResize() { inputBox.style.height = 'auto'; inputBox.style.height = Math.min(inputBox.scrollHeight, 100) + 'px'; }
         inputBox.addEventListener('input', autoResize);
-        function toggleGroupMode() {
-            groupChatMode = !groupChatMode;
-            groupBtn.classList.toggle('active', groupChatMode);
-            groupBtn.textContent = groupChatMode ? '👥 群聊 ON' : '👥 群聊';
-            showToast(groupChatMode ? '✅ 群聊模式已开启' : '❌ 群聊模式已关闭');
-        }
-
+        
         function doCloseSidebar() { sidebar.classList.remove('open'); sidebarOverlay.classList.remove('active'); }
         function closeSidebar() {
             if (history.state && history.state.ui === 'sidebar') { history.back(); return; }
@@ -2117,13 +2427,14 @@
             const isNew = id === 'new';
             const p = isNew ? null : plugins.find(function(x) { return x.id === id; });
             if (!isNew && !p) return;
-            const target = p || { name: '', icon: '🧩', desc: '', htmlContent: '', jsContent: '', enabled: true };
+            const target = p || { name: '', icon: '🧩', desc: '', htmlContent: '', jsContent: '', resources: [], enabled: true };
             modalTitle.textContent = isNew ? '新增插件' : '编辑插件';
             modalBody.innerHTML = '<div class="config-form-group"><label>插件名称</label><input id="pluginEditName" value="' + escapeHtml(target.name) + '" placeholder="例如：二维码生成器" /></div>' +
                 '<div class="config-form-group"><label>图标 (Emoji)</label><input id="pluginEditIcon" value="' + escapeHtml(target.icon) + '" maxlength="2" style="width:60px; text-align:center; font-size:24px;" /></div>' +
                 '<div class="config-form-group"><label>描述</label><input id="pluginEditDesc" value="' + escapeHtml(target.desc) + '" placeholder="简要说明插件的功能" /></div>' +
                 '<div class="config-form-group"><label>HTML 内容</label><textarea id="pluginEditHtml" rows="5" style="font-family:monospace; font-size:13px;">' + escapeHtml(target.htmlContent) + '</textarea></div>' +
                 '<div class="config-form-group"><label>JS 逻辑</label><textarea id="pluginEditJs" rows="5" style="font-family:monospace; font-size:13px;">' + escapeHtml(target.jsContent) + '</textarea><div style="font-size:12px; color:var(--text-muted); margin-top:4px;">可通过 window.parent.postMessage({type:\'toast\', text:\'提示\'}, \'*\') 调用主程序提示。</div></div>' +
+                '<div class="config-form-group"><label>资源文件（可选，插件中可通过 window.pluginResources 访问）</label><div id="pluginResList" style="display:flex; flex-direction:column; gap:6px; margin-bottom:6px;"></div><input type="file" id="pluginResInput" multiple style="display:none;" /><button type="button" id="pluginResAddBtn" class="btn-secondary" style="padding:6px 0; font-size:13px;">＋ 添加资源文件</button></div>' +
                 '<div class="config-form-group"><label style="display:flex; align-items:center; gap:10px; cursor:pointer;"><input type="checkbox" id="pluginEditEnabled" ' + (target.enabled ? 'checked' : '') + ' style="width:18px; height:18px;" /> 启用此插件</label></div>';
             modalDelete.style.display = isNew ? 'none' : 'block';
             modalSave.textContent = '保存';
@@ -2131,6 +2442,76 @@
             modalFooter.style.display = 'flex';
             modalCancel.style.display = '';
             modalSave.style.display = '';
+
+            const pluginResources = target.resources ? target.resources.slice() : [];
+
+            function renderPluginRes() {
+                const listEl = $('pluginResList');
+                if (!listEl) return;
+                if (pluginResources.length === 0) {
+                    listEl.innerHTML = '<div style="color:var(--text-muted); font-size:12px; padding:4px 0;">暂无资源文件</div>';
+                    return;
+                }
+                let html = '';
+                for (let i = 0; i < pluginResources.length; i++) {
+                    const r = pluginResources[i];
+                    const icon = r.type && r.type.startsWith('image/') ? '🖼️' : '📄';
+                    const sizeStr = r.size ? (r.size < 1024 ? r.size + ' B' : Math.round(r.size / 1024) + ' KB') : '';
+                    html += '<div style="display:flex; align-items:center; gap:6px; padding:4px 8px; background:var(--bg-card); border:1px solid var(--border-color); border-radius:8px; font-size:12px;">' +
+                        '<span>' + icon + '</span>' +
+                        '<span style="flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">' + escapeHtml(r.name) + '</span>' +
+                        '<span style="color:var(--text-muted); font-size:11px; flex-shrink:0;">' + sizeStr + '</span>' +
+                        '<button type="button" class="plugin-res-del" data-index="' + i + '" style="background:transparent; border:none; color:var(--danger); cursor:pointer; font-size:12px; padding:0 4px;">✕</button>' +
+                        '</div>';
+                }
+                listEl.innerHTML = html;
+                listEl.querySelectorAll('.plugin-res-del').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        const i = parseInt(btn.dataset.index, 10);
+                        pluginResources.splice(i, 1);
+                        renderPluginRes();
+                    });
+                });
+            }
+            renderPluginRes();
+
+            $('pluginResAddBtn').addEventListener('click', function() { $('pluginResInput').click(); });
+            $('pluginResInput').addEventListener('change', function(e) {
+                const files = e.target.files;
+                if (!files || files.length === 0) return;
+                let pending = files.length;
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    if (file.size > 1024 * 1024) {
+                        showToast('❌ ' + file.name + ' 超过 1MB 限制');
+                        pending--;
+                        if (pending === 0) { e.target.value = ''; renderPluginRes(); }
+                        continue;
+                    }
+                    const isText = file.type.startsWith('text/') || /\.(txt|md|json|html|css|js|xml|csv|svg|yml|yaml|log|ini|conf|sh|bat|py)$/i.test(file.name);
+                    const reader = new FileReader();
+                    reader.onload = (function(f, isTxt) {
+                        return function(ev) {
+                            const resource = { name: f.name, type: f.type || 'application/octet-stream', size: f.size };
+                            if (isTxt) resource.textContent = ev.target.result;
+                            else resource.dataUrl = ev.target.result;
+                            pluginResources.push(resource);
+                            pending--;
+                            if (pending === 0) {
+                                e.target.value = '';
+                                renderPluginRes();
+                                showToast('✅ 已添加资源文件');
+                            } else {
+                                renderPluginRes();
+                            }
+                        };
+                    })(file, isText);
+                    reader.onerror = function() { pending--; if (pending === 0) e.target.value = ''; };
+                    if (isText) reader.readAsText(file);
+                    else reader.readAsDataURL(file);
+                }
+            });
+
             modalSave.onclick = function() {
                 const name = $('pluginEditName').value.trim();
                 const icon = $('pluginEditIcon').value.trim() || '🧩';
@@ -2139,8 +2520,8 @@
                 const jsContent = $('pluginEditJs').value;
                 const enabled = $('pluginEditEnabled').checked;
                 if (!name) { showToast('请输入插件名称'); return; }
-                if (isNew) plugins.push({ id: 'plugin_' + Date.now() + '_' + Math.random().toString(36).slice(2, 5), name: name, icon: icon, desc: desc, htmlContent: htmlContent, jsContent: jsContent, enabled: enabled });
-                else { const idx = plugins.findIndex(function(x) { return x.id === id; }); if (idx !== -1) plugins[idx] = Object.assign({}, plugins[idx], { name: name, icon: icon, desc: desc, htmlContent: htmlContent, jsContent: jsContent, enabled: enabled }); }
+                if (isNew) plugins.push({ id: 'plugin_' + Date.now() + '_' + Math.random().toString(36).slice(2, 5), name: name, icon: icon, desc: desc, htmlContent: htmlContent, jsContent: jsContent, resources: pluginResources.slice(), enabled: enabled });
+                else { const idx = plugins.findIndex(function(x) { return x.id === id; }); if (idx !== -1) plugins[idx] = Object.assign({}, plugins[idx], { name: name, icon: icon, desc: desc, htmlContent: htmlContent, jsContent: jsContent, resources: pluginResources.slice(), enabled: enabled }); }
                 savePlugins(); renderPluginList(); renderPluginButtons(); closeModal(); showToast('✅ 已保存');
             };
             modalDelete.onclick = function() {
@@ -2175,7 +2556,11 @@
             const iframe = $('pluginRunIframe');
             const titleEl = $('pluginRunTitle');
             if (titleEl) titleEl.textContent = (p.icon || '🧩') + ' ' + p.name;
-            const srcdoc = '<!DOCTYPE html>\n<html>\n<head>\n<meta charset="utf-8">\n<style>body{font-family:-apple-system,system-ui,sans-serif;padding:16px;margin:0;background:#fff;color:#1a1a2e;}</style>\n</head>\n<body>\n' + (p.htmlContent || '') + '\n<script>\n' + (p.jsContent || '') + '\n<\/script>\n</body>\n</html>';
+            const resources = (p.resources || []).map(function(r) {
+                return { name: r.name, type: r.type, size: r.size, textContent: r.textContent, dataUrl: r.dataUrl };
+            });
+            const resourcesJson = JSON.stringify(resources).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
+            const srcdoc = '<!DOCTYPE html>\n<html>\n<head>\n<meta charset="utf-8">\n<style>body{font-family:-apple-system,system-ui,sans-serif;padding:16px;margin:0;background:#fff;color:#1a1a2e;}</style>\n</head>\n<body>\n' + (p.htmlContent || '') + '\n<script>\nwindow.pluginResources = ' + resourcesJson + ';\n' + (p.jsContent || '') + '\n<\/script>\n</body>\n</html>';
             iframe.srcdoc = srcdoc;
             overlay.classList.add('active');
             pushLayer('plugin-runner');
@@ -2870,7 +3255,7 @@
         }
 
         function buildGroupConstraint(agent) {
-            if (!groupChatMode) return '';
+            if (appMode !== 'group' && appMode !== 'debate') return '';
             const others = agents.filter(function(a) { return a.id !== agent.id && a.enabled; }).map(function(a) { return a.name; });
             if (others.length === 0) return '';
             return '\n\n【身份约束 - 必须严格遵守，任何情况下不得违反】\n' +
@@ -2901,7 +3286,11 @@
                 if (!cfg || !cfg.apiKey) { showToast('⚠️ "' + agent.name + '" 缺少API配置'); return; }
                 if (!agent.model || agent.model.trim() === '') { showToast('⚠️ "' + agent.name + '" 未选择模型'); return; }
             }
-            if (groupChatMode) targets = shuffleArray(targets);
+            if (appMode === 'group') {
+                targets = shuffleArray(targets);
+            } else if (appMode === 'traditional') {
+                targets = [targets[0]];
+            }
 
             streamingConvs.add(startConvId);
             updateInputState();
@@ -2920,6 +3309,7 @@
             if (currentConvId === startConvId) { addMessageElement(userMsg, false); scrollToBottomIfNeeded(); }
             saveConvById(startConvId, true);
             clearAllAttachments();
+            updateModeUI();
 
             let kc = '';
             if (knowledge.length > 0) {
@@ -2949,9 +3339,13 @@
                     if (m.role === 'user') {
                         payload.push({ role: 'user', content: m.multiContent || m.apiContent || m.content });
                     } else if (m.role === 'agent' && m.agentId) {
-                        if (!groupChatMode && m.agentId !== agent.id) continue;
-                        const a = agents.find(function(ag) { return ag.id === m.agentId; });
-                        payload.push({ role: 'assistant', content: a ? '[' + a.name + ']: ' + m.content : m.content });
+                        if (appMode === 'parallel' && m.agentId !== agent.id) continue;
+                        if (appMode === 'traditional') {
+                            payload.push({ role: 'assistant', content: m.content });
+                        } else {
+                            const a = agents.find(function(ag) { return ag.id === m.agentId; });
+                            payload.push({ role: 'assistant', content: a ? '[' + a.name + ']: ' + m.content : m.content });
+                        }
                     }
                 }
                 const cs = kc + pc;
@@ -2989,7 +3383,7 @@
                 );
             };
 
-            if (groupChatMode) {
+            if (appMode === 'group') {
                 for (const agent of targets) {
                     if (!streamingConvs.has(startConvId)) break;
                     await processAgent(agent);
@@ -3067,9 +3461,13 @@
                 if (m.role === 'user') {
                     payload.push({ role: 'user', content: m.multiContent || m.apiContent || m.content });
                 } else if (m.role === 'agent' && m.agentId) {
-                    if (!groupChatMode && m.agentId !== agent.id) continue;
-                    const a = agents.find(function(ag) { return ag.id === m.agentId; });
-                    payload.push({ role: 'assistant', content: a ? '[' + a.name + ']: ' + m.content : m.content });
+                    if (appMode === 'parallel' && m.agentId !== agent.id) continue;
+                    if (appMode === 'traditional') {
+                        payload.push({ role: 'assistant', content: m.content });
+                    } else {
+                        const a = agents.find(function(ag) { return ag.id === m.agentId; });
+                        payload.push({ role: 'assistant', content: a ? '[' + a.name + ']: ' + m.content : m.content });
+                    }
                 }
             }
             const cs = kc + pc;
@@ -3133,9 +3531,13 @@
                 if (m.role === 'user') {
                     payload.push({ role: 'user', content: m.multiContent || m.apiContent || m.content });
                 } else if (m.role === 'agent' && m.agentId) {
-                    if (!groupChatMode && m.agentId !== agent.id) continue;
-                    const a = agents.find(function(ag) { return ag.id === m.agentId; });
-                    payload.push({ role: 'assistant', content: a ? '[' + a.name + ']: ' + m.content : m.content });
+                    if (appMode === 'parallel' && m.agentId !== agent.id) continue;
+                    if (appMode === 'traditional') {
+                        payload.push({ role: 'assistant', content: m.content });
+                    } else {
+                        const a = agents.find(function(ag) { return ag.id === m.agentId; });
+                        payload.push({ role: 'assistant', content: a ? '[' + a.name + ']: ' + m.content : m.content });
+                    }
                 }
             }
             payload.push({ role: 'assistant', content: baseContent });
@@ -3352,7 +3754,11 @@
                 if (!cfg || !cfg.apiKey) { showToast('⚠️ "' + agent.name + '" 缺少API配置'); return; }
                 if (!agent.model || agent.model.trim() === '') { showToast('⚠️ "' + agent.name + '" 未选择模型'); return; }
             }
-            if (groupChatMode) targets = shuffleArray(targets);
+            if (appMode === 'group') {
+                targets = shuffleArray(targets);
+            } else if (appMode === 'traditional') {
+                targets = [targets[0]];
+            }
             streamingConvs.add(startConvId);
             if (currentConvId === startConvId) updateInputState();
             const skillMatch = buildSkillContext(userText);
@@ -3382,9 +3788,13 @@
                     if (m.role === 'user') {
                         payload.push({ role: 'user', content: m.multiContent || m.apiContent || m.content });
                     } else if (m.role === 'agent' && m.agentId) {
-                        if (!groupChatMode && m.agentId !== agent.id) continue;
-                        const a = agents.find(function(ag) { return ag.id === m.agentId; });
-                        payload.push({ role: 'assistant', content: a ? '[' + a.name + ']: ' + m.content : m.content });
+                        if (appMode === 'parallel' && m.agentId !== agent.id) continue;
+                        if (appMode === 'traditional') {
+                            payload.push({ role: 'assistant', content: m.content });
+                        } else {
+                            const a = agents.find(function(ag) { return ag.id === m.agentId; });
+                            payload.push({ role: 'assistant', content: a ? '[' + a.name + ']: ' + m.content : m.content });
+                        }
                     }
                 }
                 const cs = kc + pc;
@@ -3403,8 +3813,14 @@
                     }
                 );
             };
-            if (groupChatMode) { for (const agent of targets) { if (!streamingConvs.has(startConvId)) break; await processAgent(agent); } }
-            else { await Promise.allSettled(targets.map(function(agent) { return processAgent(agent); })); }
+            if (appMode === 'group') {
+                for (const agent of targets) {
+                    if (!streamingConvs.has(startConvId)) break;
+                    await processAgent(agent);
+                }
+            } else {
+                await Promise.allSettled(targets.map(function(agent) { return processAgent(agent); }));
+            }
             streamingConvs.delete(startConvId);
             if (currentConvId === startConvId) updateInputState();
             saveConvById(startConvId, true);
@@ -3604,6 +4020,7 @@
             if (currentConvId === startConvId) { addMessageElement(userMsg, false); scrollToBottomIfNeeded(); }
             saveConvById(startConvId, true);
             clearAllAttachments();
+            updateModeUI();
 
             const isCurrent = function() { return currentConvId === startConvId; };
             const addDividerLocal = function(t) {
@@ -4615,6 +5032,9 @@
                                     currentConvId = (conversations[0] && conversations[0].id) || null;
                                 }
                             }
+                            for (const c of conversations) {
+                                if (!c.mode) c.mode = 'group';
+                            }
                             saveConversations();
                             loadCurrentConvMessages();
                         }
@@ -4663,21 +5083,33 @@
         }
 
         sendBtn.addEventListener('click', function() {
-            if (isCurrentConvStreaming()) { stopConvStreams(currentConvId); return; }
+            if (isCurrentConvStreaming() || isCurrentConvDebating()) { stopConvStreams(currentConvId); return; }
             const text = inputBox.value.trim();
-            if (text || uploadedFiles.length > 0) quickReply(text);
-            else showToast('请输入消息或上传文件');
+            if (text || uploadedFiles.length > 0) {
+                if (appMode === 'debate') {
+                    startDebate();
+                } else {
+                    quickReply(text);
+                }
+            } else {
+                showToast('请输入消息或上传文件');
+            }
         });
         inputBox.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 const text = inputBox.value.trim();
-                if (text || uploadedFiles.length > 0) quickReply(text);
-                else showToast('请输入消息或上传文件');
+                if (text || uploadedFiles.length > 0) {
+                    if (appMode === 'debate') {
+                        startDebate();
+                    } else {
+                        quickReply(text);
+                    }
+                } else {
+                    showToast('请输入消息或上传文件');
+                }
             }
         });
-        groupBtn.addEventListener('click', toggleGroupMode);
-        debateBtn.addEventListener('click', startDebate);
         newChatBtn.addEventListener('click', createNewConversation);
         newChatSidebarBtn.addEventListener('click', createNewConversation);
         menuBtn.addEventListener('click', openSidebar);
@@ -4709,15 +5141,34 @@
             if (kbAddWrap && !kbAddWrap.contains(e.target)) { if (kbAddMenu) kbAddMenu.classList.remove('open'); if (kbAddBtn) kbAddBtn.classList.remove('open'); }
         });
         kbFileInput.addEventListener('change', function(e) { if (e.target.files.length > 0) handleKnowledgeFiles(e.target.files); kbFileInput.value = ''; });
-        kbSearchBtn.addEventListener('click', function() { renderDocList(); });
         kbSearchInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') renderDocList(); });
+        kbSearchInput.addEventListener('input', function() { renderDocList(); });
         $('platformAddBtn').addEventListener('click', function() { openPlatformEditor('new'); });
         $('mcpAddBtn').addEventListener('click', function() { openMcpEditor('new'); });
         $('skillAddBtn').addEventListener('click', openSkillSourceMenu);
         $('pluginAddBtn').addEventListener('click', function() { openPluginEditor('new'); });
         skillFileInput.addEventListener('change', function(e) { if (e.target.files.length > 0) importSkillsFromFiles(e.target.files); skillFileInput.value = ''; });
         atBtn.addEventListener('click', function(e) { e.stopPropagation(); toggleAtDropdown(); });
-        document.addEventListener('click', function(e) { if (!atSelector.contains(e.target)) closeAtDropdown(); });
+        
+        modeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (modeSelector.classList.contains('locked')) return;
+            toggleModeDropdown();
+        });
+        document.querySelectorAll('.mode-item').forEach(function(item) {
+            item.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const mode = item.dataset.mode;
+                setAppMode(mode);
+                closeModeDropdown();
+            });
+        });
+        
+        document.addEventListener('click', function(e) {
+            if (!atSelector.contains(e.target)) closeAtDropdown();
+            if (!modeSelector.contains(e.target)) closeModeDropdown();
+        });
+        
         fileBtn.addEventListener('click', function() { fileInput.click(); });
         fileInput.addEventListener('change', function(e) { if (e.target.files.length > 0) handleFiles(e.target.files); fileInput.value = ''; });
         const inputArea = $('inputArea');
@@ -4745,6 +5196,7 @@
                     return;
                 }
                 closeAtDropdown();
+                closeModeDropdown();
                 if (isCurrentConvStreaming() || isCurrentConvDebating()) stopConvStreams(currentConvId);
             }
         });
@@ -4753,6 +5205,16 @@
 
         loadTheme(); loadConfigs(); loadAgents(); loadFolders(); loadKnowledge();
         loadPlatforms(); loadConversations(); loadMcpServers(); loadSkills(); loadPlugins();
+        
+        const savedMode = localStorage.getItem(STORAGE.APP_MODE);
+        if (savedMode && ['group', 'parallel', 'debate', 'traditional'].includes(savedMode)) {
+            appMode = savedMode;
+        }
+        if (appMode === 'traditional') {
+            enforceTraditionalSelection();
+        }
+        updateModeUI();
+        
         renderConversationList(); renderAtDropdown(); renderApiConfigList();
         renderAgentConfigList(); renderKnowledgeUI(); renderPlatformsList();
         renderMcpList(); renderSkillList(); renderPluginList(); renderPluginButtons();
