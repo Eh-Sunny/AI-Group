@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    <title>AI 群聊 · 知识库 Pro</title>
+    <title>AI 群聊</title>
     <style>
         :root {
             --bg-primary: #0d0d1a; --bg-secondary: #12121f; --bg-card: rgba(255,255,255,0.03);
@@ -47,6 +47,25 @@
         @media (min-width:431px) { .phone { border-radius: 32px; border: 1px solid var(--border-color); } }
         @media (max-width:430px) { .phone { max-height: 100vh; border-radius: 0; box-shadow: none; } }
         
+        /* ===== 平板等大屏设备全屏适配 ===== */
+        @media (min-width: 768px) {
+            .phone {
+                max-width: 100%;
+                max-height: 100vh;
+                border-radius: 0;
+                border: none;
+                box-shadow: none;
+                padding-top: 0;
+            }
+            /* 可选：让大屏下的阅读体验更好 */
+            .messages {
+                padding: 24px max(10vw, 80px) 12px; 
+            }
+            .header, .input-area {
+                padding-left: max(12px, 5vw);
+                padding-right: max(12px, 5vw);
+            }
+        }        
         /* 顶部增加空行留白 */
         .header { display: flex; justify-content: space-between; align-items: center; padding: 24px 14px 8px; background: var(--header-bg); backdrop-filter: blur(12px); flex-shrink: 0; z-index: 10; min-height: 52px; }
         .header-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
@@ -346,7 +365,7 @@
         .export-select-item label { cursor: pointer; flex: 1; }
         .export-select-item .badge { font-size: 12px; color: var(--text-muted); margin-left: 8px; }
         
-        .kb-search { display: flex; gap: 8px; margin-bottom: 10px; position: relative; margin-top: 12px; align-items: center; }
+        .kb-search { display: flex; gap: 8px; margin-bottom: 8px; position: relative; margin-top: 0; align-items: center; }
         .kb-search-input-wrap { flex: 1; position: relative; min-width: 0; }
         .kb-search-input-wrap input { width: 100%; padding: 8px 12px 8px 34px; background: var(--bg-input); border: 1px solid var(--bg-input-border); border-radius: 10px; color: var(--text-primary); font-size: 14px; outline: none; }
         .kb-search-input-wrap input:focus { border-color: var(--accent); }
@@ -360,23 +379,26 @@
         .kb-add-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; font-size: 14px; color: var(--text-primary); cursor: pointer; user-select: none; }
         .kb-add-item:hover { background: var(--bg-hover); }
         .kb-add-item span:first-child { font-size: 16px; width: 18px; text-align: center; }
-        .kb-path-bar { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; padding: 6px 4px 10px; font-size: 13px; color: var(--text-secondary); border-bottom: 1px solid var(--border-color); margin-bottom: 8px; }
-        .kb-path-bar .path-item { cursor: pointer; color: var(--accent); font-weight: 500; padding: 2px 6px; border-radius: 6px; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: middle; }
-        .kb-path-bar .path-item:hover { background: var(--accent-bg); }
+        .kb-path-bar { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; padding: 2px 4px 6px; font-size: 13px; color: var(--text-primary); border-bottom: 1px solid var(--border-color); margin-bottom: 6px; line-height: 1.3; }
+        .kb-path-bar .path-item { cursor: pointer; color: var(--text-primary); font-weight: 500; padding: 1px 6px; border-radius: 6px; max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; vertical-align: middle; }
+        .kb-path-bar .path-item:hover { background: var(--bg-hover); }
         .kb-path-bar .path-sep { color: var(--text-muted); }
-        .kb-path-bar .path-current { color: var(--text-primary); font-weight: 600; }
-        .kb-folder-tree { background: var(--bg-card); border-radius: 12px; padding: 8px; margin-bottom: 12px; border: 1px solid var(--border-color); }
+        .kb-path-bar .path-item.path-current { color: var(--accent); font-weight: 600; }
+        .kb-folder-tree { background: transparent; border-radius: 0; padding: 0; margin-bottom: 0; border: none; }
         .kb-folder-tree:empty { display: none; }
-        .kb-folder-tree .folder-item { padding: 8px 10px; display: flex; align-items: center; gap: 8px; cursor: pointer; border-radius: 8px; border: 1px solid transparent; min-width: 0; }
-        .kb-folder-tree .folder-item:hover { background: var(--bg-hover); border-color: var(--border-color); }
-        .kb-folder-tree .folder-item .folder-icon { font-size: 18px; }
-        .kb-folder-tree .folder-item .folder-name { flex: 1; font-size: 14px; color: var(--text-primary); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .kb-folder-tree .folder-item { position: relative; padding: 13px 12px; display: flex; align-items: center; gap: 10px; cursor: pointer; border-radius: 8px; border: none; min-width: 0; }
+        .kb-folder-tree .folder-item::after { content: ''; position: absolute; left: 18px; right: 18px; bottom: 0; height: 1px; background: var(--border-color); }
+        .kb-folder-tree .folder-item:hover { background: var(--bg-hover); }
+        .kb-folder-tree .folder-item .folder-icon { font-size: 22px; line-height: 1; }
+        .kb-folder-tree .folder-item .folder-name { flex: 1; font-size: 15px; color: var(--text-primary); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .kb-folder-tree .folder-item .folder-count { font-size: 11px; color: var(--text-muted); flex-shrink: 0; }
         .kb-folder-tree .folder-item .folder-actions { display: flex; gap: 4px; flex-shrink: 0; }
         .kb-folder-tree .folder-item .folder-actions button { background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 13px; padding: 2px 6px; border-radius: 4px; }
         .kb-folder-tree .folder-item .folder-actions button:hover { background: var(--bg-hover); color: var(--text-primary); }
         .kb-folder-tree .folder-item .folder-actions button.danger:hover { background: var(--danger-bg); color: var(--danger); }
-        .kb-doc-item { background: var(--bg-card); border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; border: 1px solid var(--border-color); }
+        .kb-doc-item { position: relative; background: transparent; border-radius: 8px; padding: 13px 12px; margin-bottom: 0; border: none; }
+        .kb-doc-item::after { content: ''; position: absolute; left: 18px; right: 18px; bottom: 0; height: 1px; background: var(--border-color); }
+        .kb-doc-item:hover { background: var(--bg-hover); }
         .kb-doc-item .doc-header { display: flex; align-items: center; gap: 8px; min-width: 0; }
         .kb-doc-item .doc-header .doc-icon { font-size: 20px; flex-shrink: 0; }
         .kb-doc-item .doc-header .doc-title { font-weight: 500; color: var(--text-primary); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -1348,7 +1370,7 @@
             try { const d = localStorage.getItem(STORAGE.MCP); mcpServers = d ? JSON.parse(d) : []; } catch (_) { mcpServers = []; }
             for (const s of mcpServers) { if (s.enabled === undefined) s.enabled = true; s.status = 'disconnected'; s.lastError = null; }
         }
-        function saveMcpServers() { try { const t = mcpServers.map(function(s) { return { id: s.id, name: s.name, url: s.url, transport: s.transport || 'http', apiKey: s.apiKey || '', headers: s.headers || {}, enabled: s.enabled }; }); localStorage.setItem(STORAGE.MCP, JSON.stringify(t)); } catch (_) {} }
+        function saveMcpServers() { try { const t = mcpServers.map(function(s) { return { id: s.id, name: s.name, note: s.note || '', url: s.url, transport: s.transport || 'http', apiKey: s.apiKey || '', headers: s.headers || {}, enabled: s.enabled }; }); localStorage.setItem(STORAGE.MCP, JSON.stringify(t)); } catch (_) {} }
         function loadConversations() {
             try { const d = localStorage.getItem(STORAGE.CONVERSATIONS); conversations = d ? JSON.parse(d) : []; } catch (_) { conversations = []; }
             if (conversations.length === 0) { conversations.push({ id: 'conv_default', title: '新对话', mode: 'group', messages: [], createdAt: Date.now(), updatedAt: Date.now() }); saveConversations(); }
@@ -2962,10 +2984,10 @@
             const isNew = id === 'new';
             const s = isNew ? null : mcpServers.find(function(x) { return x.id === id; });
             if (!isNew && !s) return;
-            const target = s || { name: '', url: '', transport: 'http', apiKey: '', headers: {}, enabled: true };
+            const target = s || { name: '', note: '', url: '', transport: 'http', apiKey: '', headers: {}, enabled: true };
             const headersText = target.headers ? Object.entries(target.headers).map(function(kv) { return kv[0] + ': ' + kv[1]; }).join('\n') : '';
             modalTitle.textContent = isNew ? '添加 MCP 服务器' : '编辑 MCP 服务器';
-            modalBody.innerHTML = '<div class="config-form-group"><label>服务器名称</label><input id="mcpName" value="' + escapeHtml(target.name) + '" /></div><div class="config-form-group"><label>服务器 URL</label><input id="mcpUrl" value="' + escapeHtml(target.url) + '" placeholder="https://example.com/mcp" /></div><div class="config-form-group"><label>传输方式</label><select id="mcpTransport"><option value="http" ' + (target.transport === 'http' ? 'selected' : '') + '>Streamable HTTP</option><option value="sse" ' + (target.transport === 'sse' ? 'selected' : '') + '>SSE</option></select></div><div class="config-form-group"><label>API Key（可选）</label><div class="api-key-row"><input id="mcpKey" type="text" style="-webkit-text-security: disc;" value="' + escapeHtml(target.apiKey || '') + '" /><button class="toggle-key-btn" id="mcpToggleKey">🔒</button></div></div><div class="config-form-group"><label>自定义请求头（每行一个 Key: Value）</label><textarea id="mcpHeaders" rows="3">' + escapeHtml(headersText) + '</textarea></div><div class="config-form-group"><label style="display:flex; align-items:center; gap:10px; cursor:pointer;"><input type="checkbox" id="mcpEnabled" ' + (target.enabled ? 'checked' : '') + ' style="width:18px; height:18px;" /> 启用此服务器</label></div>';
+            modalBody.innerHTML = '<div class="config-form-group"><label>服务器名称</label><input id="mcpName" value="' + escapeHtml(target.name) + '" /></div><div class="config-form-group"><label>备注</label><input id="mcpNote" value="' + escapeHtml(target.note || '') + '" placeholder="可选备注" /></div><div class="config-form-group"><label>服务器 URL</label><input id="mcpUrl" value="' + escapeHtml(target.url) + '" placeholder="https://example.com/mcp" /></div><div class="config-form-group"><label>传输方式</label><select id="mcpTransport"><option value="http" ' + (target.transport === 'http' ? 'selected' : '') + '>Streamable HTTP</option><option value="sse" ' + (target.transport === 'sse' ? 'selected' : '') + '>SSE</option></select></div><div class="config-form-group"><label>API Key（可选）</label><div class="api-key-row"><input id="mcpKey" type="text" style="-webkit-text-security: disc;" value="' + escapeHtml(target.apiKey || '') + '" /><button class="toggle-key-btn" id="mcpToggleKey">🔒</button></div></div><div class="config-form-group"><label>自定义请求头（每行一个 Key: Value）</label><textarea id="mcpHeaders" rows="3">' + escapeHtml(headersText) + '</textarea></div><div class="config-form-group"><label style="display:flex; align-items:center; gap:10px; cursor:pointer;"><input type="checkbox" id="mcpEnabled" ' + (target.enabled ? 'checked' : '') + ' style="width:18px; height:18px;" /> 启用此服务器</label></div>';
             modalDelete.style.display = isNew ? 'none' : 'block';
             modalSave.textContent = '保存';
             modalCancel.textContent = '取消';
@@ -2981,13 +3003,14 @@
             modalSave.onclick = function() {
                 const name = $('mcpName').value.trim(), url = $('mcpUrl').value.trim();
                 const transport = $('mcpTransport').value, apiKey = $('mcpKey').value.trim();
+                const note = $('mcpNote').value.trim();
                 const enabled = $('mcpEnabled').checked;
                 const headersRaw = $('mcpHeaders').value.trim();
                 if (!name || !url) { showToast('请填写名称和 URL'); return; }
                 const headers = {};
                 if (headersRaw) for (const line of headersRaw.split('\n')) { const idx = line.indexOf(':'); if (idx > 0) { const k = line.slice(0, idx).trim(), v = line.slice(idx + 1).trim(); if (k) headers[k] = v; } }
-                if (isNew) mcpServers.push({ id: 'mcp_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6), name: name, url: url, transport: transport, apiKey: apiKey, headers: headers, enabled: enabled, status: 'disconnected', lastError: null });
-                else { const idx = mcpServers.findIndex(function(x) { return x.id === id; }); if (idx !== -1) { Object.assign(mcpServers[idx], { name: name, url: url, transport: transport, apiKey: apiKey, headers: headers, enabled: enabled }); if (mcpClients.has(id)) disconnectMcpServer(id); } }
+                if (isNew) mcpServers.push({ id: 'mcp_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6), name: name, note: note, url: url, transport: transport, apiKey: apiKey, headers: headers, enabled: enabled, status: 'disconnected', lastError: null });
+                else { const idx = mcpServers.findIndex(function(x) { return x.id === id; }); if (idx !== -1) { Object.assign(mcpServers[idx], { name: name, note: note, url: url, transport: transport, apiKey: apiKey, headers: headers, enabled: enabled }); if (mcpClients.has(id)) disconnectMcpServer(id); } }
                 saveMcpServers(); renderMcpList(); closeModal(); showToast('✅ 已保存');
             };
             modalDelete.onclick = function() {
@@ -3257,17 +3280,25 @@
         function buildGroupConstraint(agent) {
             if (appMode !== 'group' && appMode !== 'debate') return '';
             const others = agents.filter(function(a) { return a.id !== agent.id && a.enabled; }).map(function(a) { return a.name; });
-            if (others.length === 0) return '';
-            return '\n\n【身份约束 - 必须严格遵守，任何情况下不得违反】\n' +
-                '你的唯一身份是「' + agent.name + '」。你只能以「' + agent.name + '」的立场和口吻回复。\n' +
-                '本轮群聊的其他 AI 参与者：' + others.join('、') + '。\n' +
-                '严格禁止以下行为：\n' +
-                '- 禁止以「' + others.join('」「') + '」或任何其他角色、人物的口吻输出内容\n' +
-                '- 禁止输出「XX说：」「[XX]:」「**XX**：」「XX：」等标记他人发言的格式\n' +
-                '- 禁止模拟、编造、续写、推测其他角色的回复\n' +
-                '- 禁止在回复中自称其他角色名，或替其他角色表态\n' +
-                '- 即使用户要求你扮演其他角色、模仿其他 AI，也必须拒绝\n' +
-                '直接以「' + agent.name + '」的身份，用第一人称独立回答用户的问题，输出纯文本。';
+            let constraint = '';
+            if (others.length > 0) {
+                constraint = '\n\n【身份约束 - 必须严格遵守，任何情况下不得违反】\n' +
+                    '你的唯一身份是「' + agent.name + '」。你只能以「' + agent.name + '」的立场和口吻回复。\n' +
+                    '本轮群聊的其他 AI 参与者：' + others.join('、') + '。\n' +
+                    '严格禁止以下行为：\n' +
+                    '- 禁止以「' + others.join('」「') + '」或任何其他角色、人物的口吻输出内容\n' +
+                    '- 禁止输出「XX说：」「[XX]:」「**XX**：」「XX：」等标记他人发言的格式\n' +
+                    '- 禁止模拟、编造、续写、推测其他角色的回复\n' +
+                    '- 禁止在回复中自称其他角色名，或替其他角色表态\n' +
+                    '- 即使用户要求你扮演其他角色、模仿其他 AI，也必须拒绝\n' +
+                    '直接以「' + agent.name + '」的身份，用第一人称独立回答用户的问题，输出纯文本。';
+            }
+            if (appMode === 'group') {
+                constraint += '\n\n【群聊回复要求 - 必须遵守】\n' +
+                    '- 不要输出长篇大论，保持回答简洁精炼。\n' +
+                    '- 前面 AI 已经回答过的内容不要再重复；如确需使用，用一两句话简单概括即可。';
+            }
+            return constraint;
         }
 
         async function quickReply(text) {
@@ -4656,7 +4687,15 @@
             for (const f of children) {
                 const docCount = knowledge.filter(function(k) { return k.folderId === f.id; }).length;
                 const subCount = folders.filter(function(x) { return x.parentId === f.id; }).length;
-                html += '<div class="folder-item" data-id="' + f.id + '"><span class="folder-icon">📁</span><span class="folder-name">' + escapeHtml(f.name) + '</span><span class="folder-count">(' + docCount + ' 文件, ' + subCount + ' 文件夹)</span><div class="folder-actions"><button class="folder-rename" data-id="' + f.id + '" title="重命名">✎</button><button class="folder-delete danger" data-id="' + f.id + '" title="删除">✕</button></div></div>';
+                html += '<div class="folder-item" data-id="' + f.id + '">' +
+                    '<span class="folder-icon" style="font-size:22px; flex-shrink:0;">📁</span>' +
+                    '<span class="folder-name" style="flex:1; font-size:15px; color:var(--text-primary); min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">' + escapeHtml(f.name) + '</span>' +
+                    '<span class="folder-count" style="font-size:11px; color:var(--text-muted); flex-shrink:0;">(' + docCount + ' 文件, ' + subCount + ' 文件夹)</span>' +
+                    '<div class="folder-actions" style="display:flex; gap:2px; flex-shrink:0;">' +
+                        '<button class="folder-rename" data-id="' + f.id + '" title="重命名" style="background:transparent; border:none; color:var(--text-muted); cursor:pointer; font-size:13px; padding:2px 6px; border-radius:4px;">✎</button>' +
+                        '<button class="folder-delete danger" data-id="' + f.id + '" title="删除" style="background:transparent; border:none; color:var(--text-muted); cursor:pointer; font-size:13px; padding:2px 6px; border-radius:4px;">✕</button>' +
+                    '</div>' +
+                '</div>';
             }
             folderTree.innerHTML = html;
             folderTree.querySelectorAll('.folder-item').forEach(function(item) {
@@ -4699,12 +4738,18 @@
             if (filtered.length === 0) { knowledgeList.innerHTML = '<div class="config-empty">' + (searchText ? '未找到匹配的文档' : '此文件夹为空，点击右上角 ＋ 添加') + '</div>'; return; }
             let html = '';
             for (const doc of filtered) {
-                const folder = folders.find(function(f) { return f.id === doc.folderId; });
-                const folderName = folder ? folder.name : '未分类';
-                const tagsHtml = (doc.tags && doc.tags.length > 0) ? doc.tags.map(function(t) { return '<span class="tag">#' + escapeHtml(t) + '</span>'; }).join(' ') : '';
-                const previewText = doc.content ? doc.content.slice(0, 100) : (doc.fileName || '文件');
                 const typeIcon = doc.type === 'file' ? '📎' : '📄';
-                html += '<div class="kb-doc-item" data-id="' + doc.id + '"><div class="doc-header"><span class="doc-icon">' + typeIcon + '</span><span class="doc-title">' + escapeHtml(doc.title) + '</span><div class="doc-actions"><button class="doc-edit" data-id="' + doc.id + '">✎</button></div></div><div class="doc-meta"><span>📁 ' + escapeHtml(folderName) + '</span>' + tagsHtml + '<span>📅 ' + new Date(doc.createdAt).toLocaleDateString('zh-CN') + '</span>' + (doc.fileName ? '<span>📄 ' + escapeHtml(doc.fileName) + '</span>' : '') + '</div><div class="doc-preview">' + escapeHtml(previewText) + (doc.content && doc.content.length > 100 ? '…' : '') + '</div></div>';
+                const timeStr = new Date(doc.createdAt).toLocaleDateString('zh-CN');
+                html += '<div class="kb-doc-item" data-id="' + doc.id + '">' +
+                    '<div style="display:flex; align-items:center; gap:10px; min-width:0;">' +
+                        '<span style="font-size:20px; flex-shrink:0; line-height:1;">' + typeIcon + '</span>' +
+                        '<div style="flex:1; min-width:0;">' +
+                            '<div class="doc-title" style="font-size:15px; color:var(--text-primary); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">' + escapeHtml(doc.title) + '</div>' +
+                            '<div style="font-size:11px; color:var(--text-muted); margin-top:3px;">' + timeStr + '</div>' +
+                        '</div>' +
+                        '<button class="doc-edit" data-id="' + doc.id + '" style="background:transparent; border:none; color:var(--text-muted); cursor:pointer; font-size:14px; padding:4px 8px; border-radius:4px; flex-shrink:0;">✎</button>' +
+                    '</div>' +
+                '</div>';
             }
             knowledgeList.innerHTML = html;
             knowledgeList.querySelectorAll('.doc-edit').forEach(function(btn) { btn.addEventListener('click', function(e) { e.stopPropagation(); openDocEditor(btn.dataset.id); }); });
